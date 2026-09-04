@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>THRIFTY — Future of Everyday Fashion</title>
+  <meta name="description" content="THRIFTY — premium Gen-Z fashion designed for everyday expression.">
+  <meta name="theme-color" content="#f7f5f0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page-loader" id="loader">
+  <div class="loader-logo">THRIFTY<span>.</span></div>
+</div>
+
+<div class="announcement">
+  <span>FREE SHIPPING ON ORDERS OVER ₹1,999</span>
+  <span class="announcement-dot">●</span>
+  <span>NEW DROP — FW26</span>
+</div>
+
+<header class="header" id="header">
+  <div class="nav">
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <span></span><span></span>
+    </button>
+
+    <a href="#" class="logo">THRIFTY<span>.</span></a>
+
+    <nav class="desktop-nav">
+      <a href="#shop">Shop</a>
+      <a href="#new">New In</a>
+      <a href="#collections">Collections</a>
+      <a href="#story">About</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+      </button>
+
+      <button class="icon-btn desktop-only" id="accountBtn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
+      </button>
+
+      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24"><path d="M20.8 8.7c0 5.4-8.8 10.3-8.8 10.3S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.5Z"></path></svg>
+        <b class="counter" id="wishlistCount">0</b>
+      </button>
+
+      <button class="cart-btn" id="cartBtn">
+        <svg viewBox="0 0 24 24"><path d="M3 4h2l2.5 12h10L21 8H6"></path><circle cx="9" cy="20" r="1"></circle><circle cx="17" cy="20" r="1"></circle></svg>
+        <span>Cart</span>
+        <b id="cartCount">0</b>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#shop">Shop</a>
+    <a href="#new">New In</a>
+    <a href="#collections">Collections</a>
+    <a href="#story">About</a>
+    <button id="mobileAccount">Account</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-image"></div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content reveal">
+    <p class="eyebrow">THRIFTY / FW26</p>
+
+    <h1>
+      WEAR<br>
+      YOUR <em>MOOD.</em>
+    </h1>
+
+    <p class="hero-copy">
+      Modern essentials for people who refuse to dress ordinary.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#shop" class="btn btn-dark magnetic">Shop Collection <span>↗</span></a>
+      <a href="#story" class="btn btn-light magnetic">Our Story</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">SCROLL TO EXPLORE ↓</div>
+</section>
+
+<section class="marquee">
+  <div class="marquee-track">
+    <span>NEW SEASON</span><i>✦</i>
+    <span>EVERYDAY ICONS</span><i>✦</i>
+    <span>MADE FOR NOW</span><i>✦</i>
+    <span>NEW SEASON</span><i>✦</i>
+    <span>EVERYDAY ICONS</span><i>✦</i>
+  </div>
+</section>
+
+<section class="section" id="new">
+
+  <div class="section-heading reveal">
+    <div>
+      <p class="eyebrow">01 / NEW ARRIVALS</p>
+      <h2>Fresh <em>Energy.</em></h2>
+    </div>
+
+    <a href="#shop" class="text-link">View all <span>↗</span></a>
+  </div>
+
+  <div class="product-grid" id="newProducts"></div>
+</section>
+
+<section class="category-section" id="collections">
+
+  <div class="section-heading reveal">
+    <div>
+      <p class="eyebrow">02 / SHOP BY CATEGORY</p>
+      <h2>Find your <em>fit.</em></h2>
+    </div>
+  </div>
+
+  <div class="category-grid">
+
+    <button class="category-card" data-category="T-Shirts">
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85">
+      <div>
+        <small>01</small>
+        <h3>T-Shirts</h3>
+        <span>Explore ↗</span>
+      </div>
+    </button>
+
+    <button class="category-card tall" data-category="Hoodies">
+      <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=85">
+      <div>
+        <small>02</small>
+        <h3>Hoodies</h3>
+        <span>Explore ↗</span>
+      </div>
+    </button>
+
+    <button class="category-card" data-category="Oversized">
+      <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1200&q=85">
+      <div>
+        <small>03</small>
+        <h3>Oversized</h3>
+        <span>Explore ↗</span>
+      </div>
+    </button>
+
+  </div>
+</section>
+
+<section class="editorial reveal">
+
+  <div class="editorial-image">
+    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1800&q=90">
+  </div>
+
+  <div class="editorial-content">
+    <p class="eyebrow">THE EDIT / 2026</p>
+    <h2>Less noise.<br><em>More identity.</em></h2>
+
+    <p>
+      Clothes should never wear you. THRIFTY creates expressive,
+      comfortable pieces designed around the way you actually live.
+    </p>
+
+    <a href="#shop" class="btn btn-dark">Explore the Edit <span>↗</span></a>
+  </div>
+
+</section>
+
+<section class="section" id="shop">
+
+  <div class="shop-header reveal">
+
+    <div>
+      <p class="eyebrow">03 / THE STORE</p>
+      <h2>Shop <em>everything.</em></h2>
+    </div>
+
+    <div class="shop-controls">
+
+      <div class="filter-tabs">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="T-Shirts">T-Shirts</button>
+        <button class="filter" data-filter="Hoodies">Hoodies</button>
+        <button class="filter" data-filter="Oversized">Oversized</button>
+      </div>
+
+      <select id="sortSelect">
+        <option value="featured">Featured</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+      </select>
+
+    </div>
+  </div>
+
+  <div class="product-grid" id="shopProducts"></div>
+
+</section>
+
+<section class="drop-section">
+
+  <div class="drop-content reveal">
+    <p class="eyebrow">LIMITED DROP / 001</p>
+    <h2>THE<br><em>UNFINISHED</em><br>COLLECTION.</h2>
+
+    <p>
+      Limited quantities. No restocks. Designed to disappear.
+    </p>
+
+    <div class="countdown" id="countdown">
+      <div><strong id="days">04</strong><span>DAYS</span></div>
+      <div><strong id="hours">12</strong><span>HOURS</span></div>
+      <div><strong id="minutes">48</strong><span>MIN</span></div>
+      <div><strong id="seconds">00</strong><span>SEC</span></div>
+    </div>
+
+    <button class="btn btn-light" onclick="scrollToShop()">Shop Limited Drop <span>↗</span></button>
+  </div>
+
+</section>
+
+<section class="story-section" id="story">
+
+  <div class="story-text reveal">
+    <p class="eyebrow">04 / OUR PHILOSOPHY</p>
+    <h2>Clothing<br>without <em>rules.</em></h2>
+
+    <p>
+      THRIFTY is built for a generation that doesn't need permission
+      to express itself. We mix clean silhouettes, unexpected details,
+      and everyday comfort to create pieces that feel unmistakably yours.
+    </p>
+
+    <a href="#" class="text-link">Read our story ↗</a>
+  </div>
+
+  <div class="story-images">
+    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85">
+    <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85">
+  </div>
+
+</section>
+
+<section class="reviews">
+
+  <div class="section-heading reveal">
+    <div>
+      <p class="eyebrow">05 / COMMUNITY</p>
+      <h2>Loved by <em>you.</em></h2>
+    </div>
+  </div>
+
+  <div class="review-grid">
+
+    <article class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>"The fit is insane. Easily one of the best oversized tees I've bought."</p>
+      <strong>— AARAV M.</strong>
+    </article>
+
+    <article class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Packaging, quality, website — everything feels premium."</p>
+      <strong>— RIYA S.</strong>
+    </article>
+
+    <article class="review reveal">
+      <div class="stars">★★★★★</div>
+      <p>"The hoodie is ridiculously comfortable. Already ordering another."</p>
+      <strong>— KABIR R.</strong>
+    </article>
+
+  </div>
+</section>
+
+<section class="social-section">
+
+  <div class="section-heading reveal">
+    <div>
+      <p class="eyebrow">06 / @THRIFTY.STORE</p>
+      <h2>Seen <em>outside.</em></h2>
+    </div>
+  </div>
+
+  <div class="social-grid">
+
+    <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=700&q=85">
+    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85">
+    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=85">
+    <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=85">
+    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85">
+    <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=85">
+
+  </div>
+
+</section>
+
+<section class="newsletter">
+
+  <div class="newsletter-inner reveal">
+    <p class="eyebrow">07 / STAY IN THE LOOP</p>
+    <h2>Don't miss<br><em>the next drop.</em></h2>
+
+    <form id="newsletterForm">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Join us ↗</button>
+    </form>
+
+    <small>No spam. Only drops, stories & things worth knowing.</small>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      <div class="footer-logo">THRIFTY<span>.</span></div>
+      <p>Modern clothing for an evolving generation.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>SHOP</h4>
+      <a href="#shop">All Products</a>
+      <a href="#new">New Arrivals</a>
+      <a href="#shop">Best Sellers</a>
+      <a href="#collections">Collections</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>HELP</h4>
+      <a href="#">Contact</a>
+      <a href="#">Shipping & Returns</a>
+      <a href="#">Size Guide</a>
+      <a href="#">FAQ</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>FOLLOW</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+      <a href="#">TikTok</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 THRIFTY. All rights reserved.</span>
+
+    <div>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+
+</footer>
+
+<!-- SEARCH -->
+
+<div class="overlay" id="searchOverlay">
+
+  <div class="search-panel">
+
+    <button class="close-btn" id="closeSearch">×</button>
+
+    <p class="eyebrow">SEARCH</p>
+
+    <h2>Find your <em>piece.</em></h2>
+
+    <div class="search-input">
+      <input id="searchInput" type="text" placeholder="Search products...">
+      <span>⌕</span>
+    </div>
+
+    <div id="searchResults"></div>
+
+  </div>
+
+</div>
+
+<!-- PRODUCT MODAL -->
+
+<div class="overlay" id="productOverlay">
+
+  <div class="product-modal">
+
+    <button class="close-btn" id="closeProduct">×</button>
+
+    <div id="productModalContent"></div>
+
+  </div>
+
+</div>
+
+<!-- LOGIN -->
+
+<div class="overlay" id="accountOverlay">
+
+  <div class="account-modal">
+
+    <button class="close-btn" id="closeAccount">×</button>
+
+    <p class="eyebrow">YOUR ACCOUNT</p>
+    <h2>Welcome <em>back.</em></h2>
+
+    <form id="loginForm">
+
+      <input type="email" placeholder="Email address" required>
+      <input type="password" placeholder="Password" required>
+
+      <button class="btn btn-dark full">Login ↗</button>
+
+    </form>
+
+    <p class="account-small">
+      Demo authentication — connect your backend to enable real accounts.
+    </p>
+
+  </div>
+
+</div>
+
+<!-- CART -->
+
+<aside class="cart-drawer" id="cartDrawer">
+
+  <div class="cart-header">
+    <h2>Your <em>bag.</em></h2>
+    <button class="close-btn" id="closeCart">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-footer">
+
+    <div class="shipping-progress">
+      <span id="shippingMessage">Add products to your bag.</span>
+      <div class="progress">
+        <i id="shippingProgress"></i>
+      </div>
+    </div>
+
+    <div class="cart-total">
+      <span>Subtotal</span>
+      <strong id="cartTotal">₹0</strong>
+    </div>
+
+    <button class="btn btn-dark full" id="checkoutBtn">
+      Checkout <span>→</span>
+    </button>
+
+    <small>Taxes and shipping calculated at checkout.</small>
+
+  </div>
+
+</aside>
+
+<div class="cart-backdrop" id="cartBackdrop"></div>
+
+<!-- CHECKOUT -->
+
+<div class="overlay" id="checkoutOverlay">
+
+  <div class="checkout-modal">
+
+    <button class="close-btn" id="closeCheckout">×</button>
+
+    <div id="checkoutContent">
+
+      <p class="eyebrow">CHECKOUT</p>
+      <h2>Almost <em>there.</em></h2>
+
+      <form id="checkoutForm">
+
+        <div class="checkout-grid">
+
+          <div>
+            <h4>CONTACT</h4>
+            <input type="email" placeholder="Email address" required>
+
+            <h4>DELIVERY</h4>
+
+            <input type="text" placeholder="Full name" required>
+            <input type="text" placeholder="Address" required>
+
+            <div class="two-inputs">
+              <input type="text" placeholder="City" required>
+              <input type="text" placeholder="PIN code" required>
+            </div>
+
+            <input type="tel" placeholder="Phone number" required>
+
+          </div>
+
+          <div class="checkout-summary">
+
+            <h4>ORDER SUMMARY</h4>
+
+            <div id="checkoutItems"></div>
+
+            <div class="checkout-line">
+              <span>Subtotal</span>
+              <strong id="checkoutSubtotal">₹0</strong>
+            </div>
+
+            <div class="checkout-line">
+              <span>Shipping</span>
+              <strong>FREE</strong>
+            </div>
+
+            <div class="checkout-total">
+              <span>Total</span>
+              <strong id="checkoutTotal">₹0</strong>
+            </div>
+
+            <button class="btn btn-dark full" type="submit">
+              Place Order <span>↗</span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+  <span>✓</span>
+  <p>Added to your bag</p>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
