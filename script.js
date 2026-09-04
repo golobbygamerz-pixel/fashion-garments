@@ -1,5 +1,5 @@
 /* =========================================
-   THRIFTY E-COMMERCE ENGINE
+   FASHION GARMENTS E-COMMERCE ENGINE
 ========================================= */
 
 const products = [
@@ -197,6 +197,7 @@ function productCard(product) {
               : ""
             }
           </span>
+
         </div>
 
       </div>
@@ -784,7 +785,7 @@ document.getElementById("checkoutForm")
 
         <h2>
           You're officially<br>
-          <em>THRIFTY.</em>
+          <em>FASHION GARMENTS.</em>
         </h2>
 
         <p style="
