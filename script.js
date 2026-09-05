@@ -1,29 +1,23 @@
-/* =========================================
+/* =========================================================
    FASHION GARMENTS
-   E-COMMERCE + SUPABASE AUTH ENGINE
-========================================= */
+   STORE + CART + WISHLIST + SUPABASE AUTH
+========================================================= */
 
 
-/* =========================================
-   SUPABASE CONFIG
-========================================= */
+/* =========================================================
+   SUPABASE
+========================================================= */
 
-const SUPABASE_URL =
-  "https://llehrynfkntrvndbqwsn.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_RiKV4zUAposqKWbtbMr9IQ_M9cT5Zcy";
+const SUPABASE_URL = "https://llehrynfkntrvndbqwsn.supabase.co";
+const SUPABASE_KEY = "sb_publishable_RiKV4zUAposqKWbtbMr9IQ_M9cT5Zcy";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+  window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 
-/* =========================================
+/* =========================================================
    PRODUCTS
-========================================= */
+========================================================= */
 
 const products = [
   {
@@ -33,12 +27,9 @@ const products = [
     price: 1499,
     oldPrice: 1899,
     badge: "BESTSELLER",
-    image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "Heavyweight everyday tee with a relaxed oversized silhouette."
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85",
+    description: "A relaxed everyday silhouette with premium comfort and a clean finish."
   },
-
   {
     id: 2,
     name: "Studio Cream Tee",
@@ -46,12 +37,9 @@ const products = [
     price: 1299,
     oldPrice: null,
     badge: "NEW",
-    image:
-      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "Clean minimal tee crafted for everyday styling."
+    image: "https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=1000&q=85",
+    description: "Minimal cream tee designed for effortless everyday styling."
   },
-
   {
     id: 3,
     name: "Archive Grey Hoodie",
@@ -59,12 +47,9 @@ const products = [
     price: 2499,
     oldPrice: 2999,
     badge: "DROP 01",
-    image:
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "Premium heavyweight hoodie with an effortless relaxed fit."
+    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
+    description: "Heavyweight relaxed hoodie with a timeless archive-inspired silhouette."
   },
-
   {
     id: 4,
     name: "Form Oversized Shirt",
@@ -72,25 +57,19 @@ const products = [
     price: 2199,
     oldPrice: null,
     badge: "NEW",
-    image:
-      "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "Contemporary oversized shirt designed for layered looks."
+    image: "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=1000&q=85",
+    description: "A modern oversized shirt built around clean lines and easy movement."
   },
-
   {
     id: 5,
     name: "Essential Black Tee",
     category: "T-Shirts",
     price: 1299,
     oldPrice: null,
-    badge: null,
-    image:
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "A clean black essential with a premium everyday fit."
+    badge: "",
+    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=85",
+    description: "The everyday black tee. Simple, versatile and made to repeat."
   },
-
   {
     id: 6,
     name: "Washed Street Hoodie",
@@ -98,12 +77,9 @@ const products = [
     price: 2699,
     oldPrice: null,
     badge: "LIMITED",
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "Washed finish, relaxed proportions and everyday comfort."
+    image: "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=85",
+    description: "Washed finish hoodie with an elevated streetwear attitude."
   },
-
   {
     id: 7,
     name: "Daily Boxy Tee",
@@ -111,12 +87,9 @@ const products = [
     price: 1399,
     oldPrice: null,
     badge: "NEW",
-    image:
-      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "Boxy contemporary tee built for modern everyday wardrobes."
+    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=85",
+    description: "Boxy everyday fit with a modern proportion and soft hand feel."
   },
-
   {
     id: 8,
     name: "Relaxed Signature Hoodie",
@@ -124,103 +97,56 @@ const products = [
     price: 2899,
     oldPrice: 3299,
     badge: "SALE",
-    image:
-      "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=85",
-    description:
-      "Soft premium hoodie with signature relaxed proportions."
+    image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
+    description: "Relaxed premium hoodie designed as an everyday signature piece."
   }
 ];
 
 
-/* =========================================
-   LOCAL STATE
-========================================= */
+/* =========================================================
+   STORAGE
+========================================================= */
 
-let cart =
-  JSON.parse(localStorage.getItem("thriftyCart")) || [];
+let cart = [];
+let wishlist = [];
 
-let wishlist =
-  JSON.parse(localStorage.getItem("thriftyWishlist")) || [];
+try {
+  cart = JSON.parse(localStorage.getItem("thriftyCart")) || [];
+} catch {
+  cart = [];
+}
 
-let activeFilter = "All";
-
-let currentSession = null;
-
-
-/* =========================================
-   DOM
-========================================= */
-
-const shopProducts =
-  document.getElementById("shopProducts");
-
-const newProducts =
-  document.getElementById("newProducts");
-
-const cartDrawer =
-  document.getElementById("cartDrawer");
-
-const cartBackdrop =
-  document.getElementById("cartBackdrop");
-
-const cartItems =
-  document.getElementById("cartItems");
-
-const cartTotal =
-  document.getElementById("cartTotal");
-
-const cartCount =
-  document.getElementById("cartCount");
-
-const wishlistCount =
-  document.getElementById("wishlistCount");
-
-const toast =
-  document.getElementById("toast");
-
-const searchOverlay =
-  document.getElementById("searchOverlay");
-
-const productOverlay =
-  document.getElementById("productOverlay");
-
-const accountOverlay =
-  document.getElementById("accountOverlay");
-
-const checkoutOverlay =
-  document.getElementById("checkoutOverlay");
+try {
+  wishlist = JSON.parse(localStorage.getItem("thriftyWishlist")) || [];
+} catch {
+  wishlist = [];
+}
 
 
-/* =========================================
+/* =========================================================
    HELPERS
-========================================= */
+========================================================= */
 
-function money(value) {
-  return "₹" + Number(value).toLocaleString("en-IN");
+const $ = (id) => document.getElementById(id);
+
+const money = (value) =>
+  "₹" + Number(value).toLocaleString("en-IN");
+
+function saveCart() {
+  localStorage.setItem("thriftyCart", JSON.stringify(cart));
 }
 
-
-function saveState() {
-  localStorage.setItem(
-    "thriftyCart",
-    JSON.stringify(cart)
-  );
-
-  localStorage.setItem(
-    "thriftyWishlist",
-    JSON.stringify(wishlist)
-  );
+function saveWishlist() {
+  localStorage.setItem("thriftyWishlist", JSON.stringify(wishlist));
 }
-
 
 function showToast(message) {
+  const toast = $("toast");
+  const text = $("toastText");
+
   if (!toast) return;
 
-  const text = toast.querySelector("p");
-
-  if (text) {
-    text.textContent = message;
-  }
+  if (text) text.textContent = message;
 
   toast.classList.add("show");
 
@@ -228,51 +154,80 @@ function showToast(message) {
 
   window.toastTimer = setTimeout(() => {
     toast.classList.remove("show");
-  }, 2500);
+  }, 2200);
+}
+
+function openOverlay(id) {
+  const overlay = $(id);
+
+  if (!overlay) return;
+
+  overlay.classList.add("open");
+  document.body.classList.add("no-scroll");
+}
+
+function closeOverlay(id) {
+  const overlay = $(id);
+
+  if (!overlay) return;
+
+  overlay.classList.remove("open");
+
+  if (
+    !document.querySelector(".overlay.open") &&
+    !document.querySelector(".cart-drawer.open")
+  ) {
+    document.body.classList.remove("no-scroll");
+  }
 }
 
 
-/* =========================================
+/* =========================================================
    PRODUCT CARD
-========================================= */
+========================================================= */
 
 function productCard(product) {
 
-  const liked =
-    wishlist.includes(product.id);
+  const liked = wishlist.includes(product.id);
 
   return `
     <article class="product-card reveal">
 
       <div
         class="product-image"
-        onclick="openProduct(${product.id})"
-      >
+        data-product="${product.id}">
 
         ${
           product.badge
-            ? `<span class="product-badge">${product.badge}</span>`
+            ? `<div class="product-badge">${product.badge}</div>`
             : ""
         }
 
         <button
           class="wishlist-heart ${liked ? "active" : ""}"
-          onclick="event.stopPropagation(); toggleWishlist(${product.id})"
-        >
-          ${liked ? "♥" : "♡"}
+          data-wishlist="${product.id}"
+          aria-label="Wishlist">
+
+          <svg viewBox="0 0 24 24" width="17" height="17"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.5">
+
+            <path d="M20.8 8.7c0 5.4-8.8 10.4-8.8 10.4S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.3a4.7 4.7 0 0 1 8.8 2.4Z"></path>
+
+          </svg>
+
         </button>
 
         <img
           src="${product.image}"
           alt="${product.name}"
-          loading="lazy"
-        >
+          loading="lazy">
 
         <button
           class="quick-add"
-          onclick="event.stopPropagation(); addToCart(${product.id})"
-        >
-          ADD TO BAG +
+          data-add="${product.id}">
+          QUICK ADD +
         </button>
 
       </div>
@@ -286,15 +241,12 @@ function productCard(product) {
           <span>${product.category}</span>
 
           <span class="product-price">
-
             ${money(product.price)}
-
             ${
               product.oldPrice
                 ? `<del>${money(product.oldPrice)}</del>`
                 : ""
             }
-
           </span>
 
         </div>
@@ -306,441 +258,166 @@ function productCard(product) {
 }
 
 
-/* =========================================
+/* =========================================================
    RENDER PRODUCTS
-========================================= */
+========================================================= */
 
-function renderProducts() {
+function renderProducts(list, containerId) {
 
-  if (!shopProducts || !newProducts) return;
+  const container = $(containerId);
 
-  let list = [...products];
+  if (!container) return;
 
-  if (activeFilter !== "All") {
-    list = list.filter(
-      product =>
-        product.category === activeFilter
-    );
-  }
-
-  const sortSelect =
-    document.getElementById("sortSelect");
-
-  const sort =
-    sortSelect ? sortSelect.value : "default";
-
-  if (sort === "low") {
-    list.sort(
-      (a, b) => a.price - b.price
-    );
-  }
-
-  if (sort === "high") {
-    list.sort(
-      (a, b) => b.price - a.price
-    );
-  }
-
-  shopProducts.innerHTML =
-    list.map(productCard).join("");
-
-  newProducts.innerHTML =
-    products
-      .slice(0, 4)
-      .map(productCard)
-      .join("");
-
-  observeReveal();
-}
-
-
-/* =========================================
-   WISHLIST
-========================================= */
-
-function toggleWishlist(id) {
-
-  if (wishlist.includes(id)) {
-
-    wishlist =
-      wishlist.filter(
-        item => item !== id
-      );
-
-    showToast(
-      "Removed from wishlist"
-    );
-
-  } else {
-
-    wishlist.push(id);
-
-    showToast(
-      "Added to wishlist"
-    );
-  }
-
-  saveState();
-
-  wishlistCount.textContent =
-    wishlist.length;
-
-  renderProducts();
-}
-
-
-/* =========================================
-   CART
-========================================= */
-
-function addToCart(id, size = "M") {
-
-  const product =
-    products.find(
-      p => p.id === id
-    );
-
-  if (!product) return;
-
-  const existing =
-    cart.find(
-      item =>
-        item.id === id &&
-        item.size === size
-    );
-
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({
-      id,
-      size,
-      quantity: 1
-    });
-  }
-
-  saveState();
-
-  updateCart();
-
-  showToast(
-    `${product.name} added to your bag`
-  );
-
-  openCart();
-}
-
-
-function updateCart() {
-
-  if (!cartItems) return;
-
-  const quantity =
-    cart.reduce(
-      (total, item) =>
-        total + item.quantity,
-      0
-    );
-
-  cartCount.textContent =
-    quantity;
-
-  if (!cart.length) {
-
-    cartItems.innerHTML = `
-      <div class="empty-cart">
-
-        <div>
-          <strong>Your bag is empty.</strong>
-
-          <p>
-            Find something you love.
-          </p>
-        </div>
-
-      </div>
+  if (!list.length) {
+    container.innerHTML = `
+      <p style="grid-column:1/-1;color:#77746e;padding:40px 0;">
+        No products found.
+      </p>
     `;
+    return;
+  }
 
-    cartTotal.textContent = "₹0";
+  container.innerHTML = list.map(productCard).join("");
 
-    updateShipping(0);
+  requestAnimationFrame(() => {
+    container.querySelectorAll(".reveal").forEach(el => {
+      setTimeout(() => el.classList.add("visible"), 40);
+    });
+  });
+}
+
+
+/* =========================================================
+   INITIAL PRODUCTS
+========================================================= */
+
+function renderInitialProducts() {
+  renderProducts(products.slice(0, 4), "newProducts");
+  renderProducts(products, "shopProducts");
+}
+
+renderInitialProducts();
+
+
+/* =========================================================
+   PRODUCT CLICK EVENTS
+========================================================= */
+
+document.addEventListener("click", (event) => {
+
+  const addButton = event.target.closest("[data-add]");
+
+  if (addButton) {
+    event.stopPropagation();
+
+    const id = Number(addButton.dataset.add);
+
+    addToCart(id);
 
     return;
   }
 
-  let total = 0;
 
-  cartItems.innerHTML =
-    cart.map(item => {
+  const wishButton = event.target.closest("[data-wishlist]");
 
-      const product =
-        products.find(
-          p => p.id === item.id
-        );
+  if (wishButton) {
+    event.stopPropagation();
 
-      if (!product) return "";
+    const id = Number(wishButton.dataset.wishlist);
 
-      const itemTotal =
-        product.price *
-        item.quantity;
+    toggleWishlist(id);
 
-      total += itemTotal;
-
-      return `
-        <div class="cart-item">
-
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-          >
-
-          <div>
-
-            <h4>
-              ${product.name}
-            </h4>
-
-            <small>
-              Size: ${item.size}
-            </small>
-
-            <div class="quantity">
-
-              <button
-                onclick="changeQuantity(${item.id}, '${item.size}', -1)"
-              >
-                −
-              </button>
-
-              <span>
-                ${item.quantity}
-              </span>
-
-              <button
-                onclick="changeQuantity(${item.id}, '${item.size}', 1)"
-              >
-                +
-              </button>
-
-            </div>
-
-            <button
-              class="remove"
-              onclick="removeFromCart(${item.id}, '${item.size}')"
-            >
-              Remove
-            </button>
-
-          </div>
-
-          <strong>
-            ${money(itemTotal)}
-          </strong>
-
-        </div>
-      `;
-
-    }).join("");
-
-  cartTotal.textContent =
-    money(total);
-
-  updateShipping(total);
-}
-
-
-function changeQuantity(
-  id,
-  size,
-  amount
-) {
-
-  const item =
-    cart.find(
-      item =>
-        item.id === id &&
-        item.size === size
-    );
-
-  if (!item) return;
-
-  item.quantity += amount;
-
-  if (item.quantity <= 0) {
-
-    cart =
-      cart.filter(
-        item =>
-          !(
-            item.id === id &&
-            item.size === size
-          )
-      );
+    return;
   }
 
-  saveState();
 
-  updateCart();
-}
+  const productImage = event.target.closest(".product-image");
 
+  if (
+    productImage &&
+    !event.target.closest("[data-add]") &&
+    !event.target.closest("[data-wishlist]")
+  ) {
+    const id = Number(productImage.dataset.product);
 
-function removeFromCart(
-  id,
-  size
-) {
-
-  cart =
-    cart.filter(
-      item =>
-        !(
-          item.id === id &&
-          item.size === size
-        )
-    );
-
-  saveState();
-
-  updateCart();
-
-  showToast(
-    "Removed from bag"
-  );
-}
-
-
-function updateShipping(total) {
-
-  const target = 1999;
-
-  const progress =
-    Math.min(
-      (total / target) * 100,
-      100
-    );
-
-  const bar =
-    document.getElementById(
-      "shippingProgress"
-    );
-
-  const message =
-    document.getElementById(
-      "shippingMessage"
-    );
-
-  if (bar) {
-    bar.style.width =
-      progress + "%";
+    openProduct(id);
   }
 
-  if (message) {
+});
 
-    if (total >= target) {
 
-      message.textContent =
-        "🎉 You unlocked FREE shipping!";
+/* =========================================================
+   WISHLIST
+========================================================= */
 
-    } else {
+function toggleWishlist(id) {
 
-      message.textContent =
-        `Add ${money(
-          target - total
-        )} more for FREE shipping.`;
-    }
+  const index = wishlist.indexOf(id);
+
+  if (index >= 0) {
+    wishlist.splice(index, 1);
+    showToast("Removed from wishlist");
+  } else {
+    wishlist.push(id);
+    showToast("Added to wishlist");
+  }
+
+  saveWishlist();
+
+  updateWishlistCount();
+
+  renderInitialProducts();
+}
+
+function updateWishlistCount() {
+
+  const count = $("wishlistCount");
+
+  if (count) {
+    count.textContent = wishlist.length;
   }
 }
 
-
-function openCart() {
-
-  cartDrawer.classList.add("open");
-
-  cartBackdrop.classList.add("open");
-
-  document.body.classList.add(
-    "no-scroll"
-  );
-}
+updateWishlistCount();
 
 
-function closeCart() {
-
-  cartDrawer.classList.remove("open");
-
-  cartBackdrop.classList.remove("open");
-
-  document.body.classList.remove(
-    "no-scroll"
-  );
-}
-
-
-document
-  .getElementById("cartBtn")
-  .addEventListener(
-    "click",
-    openCart
-  );
-
-
-document
-  .getElementById("closeCart")
-  .addEventListener(
-    "click",
-    closeCart
-  );
-
-
-cartBackdrop.addEventListener(
-  "click",
-  closeCart
-);
-
-
-/* =========================================
+/* =========================================================
    PRODUCT MODAL
-========================================= */
+========================================================= */
 
 function openProduct(id) {
 
-  const product =
-    products.find(
-      p => p.id === id
-    );
+  const product = products.find(p => p.id === id);
 
   if (!product) return;
 
-  productOverlay.classList.add(
-    "open"
-  );
+  const modal = $("productModalContent");
 
-  document.getElementById(
-    "productModalContent"
-  ).innerHTML = `
+  if (!modal) return;
+
+  modal.innerHTML = `
 
     <div class="product-modal-content">
 
       <div class="modal-product-image">
-
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-        >
-
+        <img src="${product.image}" alt="${product.name}">
       </div>
 
       <div class="modal-product-info">
 
-        <p class="eyebrow">
-          ${product.category}
-        </p>
+        <p class="eyebrow">${product.category}</p>
 
-        <h2>
-          ${product.name}
-        </h2>
+        <h2>${product.name}</h2>
 
         <div class="modal-price">
           ${money(product.price)}
+          ${
+            product.oldPrice
+              ? `<del style="color:#77746e;font-size:13px;margin-left:8px;">
+                   ${money(product.oldPrice)}
+                 </del>`
+              : ""
+          }
         </div>
 
         <p class="modal-description">
@@ -752,42 +429,18 @@ function openProduct(id) {
         </div>
 
         <div class="sizes">
-
-          <button
-            class="size-btn"
-            data-size="S"
-          >
-            S
-          </button>
-
-          <button
-            class="size-btn active"
-            data-size="M"
-          >
-            M
-          </button>
-
-          <button
-            class="size-btn"
-            data-size="L"
-          >
-            L
-          </button>
-
-          <button
-            class="size-btn"
-            data-size="XL"
-          >
-            XL
-          </button>
-
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
         </div>
 
         <button
           class="btn btn-dark full"
-          id="modalAdd"
-        >
-          Add to Bag <span>→</span>
+          id="modalAddToCart"
+          data-id="${product.id}">
+          ADD TO BAG
+          <span>↗</span>
         </button>
 
       </div>
@@ -795,431 +448,667 @@ function openProduct(id) {
     </div>
   `;
 
-  let selectedSize = "M";
+  openOverlay("productOverlay");
+}
 
-  document
-    .querySelectorAll(".size-btn")
-    .forEach(button => {
 
-      button.addEventListener(
-        "click",
-        () => {
+/* =========================================================
+   MODAL SIZE
+========================================================= */
 
-          document
-            .querySelectorAll(".size-btn")
-            .forEach(b =>
-              b.classList.remove(
-                "active"
-              )
-            );
+document.addEventListener("click", (event) => {
 
-          button.classList.add(
-            "active"
-          );
+  const size = event.target.closest(".size-btn");
 
-          selectedSize =
-            button.dataset.size;
-        }
-      );
+  if (!size) return;
 
+  const parent = size.parentElement;
+
+  parent.querySelectorAll(".size-btn")
+    .forEach(btn => btn.classList.remove("active"));
+
+  size.classList.add("active");
+});
+
+
+document.addEventListener("click", (event) => {
+
+  const button = event.target.closest("#modalAddToCart");
+
+  if (!button) return;
+
+  const id = Number(button.dataset.id);
+
+  const size =
+    document.querySelector(".size-btn.active")?.textContent || "M";
+
+  addToCart(id, size);
+
+  closeOverlay("productOverlay");
+});
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function addToCart(id, size = "M") {
+
+  const product = products.find(p => p.id === id);
+
+  if (!product) return;
+
+  const existing = cart.find(
+    item => item.id === id && item.size === size
+  );
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      id,
+      size,
+      quantity: 1
     });
+  }
 
-  document
-    .getElementById("modalAdd")
-    .addEventListener(
-      "click",
-      () => {
+  saveCart();
 
-        addToCart(
-          product.id,
-          selectedSize
-        );
+  updateCart();
 
-        productOverlay.classList.remove(
-          "open"
-        );
-      }
-    );
+  showToast(`${product.name} added to bag`);
 }
 
 
-document
-  .getElementById("closeProduct")
-  .addEventListener(
-    "click",
-    () => {
-      productOverlay.classList.remove(
-        "open"
-      );
-    }
+function removeFromCart(index) {
+
+  if (index < 0 || index >= cart.length) return;
+
+  cart.splice(index, 1);
+
+  saveCart();
+
+  updateCart();
+}
+
+
+function changeQuantity(index, amount) {
+
+  if (!cart[index]) return;
+
+  cart[index].quantity += amount;
+
+  if (cart[index].quantity <= 0) {
+    cart.splice(index, 1);
+  }
+
+  saveCart();
+
+  updateCart();
+}
+
+
+function cartSubtotal() {
+
+  return cart.reduce((total, item) => {
+
+    const product = products.find(p => p.id === item.id);
+
+    if (!product) return total;
+
+    return total + product.price * item.quantity;
+
+  }, 0);
+}
+
+
+function updateCart() {
+
+  const container = $("cartItems");
+  const count = $("cartCount");
+  const total = $("cartTotal");
+  const shippingMessage = $("shippingMessage");
+  const shippingProgress = $("shippingProgress");
+
+  const itemCount = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
   );
 
+  const subtotal = cartSubtotal();
 
-/* =========================================
+  if (count) count.textContent = itemCount;
+
+  if (total) total.textContent = money(subtotal);
+
+  if (container) {
+
+    if (!cart.length) {
+
+      container.innerHTML = `
+        <div class="empty-cart">
+          <div>
+            <strong>Your bag is empty.</strong>
+            <span>Add something you love.</span>
+          </div>
+        </div>
+      `;
+
+    } else {
+
+      container.innerHTML = cart.map((item, index) => {
+
+        const product = products.find(p => p.id === item.id);
+
+        if (!product) return "";
+
+        return `
+          <div class="cart-item">
+
+            <img src="${product.image}" alt="${product.name}">
+
+            <div>
+
+              <h4>${product.name}</h4>
+
+              <small>
+                ${item.size} · ${money(product.price)}
+              </small>
+
+              <div class="quantity">
+
+                <button
+                  data-minus="${index}">
+                  −
+                </button>
+
+                <span>${item.quantity}</span>
+
+                <button
+                  data-plus="${index}">
+                  +
+                </button>
+
+              </div>
+
+              <button
+                class="remove"
+                data-remove="${index}">
+                Remove
+              </button>
+
+            </div>
+
+            <strong>
+              ${money(product.price * item.quantity)}
+            </strong>
+
+          </div>
+        `;
+
+      }).join("");
+
+    }
+
+  }
+
+
+  if (shippingMessage && shippingProgress) {
+
+    const freeShipping = 1999;
+
+    if (!cart.length) {
+
+      shippingMessage.textContent =
+        "Add ₹1,999 to unlock free shipping.";
+
+      shippingProgress.style.width = "0%";
+
+    } else if (subtotal >= freeShipping) {
+
+      shippingMessage.textContent =
+        "You unlocked free shipping ✓";
+
+      shippingProgress.style.width = "100%";
+
+    } else {
+
+      const remaining = freeShipping - subtotal;
+
+      shippingMessage.textContent =
+        `Add ${money(remaining)} to unlock free shipping.`;
+
+      shippingProgress.style.width =
+        `${Math.min((subtotal / freeShipping) * 100, 100)}%`;
+
+    }
+
+  }
+}
+
+
+document.addEventListener("click", (event) => {
+
+  const plus = event.target.closest("[data-plus]");
+
+  if (plus) {
+    changeQuantity(Number(plus.dataset.plus), 1);
+    return;
+  }
+
+  const minus = event.target.closest("[data-minus]");
+
+  if (minus) {
+    changeQuantity(Number(minus.dataset.minus), -1);
+    return;
+  }
+
+  const remove = event.target.closest("[data-remove]");
+
+  if (remove) {
+    removeFromCart(Number(remove.dataset.remove));
+  }
+
+});
+
+
+updateCart();
+
+
+/* =========================================================
+   CART OPEN / CLOSE
+========================================================= */
+
+$("cartBtn")?.addEventListener("click", () => {
+
+  $("cartDrawer")?.classList.add("open");
+  $("cartBackdrop")?.classList.add("open");
+
+  document.body.classList.add("no-scroll");
+
+});
+
+
+function closeCart() {
+
+  $("cartDrawer")?.classList.remove("open");
+  $("cartBackdrop")?.classList.remove("open");
+
+  if (!document.querySelector(".overlay.open")) {
+    document.body.classList.remove("no-scroll");
+  }
+
+}
+
+$("closeCart")?.addEventListener("click", closeCart);
+$("cartBackdrop")?.addEventListener("click", closeCart);
+
+
+/* =========================================================
    SEARCH
-========================================= */
+========================================================= */
 
-document
-  .getElementById("searchBtn")
-  .addEventListener(
-    "click",
-    () => {
+$("searchBtn")?.addEventListener("click", () => {
 
-      searchOverlay.classList.add(
-        "open"
-      );
+  openOverlay("searchOverlay");
 
-      setTimeout(() => {
+  setTimeout(() => {
+    $("searchInput")?.focus();
+  }, 250);
 
-        document
-          .getElementById(
-            "searchInput"
-          )
-          .focus();
+});
 
-      }, 300);
-    }
+
+$("closeSearch")?.addEventListener(
+  "click",
+  () => closeOverlay("searchOverlay")
+);
+
+
+$("searchInput")?.addEventListener("input", (event) => {
+
+  const query =
+    event.target.value.trim().toLowerCase();
+
+  const results = $("searchResults");
+
+  if (!results) return;
+
+  if (!query) {
+    results.innerHTML = "";
+    return;
+  }
+
+  const matches = products.filter(product =>
+    `${product.name} ${product.category}`
+      .toLowerCase()
+      .includes(query)
   );
 
+  results.innerHTML = matches.length
+    ? matches.map(product => `
+        <div
+          class="search-result"
+          data-search-product="${product.id}">
 
-document
-  .getElementById("closeSearch")
-  .addEventListener(
-    "click",
-    () => {
+          <img
+            src="${product.image}"
+            alt="${product.name}">
 
-      searchOverlay.classList.remove(
-        "open"
-      );
+          <div>
+            <strong>${product.name}</strong>
+            <div style="font-size:10px;color:#77746e;margin-top:4px;">
+              ${product.category} · ${money(product.price)}
+            </div>
+          </div>
 
-    }
-  );
+        </div>
+      `).join("")
+    : `
+      <p style="color:#77746e;font-size:12px;padding:15px 0;">
+        No products found.
+      </p>
+    `;
 
-
-document
-  .getElementById("searchInput")
-  .addEventListener(
-    "input",
-    e => {
-
-      const value =
-        e.target.value
-          .toLowerCase()
-          .trim();
-
-      const results =
-        document.getElementById(
-          "searchResults"
-        );
-
-      if (!value) {
-
-        results.innerHTML =
-          "";
-
-        return;
-      }
-
-      const matches =
-        products.filter(
-          product =>
-            product.name
-              .toLowerCase()
-              .includes(value) ||
-
-            product.category
-              .toLowerCase()
-              .includes(value)
-        );
-
-      results.innerHTML =
-        matches.length
-
-          ? matches.map(
-              product => `
-                <div
-                  class="search-result"
-                  onclick="openProduct(${product.id}); searchOverlay.classList.remove('open')"
-                >
-
-                  <img
-                    src="${product.image}"
-                    alt="${product.name}"
-                  >
-
-                  <div>
-
-                    <strong>
-                      ${product.name}
-                    </strong>
-
-                    <p>
-                      ${money(product.price)}
-                    </p>
-
-                  </div>
-
-                </div>
-              `
-            ).join("")
-
-          : `<p>No products found.</p>`;
-    }
-  );
+});
 
 
-/* =========================================
-   ACCOUNT UI
-========================================= */
+document.addEventListener("click", (event) => {
 
-const accountViews = [
-  "loginView",
-  "signupView",
-  "forgotView",
-  "resetView",
-  "accountLoggedIn"
-];
+  const result =
+    event.target.closest("[data-search-product]");
+
+  if (!result) return;
+
+  const id = Number(result.dataset.searchProduct);
+
+  closeOverlay("searchOverlay");
+
+  openProduct(id);
+
+});
 
 
-function setAccountView(view) {
+/* =========================================================
+   FILTERS
+========================================================= */
 
-  accountViews.forEach(id => {
+let activeFilter = "all";
 
-    const element =
-      document.getElementById(id);
+document.querySelectorAll(".filter").forEach(button => {
 
-    if (element) {
-      element.hidden =
-        id !== view;
-    }
+  button.addEventListener("click", () => {
+
+    document
+      .querySelectorAll(".filter")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    activeFilter = button.dataset.filter || "all";
+
+    applyShopFilters();
+
   });
+
+});
+
+
+$("sortSelect")?.addEventListener("change", applyShopFilters);
+
+
+function applyShopFilters() {
+
+  let list = [...products];
+
+  if (activeFilter !== "all") {
+
+    list = list.filter(
+      product => product.category === activeFilter
+    );
+
+  }
+
+  const sort = $("sortSelect")?.value;
+
+  if (sort === "low") {
+    list.sort((a, b) => a.price - b.price);
+  }
+
+  if (sort === "high") {
+    list.sort((a, b) => b.price - a.price);
+  }
+
+  if (sort === "name") {
+    list.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+  }
+
+  renderProducts(list, "shopProducts");
+
 }
 
 
-function setMessage(
-  element,
-  message,
-  type = ""
-) {
+/* =========================================================
+   CATEGORY CARDS
+========================================================= */
+
+document.querySelectorAll(".category-card").forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    const category = card.dataset.category;
+
+    if (!category) return;
+
+    activeFilter = category;
+
+    document
+      .querySelectorAll(".filter")
+      .forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.filter === category
+        );
+
+      });
+
+    applyShopFilters();
+
+  });
+
+});
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+$("mobileMenuBtn")?.addEventListener("click", () => {
+
+  $("mobileMenu")?.classList.toggle("open");
+
+});
+
+
+document.querySelectorAll("#mobileMenu a").forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    $("mobileMenu")?.classList.remove("open");
+
+  });
+
+});
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+function showAccountView(viewId) {
+
+  const views = [
+    "loginView",
+    "signupView",
+    "forgotView",
+    "resetView",
+    "accountLoggedIn"
+  ];
+
+  views.forEach(id => {
+
+    const element = $(id);
+
+    if (!element) return;
+
+    element.hidden = id !== viewId;
+
+  });
+
+}
+
+
+function accountMessage(id, message, type = "") {
+
+  const element = $(id);
 
   if (!element) return;
 
-  element.textContent =
-    message;
+  element.textContent = message;
 
   element.className =
-    "account-message";
+    `account-message ${type}`.trim();
 
-  if (type) {
-    element.classList.add(type);
-  }
 }
 
 
-function getUserDisplayName(user) {
+function showLogin() {
 
-  if (!user) {
-    return "Customer";
-  }
+  showAccountView("loginView");
 
-  const fullName =
-    user.user_metadata &&
-    user.user_metadata.full_name;
+  accountMessage("loginMessage", "");
 
-  if (
-    fullName &&
-    fullName.trim()
-  ) {
-    return fullName.trim();
-  }
-
-  if (user.email) {
-
-    return user.email
-      .split("@")[0]
-      .replace(/[._-]/g, " ");
-  }
-
-  return "Customer";
 }
 
 
-function updateAccountUI(session) {
+function showSignup() {
 
-  currentSession =
-    session || null;
+  showAccountView("signupView");
 
-  const user =
-    session?.user;
+  accountMessage("signupMessage", "");
 
-  if (user) {
-
-    document.getElementById(
-      "accountName"
-    ).textContent =
-      getUserDisplayName(user);
-
-    document.getElementById(
-      "accountEmail"
-    ).textContent =
-      user.email || "";
-
-    setAccountView(
-      "accountLoggedIn"
-    );
-
-  } else {
-
-    setAccountView(
-      "loginView"
-    );
-  }
 }
 
 
-function openAccount() {
+function showForgot() {
 
-  if (currentSession?.user) {
+  showAccountView("forgotView");
 
-    updateAccountUI(
-      currentSession
-    );
+  accountMessage("forgotMessage", "");
 
-  } else {
-
-    setAccountView(
-      "loginView"
-    );
-  }
-
-  accountOverlay.classList.add(
-    "open"
-  );
 }
 
 
-document
-  .getElementById("accountBtn")
-  .addEventListener(
-    "click",
-    openAccount
-  );
+$("accountBtn")?.addEventListener("click", async () => {
+
+  openOverlay("accountOverlay");
+
+  await refreshAccountUI();
+
+});
 
 
-document
-  .getElementById("mobileAccount")
-  .addEventListener(
-    "click",
-    () => {
+$("mobileAccount")?.addEventListener("click", async () => {
 
-      document
-        .getElementById(
-          "mobileMenu"
-        )
-        .classList.remove(
-          "open"
-        );
+  $("mobileMenu")?.classList.remove("open");
 
-      openAccount();
+  openOverlay("accountOverlay");
+
+  await refreshAccountUI();
+
+});
+
+
+$("closeAccount")?.addEventListener(
+  "click",
+  () => closeOverlay("accountOverlay")
+);
+
+
+$("showSignupBtn")?.addEventListener(
+  "click",
+  showSignup
+);
+
+
+$("showLoginBtn")?.addEventListener(
+  "click",
+  showLogin
+);
+
+
+$("forgotPasswordBtn")?.addEventListener(
+  "click",
+  showForgot
+);
+
+
+$("backToLoginBtn")?.addEventListener(
+  "click",
+  showLogin
+);
+
+
+/* =========================================================
+   SIGN UP
+========================================================= */
+
+$("signupForm")?.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+    const name =
+      $("signupName")?.value.trim();
+
+    const email =
+      $("signupEmail")?.value.trim();
+
+    const password =
+      $("signupPassword")?.value;
+
+    if (!name || !email || !password) return;
+
+    if (password.length < 6) {
+
+      accountMessage(
+        "signupMessage",
+        "Password must be at least 6 characters.",
+        "error"
+      );
+
+      return;
     }
-  );
 
+    const button =
+      event.target.querySelector("button[type='submit']");
 
-document
-  .getElementById("closeAccount")
-  .addEventListener(
-    "click",
-    () => {
+    if (button) button.disabled = true;
 
-      accountOverlay.classList.remove(
-        "open"
-      );
-    }
-  );
+    accountMessage(
+      "signupMessage",
+      "Creating your account..."
+    );
 
+    try {
 
-/* =========================================
-   SIGNUP
-========================================= */
-
-document
-  .getElementById("showSignupBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      setMessage(
-        document.getElementById(
-          "loginMessage"
-        ),
-        ""
-      );
-
-      setAccountView(
-        "signupView"
-      );
-    }
-  );
-
-
-document
-  .getElementById("showLoginBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      setMessage(
-        document.getElementById(
-          "signupMessage"
-        ),
-        ""
-      );
-
-      setAccountView(
-        "loginView"
-      );
-    }
-  );
-
-
-document
-  .getElementById("signupForm")
-  .addEventListener(
-    "submit",
-    async e => {
-
-      e.preventDefault();
-
-      const name =
-        document.getElementById(
-          "signupName"
-        ).value.trim();
-
-      const email =
-        document.getElementById(
-          "signupEmail"
-        ).value.trim();
-
-      const password =
-        document.getElementById(
-          "signupPassword"
-        ).value;
-
-      const message =
-        document.getElementById(
-          "signupMessage"
-        );
-
-      setMessage(
-        message,
-        "Creating your account..."
-      );
-
-      const {
-        data,
-        error
-      } =
+      const { data, error } =
         await supabaseClient.auth.signUp({
+
           email,
           password,
 
@@ -1228,773 +1117,632 @@ document
               full_name: name
             }
           }
+
         });
 
-      if (error) {
+      if (error) throw error;
 
-        setMessage(
-          message,
-          error.message,
-          "error"
+      if (!data.session) {
+
+        accountMessage(
+          "signupMessage",
+          "Account created. Check your email to confirm your account, then login.",
+          "success"
         );
 
-        return;
-      }
+      } else {
 
-      if (data.session) {
-
-        setMessage(
-          message,
+        accountMessage(
+          "signupMessage",
           "Account created successfully.",
           "success"
         );
 
         setTimeout(() => {
+          refreshAccountUI();
+        }, 500);
 
-          accountOverlay.classList.remove(
-            "open"
-          );
-
-        }, 800);
-
-      } else {
-
-        setMessage(
-          message,
-          "Account created. Check your email to confirm your account, then login.",
-          "success"
-        );
       }
 
-      e.target.reset();
+    } catch (error) {
+
+      accountMessage(
+        "signupMessage",
+        error.message || "Could not create account.",
+        "error"
+      );
+
+    } finally {
+
+      if (button) button.disabled = false;
+
     }
-  );
+
+  }
+);
 
 
-/* =========================================
+/* =========================================================
    LOGIN
-========================================= */
+========================================================= */
 
-document
-  .getElementById("loginForm")
-  .addEventListener(
-    "submit",
-    async e => {
+$("loginForm")?.addEventListener(
+  "submit",
+  async (event) => {
 
-      e.preventDefault();
+    event.preventDefault();
 
-      const email =
-        document.getElementById(
-          "loginEmail"
-        ).value.trim();
+    const email =
+      $("loginEmail")?.value.trim();
 
-      const password =
-        document.getElementById(
-          "loginPassword"
-        ).value;
+    const password =
+      $("loginPassword")?.value;
 
-      const message =
-        document.getElementById(
-          "loginMessage"
-        );
+    if (!email || !password) return;
 
-      setMessage(
-        message,
-        "Signing you in..."
+    const button =
+      event.target.querySelector("button[type='submit']");
+
+    if (button) button.disabled = true;
+
+    accountMessage(
+      "loginMessage",
+      "Signing you in..."
+    );
+
+    try {
+
+      const { error } =
+        await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) throw error;
+
+      accountMessage(
+        "loginMessage",
+        "Login successful.",
+        "success"
       );
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient.auth
-          .signInWithPassword({
-            email,
-            password
-          });
+      await refreshAccountUI();
 
-      if (error) {
+    } catch (error) {
 
-        setMessage(
-          message,
-          error.message,
-          "error"
-        );
-
-        return;
-      }
-
-      currentSession =
-        data.session;
-
-      updateAccountUI(
-        data.session
+      accountMessage(
+        "loginMessage",
+        error.message || "Login failed.",
+        "error"
       );
 
-      showToast(
-        "Welcome back."
-      );
+    } finally {
 
-      setTimeout(() => {
+      if (button) button.disabled = false;
 
-        accountOverlay.classList.remove(
-          "open"
-        );
-
-      }, 500);
     }
-  );
+
+  }
+);
 
 
-/* =========================================
+/* =========================================================
    FORGOT PASSWORD
-========================================= */
+========================================================= */
 
-document
-  .getElementById("forgotPasswordBtn")
-  .addEventListener(
-    "click",
-    () => {
+$("forgotForm")?.addEventListener(
+  "submit",
+  async (event) => {
 
-      const loginEmail =
-        document.getElementById(
-          "loginEmail"
-        ).value.trim();
+    event.preventDefault();
 
-      document.getElementById(
-        "forgotEmail"
-      ).value =
-        loginEmail;
+    const email =
+      $("forgotEmail")?.value.trim();
 
-      setMessage(
-        document.getElementById(
-          "loginMessage"
-        ),
-        ""
-      );
+    if (!email) return;
 
-      setAccountView(
-        "forgotView"
-      );
-    }
-  );
+    const button =
+      event.target.querySelector("button[type='submit']");
 
+    if (button) button.disabled = true;
 
-document
-  .getElementById("backToLoginBtn")
-  .addEventListener(
-    "click",
-    () => {
+    accountMessage(
+      "forgotMessage",
+      "Sending reset link..."
+    );
 
-      setMessage(
-        document.getElementById(
-          "forgotMessage"
-        ),
-        ""
-      );
+    try {
 
-      setAccountView(
-        "loginView"
-      );
-    }
-  );
-
-
-document
-  .getElementById("forgotForm")
-  .addEventListener(
-    "submit",
-    async e => {
-
-      e.preventDefault();
-
-      const email =
-        document.getElementById(
-          "forgotEmail"
-        ).value.trim();
-
-      const message =
-        document.getElementById(
-          "forgotMessage"
-        );
-
-      setMessage(
-        message,
-        "Sending reset link..."
-      );
-
-      const redirectUrl =
+      const redirectTo =
         window.location.origin +
         window.location.pathname;
 
-      const {
-        error
-      } =
-        await supabaseClient.auth
-          .resetPasswordForEmail(
-            email,
-            {
-              redirectTo:
-                redirectUrl
-            }
-          );
-
-      if (error) {
-
-        setMessage(
-          message,
-          error.message,
-          "error"
+      const { error } =
+        await supabaseClient.auth.resetPasswordForEmail(
+          email,
+          {
+            redirectTo
+          }
         );
 
-        return;
-      }
+      if (error) throw error;
 
-      setMessage(
-        message,
+      accountMessage(
+        "forgotMessage",
         "Reset link sent. Check your email.",
         "success"
       );
-    }
-  );
 
+    } catch (error) {
 
-/* =========================================
-   PASSWORD RECOVERY
-========================================= */
-
-document
-  .getElementById("resetForm")
-  .addEventListener(
-    "submit",
-    async e => {
-
-      e.preventDefault();
-
-      const password =
-        document.getElementById(
-          "resetPassword"
-        ).value;
-
-      const confirmPassword =
-        document.getElementById(
-          "resetPasswordConfirm"
-        ).value;
-
-      const message =
-        document.getElementById(
-          "resetMessage"
-        );
-
-      if (password !== confirmPassword) {
-
-        setMessage(
-          message,
-          "Passwords do not match.",
-          "error"
-        );
-
-        return;
-      }
-
-      setMessage(
-        message,
-        "Updating password..."
+      accountMessage(
+        "forgotMessage",
+        error.message || "Could not send reset link.",
+        "error"
       );
 
-      const {
-        error
-      } =
-        await supabaseClient.auth
-          .updateUser({
-            password
-          });
+    } finally {
 
-      if (error) {
+      if (button) button.disabled = false;
 
-        setMessage(
-          message,
-          error.message,
-          "error"
-        );
+    }
 
-        return;
-      }
+  }
+);
 
-      setMessage(
-        message,
+
+/* =========================================================
+   PASSWORD RESET
+========================================================= */
+
+$("resetForm")?.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+    const password =
+      $("resetPassword")?.value;
+
+    const confirm =
+      $("resetPasswordConfirm")?.value;
+
+    if (password !== confirm) {
+
+      accountMessage(
+        "resetMessage",
+        "Passwords do not match.",
+        "error"
+      );
+
+      return;
+    }
+
+    if (password.length < 6) {
+
+      accountMessage(
+        "resetMessage",
+        "Password must be at least 6 characters.",
+        "error"
+      );
+
+      return;
+    }
+
+    const button =
+      event.target.querySelector("button[type='submit']");
+
+    if (button) button.disabled = true;
+
+    accountMessage(
+      "resetMessage",
+      "Updating password..."
+    );
+
+    try {
+
+      const { error } =
+        await supabaseClient.auth.updateUser({
+          password
+        });
+
+      if (error) throw error;
+
+      accountMessage(
+        "resetMessage",
         "Password updated successfully.",
         "success"
       );
 
-      document.getElementById(
-        "resetForm"
-      ).reset();
+      $("resetForm").reset();
 
       setTimeout(() => {
-
-        setAccountView(
-          "loginView"
-        );
-
-        showToast(
-          "Password updated successfully."
-        );
-
+        showLogin();
       }, 1200);
+
+    } catch (error) {
+
+      accountMessage(
+        "resetMessage",
+        error.message || "Could not update password.",
+        "error"
+      );
+
+    } finally {
+
+      if (button) button.disabled = false;
+
     }
-  );
+
+  }
+);
 
 
-/* =========================================
+/* =========================================================
    LOGOUT
-========================================= */
+========================================================= */
 
-document
-  .getElementById("logoutBtn")
-  .addEventListener(
-    "click",
-    async () => {
+$("logoutBtn")?.addEventListener(
+  "click",
+  async () => {
 
-      const {
-        error
-      } =
-        await supabaseClient.auth
-          .signOut();
+    const { error } =
+      await supabaseClient.auth.signOut();
 
-      if (error) {
+    if (error) {
 
-        showToast(
-          error.message
-        );
+      showToast(error.message);
 
-        return;
-      }
-
-      currentSession = null;
-
-      updateAccountUI(
-        null
-      );
-
-      accountOverlay.classList.remove(
-        "open"
-      );
-
-      showToast(
-        "Logged out successfully."
-      );
+      return;
     }
-  );
+
+    showLogin();
+
+    $("loginForm")?.reset();
+
+    showToast("Logged out");
+
+  }
+);
 
 
-/* =========================================
-   SUPABASE SESSION
-========================================= */
+/* =========================================================
+   ACCOUNT UI
+========================================================= */
 
-async function loadSession() {
+async function refreshAccountUI() {
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient.auth
-      .getSession();
+  try {
 
-  if (error) {
+    const {
+      data: { session }
+    } = await supabaseClient.auth.getSession();
 
-    console.error(
-      "Supabase session error:",
-      error
-    );
+    if (!session?.user) {
 
-    return;
+      showLogin();
+
+      return;
+
+    }
+
+    const user = session.user;
+
+    const name =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      "Customer";
+
+    if ($("accountName")) {
+      $("accountName").textContent = name;
+    }
+
+    if ($("accountEmail")) {
+      $("accountEmail").textContent =
+        user.email || "";
+    }
+
+    showAccountView("accountLoggedIn");
+
+  } catch {
+
+    showLogin();
+
   }
 
-  currentSession =
-    data.session;
-
-  updateAccountUI(
-    data.session
-  );
 }
 
 
-supabaseClient.auth
-  .onAuthStateChange(
-    (event, session) => {
+/* =========================================================
+   AUTH STATE
+========================================================= */
 
-      currentSession =
-        session;
+supabaseClient.auth.onAuthStateChange(
+  (event, session) => {
 
-      updateAccountUI(
-        session
-      );
+    if (event === "PASSWORD_RECOVERY") {
 
-      if (
-        event ===
-        "PASSWORD_RECOVERY"
-      ) {
+      openOverlay("accountOverlay");
 
-        accountOverlay.classList.add(
-          "open"
-        );
+      showAccountView("resetView");
 
-        setAccountView(
-          "resetView"
-        );
-      }
+      return;
     }
-  );
 
+    if (event === "SIGNED_IN" && session?.user) {
 
-/* =========================================
-   CHECKOUT
-========================================= */
+      const name =
+        session.user.user_metadata?.full_name ||
+        session.user.user_metadata?.name ||
+        "Customer";
 
-document
-  .getElementById("checkoutBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      if (!cart.length) {
-
-        showToast(
-          "Your bag is empty"
-        );
-
-        return;
+      if ($("accountName")) {
+        $("accountName").textContent = name;
       }
+
+      if ($("accountEmail")) {
+        $("accountEmail").textContent =
+          session.user.email || "";
+      }
+
+      showAccountView("accountLoggedIn");
+
+    }
+
+    if (event === "SIGNED_OUT") {
+
+      showLogin();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INITIAL AUTH CHECK
+========================================================= */
+
+refreshAccountUI();
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+$("checkoutBtn")?.addEventListener(
+  "click",
+  async () => {
+
+    if (!cart.length) {
+
+      showToast("Your bag is empty");
+
+      return;
+    }
+
+    const {
+      data: { session }
+    } = await supabaseClient.auth.getSession();
+
+    if (!session?.user) {
 
       closeCart();
 
-      renderCheckout();
+      openOverlay("accountOverlay");
 
-      checkoutOverlay.classList.add(
-        "open"
+      showLogin();
+
+      accountMessage(
+        "loginMessage",
+        "Please login before checkout.",
+        "error"
       );
+
+      return;
     }
-  );
+
+    openCheckout();
+
+  }
+);
+
+
+function openCheckout() {
+
+  renderCheckout();
+
+  closeCart();
+
+  openOverlay("checkoutOverlay");
+
+}
 
 
 function renderCheckout() {
 
-  let total = 0;
+  const items = $("checkoutItems");
 
-  document.getElementById(
-    "checkoutItems"
-  ).innerHTML =
-    cart.map(item => {
+  if (!items) return;
 
-      const product =
-        products.find(
-          p => p.id === item.id
-        );
+  const subtotal = cartSubtotal();
 
-      if (!product) return "";
+  const shipping =
+    subtotal >= 1999 ? 0 : 99;
 
-      const subtotal =
-        product.price *
-        item.quantity;
+  const total =
+    subtotal + shipping;
 
-      total += subtotal;
+  items.innerHTML = cart.map(item => {
 
-      return `
-        <div class="checkout-product">
+    const product =
+      products.find(p => p.id === item.id);
 
-          <span>
-            ${product.name} × ${item.quantity}
-          </span>
+    if (!product) return "";
 
-          <strong>
-            ${money(subtotal)}
-          </strong>
+    return `
+      <div class="checkout-product">
+        <span>
+          ${product.name} × ${item.quantity}
+        </span>
 
-        </div>
-      `;
+        <span>
+          ${money(product.price * item.quantity)}
+        </span>
+      </div>
+    `;
 
-    }).join("");
+  }).join("");
 
-  document.getElementById(
-    "checkoutSubtotal"
-  ).textContent =
-    money(total);
+  if ($("checkoutSubtotal")) {
+    $("checkoutSubtotal").textContent =
+      money(subtotal);
+  }
 
-  document.getElementById(
-    "checkoutTotal"
-  ).textContent =
-    money(total);
+  if ($("checkoutShipping")) {
+    $("checkoutShipping").textContent =
+      shipping === 0
+        ? "FREE"
+        : money(shipping);
+  }
+
+  if ($("checkoutTotal")) {
+    $("checkoutTotal").textContent =
+      money(total);
+  }
+
 }
 
 
-document
-  .getElementById("closeCheckout")
-  .addEventListener(
-    "click",
-    () => {
+$("closeCheckout")?.addEventListener(
+  "click",
+  () => closeOverlay("checkoutOverlay")
+);
 
-      checkoutOverlay.classList.remove(
-        "open"
-      );
+
+/* =========================================================
+   CHECKOUT FORM
+========================================================= */
+
+$("checkoutForm")?.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+    if (!cart.length) {
+
+      showToast("Your bag is empty");
+
+      return;
     }
-  );
 
+    const button =
+      event.target.querySelector("button[type='submit']");
 
-/* =========================================
-   DEMO ORDER
-========================================= */
+    if (button) button.disabled = true;
 
-document
-  .getElementById("checkoutForm")
-  .addEventListener(
-    "submit",
-    e => {
+    if (button) {
+      button.innerHTML = "PROCESSING...";
+    }
 
-      e.preventDefault();
+    /*
+      RAZORPAY NOT ADDED YET.
 
-      document.getElementById(
-        "checkoutContent"
-      ).innerHTML = `
+      Real Razorpay payments should be created and verified
+      through a backend/server. Do not put Razorpay secret
+      keys inside this frontend file.
+    */
 
-        <div
-          style="
-            text-align:center;
-            padding:80px 10px;
-          "
-        >
-
-          <div
-            style="
-              font-size:50px;
-              margin-bottom:20px;
-            "
-          >
-            ✓
-          </div>
-
-          <p class="eyebrow">
-            ORDER RECEIVED
-          </p>
-
-          <h2>
-            You're officially<br>
-            <em>FASHION GARMENTS.</em>
-          </h2>
-
-          <p
-            style="
-              color:#777;
-              max-width:400px;
-              margin:20px auto 30px;
-              line-height:1.7;
-              font-size:13px;
-            "
-          >
-            Your order has been received.
-            Payment gateway integration can
-            be connected next.
-          </p>
-
-          <button
-            class="btn btn-dark"
-            onclick="location.reload()"
-          >
-            Continue Shopping ↗
-          </button>
-
-        </div>
-      `;
+    setTimeout(() => {
 
       cart = [];
 
-      saveState();
+      saveCart();
 
       updateCart();
-    }
-  );
 
+      closeOverlay("checkoutOverlay");
 
-/* =========================================
-   FILTERS
-========================================= */
-
-document
-  .querySelectorAll(".filter")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        document
-          .querySelectorAll(".filter")
-          .forEach(
-            b =>
-              b.classList.remove(
-                "active"
-              )
-          );
-
-        button.classList.add(
-          "active"
-        );
-
-        activeFilter =
-          button.dataset.filter;
-
-        renderProducts();
+      if ($("checkoutForm")) {
+        $("checkoutForm").reset();
       }
-    );
-  });
-
-
-document
-  .getElementById("sortSelect")
-  .addEventListener(
-    "change",
-    renderProducts
-  );
-
-
-/* =========================================
-   CATEGORY CLICK
-========================================= */
-
-document
-  .querySelectorAll(".category-card")
-  .forEach(card => {
-
-    card.addEventListener(
-      "click",
-      () => {
-
-        const category =
-          card.dataset.category;
-
-        activeFilter =
-          category;
-
-        document
-          .querySelectorAll(".filter")
-          .forEach(button => {
-
-            button.classList.toggle(
-              "active",
-              button.dataset.filter ===
-                category
-            );
-
-          });
-
-        document
-          .getElementById("shop")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
-
-        renderProducts();
-      }
-    );
-  });
-
-
-function scrollToShop() {
-
-  document
-    .getElementById("shop")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-}
-
-
-/* =========================================
-   MOBILE MENU
-========================================= */
-
-document
-  .getElementById("mobileMenuBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      document
-        .getElementById(
-          "mobileMenu"
-        )
-        .classList.toggle(
-          "open"
-        );
-    }
-  );
-
-
-/* =========================================
-   NEWSLETTER
-========================================= */
-
-document
-  .getElementById("newsletterForm")
-  .addEventListener(
-    "submit",
-    e => {
-
-      e.preventDefault();
 
       showToast(
-        "You're on the list ✦"
+        "Order details received. Payment integration coming next."
       );
 
-      e.target.reset();
-    }
-  );
+      if (button) {
+        button.disabled = false;
+        button.innerHTML = "PLACE ORDER <span>↗</span>";
+      }
+
+    }, 900);
+
+  }
+);
 
 
-/* =========================================
-   HEADER SCROLL
-========================================= */
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
+$("newsletterForm")?.addEventListener(
+  "submit",
+  (event) => {
+
+    event.preventDefault();
+
+    const input =
+      event.target.querySelector("input");
+
+    if (!input?.value) return;
+
+    showToast("You're on the list ✓");
+
+    event.target.reset();
+
+  }
+);
+
+
+/* =========================================================
+   SCROLL HEADER
+========================================================= */
 
 window.addEventListener(
   "scroll",
   () => {
 
-    const header =
-      document.getElementById(
-        "header"
-      );
+    const header = $("header");
 
-    header.classList.toggle(
-      "scrolled",
-      window.scrollY > 40
-    );
-  }
+    if (!header) return;
+
+    if (window.scrollY > 40) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+
+  },
+  { passive: true }
 );
 
 
-/* =========================================
+/* =========================================================
    REVEAL ANIMATION
-========================================= */
+========================================================= */
 
-function observeReveal() {
+function initReveal() {
 
   const elements =
-    document.querySelectorAll(
-      ".reveal:not(.observed)"
-    );
+    document.querySelectorAll(".reveal");
 
   if (!("IntersectionObserver" in window)) {
 
-    elements.forEach(el => {
-
-      el.classList.add(
-        "visible"
-      );
-
-      el.classList.add(
-        "observed"
-      );
-    });
+    elements.forEach(el =>
+      el.classList.add("visible")
+    );
 
     return;
   }
@@ -2003,261 +1751,201 @@ function observeReveal() {
     new IntersectionObserver(
       entries => {
 
-        entries.forEach(
-          entry => {
+        entries.forEach(entry => {
 
-            if (
-              entry.isIntersecting
-            ) {
+          if (entry.isIntersecting) {
 
-              entry.target.classList.add(
-                "visible"
-              );
+            entry.target.classList.add("visible");
 
-              entry.target.classList.add(
-                "observed"
-              );
+            observer.unobserve(entry.target);
 
-              observer.unobserve(
-                entry.target
-              );
-            }
           }
-        );
+
+        });
+
       },
       {
         threshold: 0.12
       }
     );
 
-  elements.forEach(
-    el => observer.observe(el)
+  elements.forEach(el =>
+    observer.observe(el)
   );
+
 }
 
-
-/* =========================================
-   MAGNETIC BUTTONS
-========================================= */
-
-document.addEventListener(
-  "mousemove",
-  e => {
-
-    document
-      .querySelectorAll(
-        ".magnetic"
-      )
-      .forEach(button => {
-
-        const rect =
-          button.getBoundingClientRect();
-
-        const x =
-          e.clientX -
-          rect.left -
-          rect.width / 2;
-
-        const y =
-          e.clientY -
-          rect.top -
-          rect.height / 2;
-
-        if (
-          Math.abs(x) <
-            rect.width &&
-          Math.abs(y) <
-            rect.height
-        ) {
-
-          button.style.transform =
-            `translate(${x * 0.08}px,${y * 0.08}px)`;
-
-        } else {
-
-          button.style.transform =
-            "";
-        }
-      });
-  }
-);
+initReveal();
 
 
-/* =========================================
+/* =========================================================
+   MAGNETIC BUTTON
+========================================================= */
+
+document.addEventListener("mousemove", (event) => {
+
+  const button =
+    event.target.closest(".btn");
+
+  if (!button) return;
+
+  const rect =
+    button.getBoundingClientRect();
+
+  const x =
+    event.clientX -
+    (rect.left + rect.width / 2);
+
+  const y =
+    event.clientY -
+    (rect.top + rect.height / 2);
+
+  button.style.transform =
+    `translate(${x * 0.06}px, ${y * 0.06}px)`;
+
+});
+
+
+document.addEventListener("mouseleave", () => {
+
+  document
+    .querySelectorAll(".btn")
+    .forEach(button => {
+      button.style.transform = "";
+    });
+
+});
+
+
+/* =========================================================
    COUNTDOWN
-========================================= */
+========================================================= */
 
-let dropEnd =
-  Date.now() +
-  (((4 * 24) + 12) *
-    60 *
-    60 *
-    1000);
+const dropDate =
+  new Date(
+    Date.now() +
+    7 * 24 * 60 * 60 * 1000
+  );
 
 
 function updateCountdown() {
 
-  const distance =
-    dropEnd -
-    Date.now();
+  const now = new Date();
 
-  if (distance <= 0) return;
+  let difference =
+    dropDate.getTime() -
+    now.getTime();
+
+  if (difference < 0) {
+    difference = 0;
+  }
 
   const days =
     Math.floor(
-      distance /
-        (1000 * 60 * 60 * 24)
+      difference / (1000 * 60 * 60 * 24)
     );
 
   const hours =
     Math.floor(
-      (distance /
-        (1000 * 60 * 60)) %
-        24
+      (difference / (1000 * 60 * 60)) % 24
     );
 
   const minutes =
     Math.floor(
-      (distance /
-        (1000 * 60)) %
-        60
+      (difference / (1000 * 60)) % 60
     );
 
   const seconds =
     Math.floor(
-      (distance /
-        1000) %
-        60
+      (difference / 1000) % 60
     );
 
-  document.getElementById(
-    "days"
-  ).textContent =
-    String(days).padStart(
-      2,
-      "0"
-    );
+  if ($("days")) {
+    $("days").textContent =
+      String(days).padStart(2, "0");
+  }
 
-  document.getElementById(
-    "hours"
-  ).textContent =
-    String(hours).padStart(
-      2,
-      "0"
-    );
+  if ($("hours")) {
+    $("hours").textContent =
+      String(hours).padStart(2, "0");
+  }
 
-  document.getElementById(
-    "minutes"
-  ).textContent =
-    String(minutes).padStart(
-      2,
-      "0"
-    );
+  if ($("minutes")) {
+    $("minutes").textContent =
+      String(minutes).padStart(2, "0");
+  }
 
-  document.getElementById(
-    "seconds"
-  ).textContent =
-    String(seconds).padStart(
-      2,
-      "0"
-    );
+  if ($("seconds")) {
+    $("seconds").textContent =
+      String(seconds).padStart(2, "0");
+  }
+
 }
-
-
-setInterval(
-  updateCountdown,
-  1000
-);
 
 updateCountdown();
 
+setInterval(updateCountdown, 1000);
 
-/* =========================================
-   OVERLAY CLOSE
-========================================= */
 
-[
-  searchOverlay,
-  productOverlay,
-  accountOverlay,
-  checkoutOverlay
-].forEach(overlay => {
+/* =========================================================
+   OVERLAY CLICK + ESCAPE
+========================================================= */
 
-  overlay.addEventListener(
-    "click",
-    e => {
+document.querySelectorAll(".overlay").forEach(
+  overlay => {
 
-      if (
-        e.target === overlay
-      ) {
+    overlay.addEventListener(
+      "click",
+      event => {
 
-        overlay.classList.remove(
-          "open"
-        );
+        if (event.target === overlay) {
+
+          overlay.classList.remove("open");
+
+          if (
+            !document.querySelector(".cart-drawer.open")
+          ) {
+            document.body.classList.remove(
+              "no-scroll"
+            );
+          }
+
+        }
+
       }
-    }
-  );
+    );
+
+  }
+);
+
+
+document.addEventListener("keydown", event => {
+
+  if (event.key !== "Escape") return;
+
+  document
+    .querySelectorAll(".overlay.open")
+    .forEach(overlay => {
+      overlay.classList.remove("open");
+    });
+
+  closeCart();
+
+  document.body.classList.remove("no-scroll");
+
 });
 
 
-/* =========================================
-   ESCAPE
-========================================= */
+/* =========================================================
+   PAGE LOADER
+========================================================= */
 
-document.addEventListener(
-  "keydown",
-  e => {
+window.addEventListener("load", () => {
 
-    if (e.key !== "Escape") return;
+  setTimeout(() => {
 
-    document
-      .querySelectorAll(
-        ".overlay.open"
-      )
-      .forEach(
-        overlay =>
-          overlay.classList.remove(
-            "open"
-          )
-      );
+    $("loader")?.classList.add("hide");
 
-    closeCart();
-  }
-);
+  }, 500);
 
-
-/* =========================================
-   INITIALIZE
-========================================= */
-
-window.addEventListener(
-  "load",
-  async () => {
-
-    setTimeout(() => {
-
-      const loader =
-        document.getElementById(
-          "loader"
-        );
-
-      if (loader) {
-        loader.classList.add(
-          "hide"
-        );
-      }
-
-    }, 800);
-
-    wishlistCount.textContent =
-      wishlist.length;
-
-    updateCart();
-
-    renderProducts();
-
-    observeReveal();
-
-    await loadSession();
-  }
-);
+});
