@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>FASHION GARMENTS — Future of Everyday Fashion</title>
+  <title>FASHION GARMENTS — Premium Everyday Fashion</title>
   <meta name="description" content="FASHION GARMENTS — premium everyday fashion designed for modern expression.">
   <meta name="theme-color" content="#f7f5f0">
 
@@ -13,522 +13,526 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
   <!-- LOADER -->
-  <div class="loader" id="loader">
-    <div class="loader-inner">
-      <span>FASHION</span>
-      <span>GARMENTS</span>
-    </div>
+  <div class="page-loader" id="loader">
+    <div class="loader-logo">FASHION <span>GARMENTS.</span></div>
   </div>
 
   <!-- ANNOUNCEMENT -->
   <div class="announcement">
-    FREE SHIPPING ON ORDERS ABOVE ₹1,999
+    <span>FREE SHIPPING ON ORDERS ABOVE ₹1,999</span>
+    <span class="announcement-dot">•</span>
+    <span>NEW DROP LIVE NOW</span>
   </div>
 
   <!-- HEADER -->
   <header class="header" id="header">
-    <div class="header-inner">
+    <div class="nav">
 
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
-        <span></span>
-        <span></span>
-      </button>
-
-      <a href="#" class="logo">FASHION<br><em>GARMENTS.</em></a>
+      <a href="#" class="logo">
+        FASHION <span>GARMENTS.</span>
+      </a>
 
       <nav class="desktop-nav">
-        <a href="#new">New Arrivals</a>
-        <a href="#shop">Shop</a>
-        <a href="#story">Our Story</a>
+        <a href="#new">NEW</a>
+        <a href="#shop">SHOP</a>
+        <a href="#categories">CATEGORIES</a>
+        <a href="#story">OUR STORY</a>
       </nav>
 
-      <div class="header-actions">
+      <div class="nav-actions">
 
-        <button id="searchBtn" class="icon-btn" aria-label="Search">
-          SEARCH
+        <!-- SEARCH -->
+        <button class="icon-btn" id="searchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <path d="m16 16 5 5"></path>
+          </svg>
         </button>
 
-        <button id="accountBtn" class="icon-btn" aria-label="Account">
-          ACCOUNT
+        <!-- ACCOUNT -->
+        <button class="icon-btn" id="accountBtn" aria-label="Account">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="3.5"></circle>
+            <path d="M5 20c.7-3.5 3-5.5 7-5.5s6.3 2 7 5.5"></path>
+          </svg>
         </button>
 
-        <button class="icon-btn icon-count" id="wishlistBtn" aria-label="Wishlist">
-          ♡
-          <span id="wishlistCount">0</span>
+        <!-- WISHLIST -->
+        <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.8 8.7c0 5.4-8.8 10.4-8.8 10.4S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.3a4.7 4.7 0 0 1 8.8 2.4Z"></path>
+          </svg>
+          <b class="counter" id="wishlistCount">0</b>
         </button>
 
-        <button class="icon-btn icon-count" id="cartBtn" aria-label="Cart">
-          BAG
-          <span id="cartCount">0</span>
+        <!-- CART -->
+        <button class="cart-btn" id="cartBtn">
+          <span>CART</span>
+          <b id="cartCount">0</b>
+        </button>
+
+        <!-- MOBILE -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span></span>
+          <span></span>
         </button>
 
       </div>
     </div>
 
-    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#new">New Arrivals</a>
-      <a href="#shop">Shop</a>
-      <a href="#story">Our Story</a>
-
-      <button id="mobileAccount" type="button">
-        Account
-      </button>
+      <a href="#new">NEW</a>
+      <a href="#shop">SHOP</a>
+      <a href="#categories">CATEGORIES</a>
+      <a href="#story">OUR STORY</a>
+      <button id="mobileAccount">ACCOUNT</button>
     </div>
   </header>
 
 
   <!-- HERO -->
-  <main>
+  <section class="hero">
 
-    <section class="hero">
-      <div class="hero-content">
+    <div class="hero-image"></div>
+    <div class="hero-overlay"></div>
 
-        <p class="eyebrow">FASHION / 01</p>
+    <div class="hero-content reveal">
+      <p class="eyebrow">FASHION / EVERYDAY / 2026</p>
 
-        <h1>
-          Everyday<br>
-          <em>Expression.</em>
-        </h1>
+      <h1>
+        WEAR<br>
+        <em>YOUR</em><br>
+        STORY.
+      </h1>
 
-        <p class="hero-copy">
-          Premium essentials designed for the way
-          modern life moves.
-        </p>
+      <p class="hero-copy">
+        Premium essentials designed for people who don't follow
+        the ordinary. Discover your next everyday uniform.
+      </p>
 
-        <button class="btn btn-dark magnetic" onclick="scrollToShop()">
-          Explore Collection <span>↗</span>
-        </button>
+      <div class="hero-buttons">
+        <a href="#shop" class="btn btn-dark">
+          SHOP COLLECTION
+          <span>↗</span>
+        </a>
 
-      </div>
-
-      <div class="hero-image">
-        <img
-          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=90"
-          alt="Fashion collection"
-        >
-      </div>
-    </section>
-
-
-    <!-- MARQUEE -->
-    <div class="marquee">
-      <div class="marquee-track">
-        <span>FASHION GARMENTS</span>
-        <span>✦</span>
-        <span>EVERYDAY EXPRESSION</span>
-        <span>✦</span>
-        <span>FASHION GARMENTS</span>
-        <span>✦</span>
-        <span>EVERYDAY EXPRESSION</span>
-        <span>✦</span>
+        <a href="#story" class="btn btn-light">
+          OUR STORY
+          <span>↗</span>
+        </a>
       </div>
     </div>
 
+    <div class="hero-scroll">
+      SCROLL TO EXPLORE ↓
+    </div>
 
-    <!-- NEW ARRIVALS -->
-    <section class="section" id="new">
+  </section>
 
-      <div class="section-head reveal">
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>FASHION GARMENTS</span>
+      <i>✦</i>
+      <span>EVERYDAY EXPRESSION</span>
+      <i>✦</i>
+      <span>PREMIUM ESSENTIALS</span>
+      <i>✦</i>
+      <span>FASHION GARMENTS</span>
+      <i>✦</i>
+      <span>EVERYDAY EXPRESSION</span>
+      <i>✦</i>
+      <span>PREMIUM ESSENTIALS</span>
+      <i>✦</i>
+    </div>
+  </div>
+
+
+  <!-- NEW PRODUCTS -->
+  <section class="section" id="new">
+
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">JUST DROPPED</p>
+        <h2>New<br><em>Arrivals.</em></h2>
+      </div>
+
+      <a href="#shop" class="text-link">
+        VIEW ALL <span>↗</span>
+      </a>
+    </div>
+
+    <div class="product-grid" id="newProducts"></div>
+
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section class="category-section" id="categories">
+
+    <div class="category-grid">
+
+      <a href="#shop" class="category-card reveal" data-category="T-Shirts">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85" alt="T-Shirts">
         <div>
-          <p class="eyebrow">01 / NEW ARRIVALS</p>
-          <h2>Fresh <em>energy.</em></h2>
+          <small>01 / ESSENTIALS</small>
+          <h3>T-Shirts</h3>
+          <span>EXPLORE ↗</span>
         </div>
+      </a>
 
-        <a href="#shop" class="text-link">
-          View all ↗
-        </a>
-      </div>
-
-      <div class="product-grid" id="newProducts"></div>
-
-    </section>
-
-
-    <!-- CATEGORIES -->
-    <section class="section categories-section">
-
-      <div class="section-head reveal">
+      <a href="#shop" class="category-card tall reveal" data-category="Hoodies">
+        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1400&q=85" alt="Hoodies">
         <div>
-          <p class="eyebrow">02 / CATEGORIES</p>
-          <h2>Find your <em>form.</em></h2>
+          <small>02 / LAYERS</small>
+          <h3>Hoodies</h3>
+          <span>EXPLORE ↗</span>
         </div>
-      </div>
+      </a>
 
-      <div class="category-grid">
+      <a href="#shop" class="category-card reveal" data-category="Oversized">
+        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=85" alt="Oversized">
+        <div>
+          <small>03 / SILHOUETTES</small>
+          <h3>Oversized</h3>
+          <span>EXPLORE ↗</span>
+        </div>
+      </a>
 
-        <article class="category-card reveal" data-category="T-Shirts">
-          <img
-            src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85"
-            alt="T-Shirts"
-          >
-          <div class="category-overlay">
-            <span>01</span>
-            <h3>T-Shirts</h3>
-            <span>Explore ↗</span>
-          </div>
-        </article>
+    </div>
 
-        <article class="category-card reveal" data-category="Hoodies">
-          <img
-            src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=85"
-            alt="Hoodies"
-          >
-          <div class="category-overlay">
-            <span>02</span>
-            <h3>Hoodies</h3>
-            <span>Explore ↗</span>
-          </div>
-        </article>
-
-        <article class="category-card reveal" data-category="Oversized">
-          <img
-            src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1200&q=85"
-            alt="Oversized"
-          >
-          <div class="category-overlay">
-            <span>03</span>
-            <h3>Oversized</h3>
-            <span>Explore ↗</span>
-          </div>
-        </article>
-
-      </div>
-
-    </section>
+  </section>
 
 
-    <!-- EDITORIAL -->
-    <section class="editorial-section">
+  <!-- EDITORIAL -->
+  <section class="section">
 
-      <div class="editorial-image reveal">
+    <div class="editorial reveal">
+
+      <div class="editorial-image">
         <img
-          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=90"
-          alt="Fashion editorial"
-          loading="lazy"
-        >
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=85"
+          alt="Fashion editorial">
       </div>
 
-      <div class="editorial-content reveal">
+      <div class="editorial-content">
         <p class="eyebrow">THE FASHION GARMENTS EDIT</p>
 
         <h2>
-          Less noise.<br>
-          <em>More identity.</em>
+          Less<br>
+          <em>noise.</em><br>
+          More you.
         </h2>
 
         <p>
-          Clothing shouldn't tell you who to be.
-          It should give you the freedom to show
-          who you already are.
+          We believe clothing should feel effortless. Every piece is
+          designed with clean silhouettes, considered details and
+          everyday comfort in mind.
         </p>
 
-        <a href="#shop" class="btn btn-light">
-          Shop the edit ↗
+        <a href="#shop" class="btn btn-dark">
+          EXPLORE THE EDIT
+          <span>↗</span>
         </a>
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <!-- SHOP -->
-    <section class="section shop-section" id="shop">
+  <!-- SHOP -->
+  <section class="section" id="shop">
 
-      <div class="section-head reveal">
+    <div class="shop-header reveal">
+
+      <div>
+        <p class="eyebrow">THE COLLECTION</p>
+        <h2>Shop<br><em>everything.</em></h2>
+      </div>
+
+      <div class="shop-controls">
+
+        <div class="filter-tabs">
+          <button class="filter active" data-filter="all">ALL</button>
+          <button class="filter" data-filter="T-Shirts">T-SHIRTS</button>
+          <button class="filter" data-filter="Hoodies">HOODIES</button>
+          <button class="filter" data-filter="Oversized">OVERSIZED</button>
+        </div>
+
+        <select id="sortSelect">
+          <option value="default">SORT: FEATURED</option>
+          <option value="low">PRICE: LOW → HIGH</option>
+          <option value="high">PRICE: HIGH → LOW</option>
+          <option value="name">NAME: A → Z</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="product-grid" id="shopProducts"></div>
+
+  </section>
+
+
+  <!-- DROP -->
+  <section class="drop-section">
+
+    <div class="drop-content reveal">
+
+      <p class="eyebrow">DROP 02 / COMING SOON</p>
+
+      <h2>
+        THE<br>
+        NEXT<br>
+        <em>DROP.</em>
+      </h2>
+
+      <p>
+        A new collection built around movement, texture and
+        everyday confidence.
+      </p>
+
+      <div class="countdown">
+        <div>
+          <strong id="days">00</strong>
+          <span>DAYS</span>
+        </div>
 
         <div>
-          <p class="eyebrow">03 / SHOP</p>
-          <h2>The <em>collection.</em></h2>
+          <strong id="hours">00</strong>
+          <span>HOURS</span>
         </div>
 
-        <div class="shop-controls">
-
-          <div class="filters">
-            <button class="filter active" data-filter="All">All</button>
-            <button class="filter" data-filter="T-Shirts">T-Shirts</button>
-            <button class="filter" data-filter="Hoodies">Hoodies</button>
-            <button class="filter" data-filter="Oversized">Oversized</button>
-          </div>
-
-          <select id="sortSelect">
-            <option value="default">Sort</option>
-            <option value="low">Price: Low → High</option>
-            <option value="high">Price: High → Low</option>
-          </select>
-
-        </div>
-
-      </div>
-
-      <div class="product-grid" id="shopProducts"></div>
-
-    </section>
-
-
-    <!-- LIMITED DROP -->
-    <section class="drop-section">
-
-      <div class="drop-image">
-        <img
-          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=90"
-          alt="Limited drop"
-          loading="lazy"
-        >
-      </div>
-
-      <div class="drop-content">
-
-        <p class="eyebrow">LIMITED DROP / 04</p>
-
-        <h2>
-          DROP<br>
-          <em>01.</em>
-        </h2>
-
-        <p>
-          A limited collection.
-          Once it's gone, it's gone.
-        </p>
-
-        <div class="countdown">
-
-          <div>
-            <strong id="days">00</strong>
-            <span>DAYS</span>
-          </div>
-
-          <div>
-            <strong id="hours">00</strong>
-            <span>HOURS</span>
-          </div>
-
-          <div>
-            <strong id="minutes">00</strong>
-            <span>MINUTES</span>
-          </div>
-
-          <div>
-            <strong id="seconds">00</strong>
-            <span>SECONDS</span>
-          </div>
-
-        </div>
-
-        <button class="btn btn-light" onclick="scrollToShop()">
-          Shop Drop ↗
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- STORY -->
-    <section class="section story-section" id="story">
-
-      <div class="story-content reveal">
-
-        <p class="eyebrow">05 / OUR STORY</p>
-
-        <h2>
-          Built for<br>
-          <em>real life.</em>
-        </h2>
-
-        <p>
-          FASHION GARMENTS was created around one simple
-          idea — everyday clothing can still feel special.
-        </p>
-
-        <p>
-          Clean silhouettes. Considered details.
-          Pieces made to become part of your identity.
-        </p>
-
-      </div>
-
-      <div class="story-number reveal">
-        01
-      </div>
-
-    </section>
-
-
-    <!-- REVIEWS -->
-    <section class="section reviews-section">
-
-      <div class="section-head reveal">
         <div>
-          <p class="eyebrow">06 / COMMUNITY</p>
-          <h2>Worn by <em>you.</em></h2>
+          <strong id="minutes">00</strong>
+          <span>MINUTES</span>
         </div>
-      </div>
 
-      <div class="reviews-grid">
-
-        <article class="review reveal">
-          <div class="stars">★★★★★</div>
-          <p>
-            "The quality is honestly insane.
-            Fits perfectly and feels premium."
-          </p>
-          <span>— ARYAN / DELHI</span>
-        </article>
-
-        <article class="review reveal">
-          <div class="stars">★★★★★</div>
-          <p>
-            "Exactly the kind of minimal clothing
-            I've been looking for."
-          </p>
-          <span>— RIYA / MUMBAI</span>
-        </article>
-
-        <article class="review reveal">
-          <div class="stars">★★★★★</div>
-          <p>
-            "The oversized fit is perfect.
-            Definitely ordering again."
-          </p>
-          <span>— KABIR / BANGALORE</span>
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- SOCIAL -->
-    <section class="social-section">
-
-      <div class="section-head reveal">
         <div>
-          <p class="eyebrow">07 / FOLLOW ALONG</p>
-          <h2>@fashion<em>garments</em></h2>
+          <strong id="seconds">00</strong>
+          <span>SECONDS</span>
         </div>
       </div>
 
-      <div class="social-grid">
+      <a href="#newsletter" class="btn btn-light">
+        GET EARLY ACCESS
+        <span>↗</span>
+      </a>
 
-        <img
-          class="reveal"
-          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
-          alt="Fashion"
-          loading="lazy"
-        >
+    </div>
 
-        <img
-          class="reveal"
-          src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85"
-          alt="Fashion"
-          loading="lazy"
-        >
+  </section>
 
-        <img
-          class="reveal"
-          src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=85"
-          alt="Fashion"
-          loading="lazy"
-        >
 
-        <img
-          class="reveal"
-          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
-          alt="Fashion"
-          loading="lazy"
-        >
+  <!-- STORY -->
+  <section class="story-section" id="story">
 
+    <div class="story-text reveal">
+
+      <p class="eyebrow">OUR PHILOSOPHY</p>
+
+      <h2>
+        Made for<br>
+        <em>real life.</em>
+      </h2>
+
+      <p>
+        FASHION GARMENTS exists to make getting dressed simpler.
+        We create versatile pieces that work with your lifestyle,
+        your mood and your own personal style.
+      </p>
+
+      <a href="#shop" class="btn btn-dark">
+        DISCOVER THE BRAND
+        <span>↗</span>
+      </a>
+
+    </div>
+
+    <div class="story-images reveal">
+
+      <img
+        src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85"
+        alt="Fashion portrait">
+
+      <img
+        src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85"
+        alt="Fashion detail">
+
+    </div>
+
+  </section>
+
+
+  <!-- REVIEWS -->
+  <section class="reviews">
+
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">CUSTOMER NOTES</p>
+        <h2>Loved<br><em>by many.</em></h2>
       </div>
+    </div>
 
-    </section>
+    <div class="review-grid">
 
-
-    <!-- NEWSLETTER -->
-    <section class="newsletter-section">
-
-      <div class="newsletter-inner reveal">
-
-        <p class="eyebrow">08 / STAY CLOSE</p>
-
-        <h2>
-          Get the <em>good stuff.</em>
-        </h2>
-
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
         <p>
-          New drops, private releases and stories.
-          No unnecessary noise.
+          “The fit is exactly what I wanted. Simple, premium and
+          ridiculously easy to style.”
         </p>
+        <strong>— ARJUN K.</strong>
+      </article>
 
-        <form id="newsletterForm">
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p>
+          “The quality genuinely surprised me. Feels like something
+          much more expensive.”
+        </p>
+        <strong>— RIYA S.</strong>
+      </article>
 
-          <input
-            type="email"
-            placeholder="Your email address"
-            required
-          >
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p>
+          “Clean designs, great fabric and fast delivery. Definitely
+          coming back for the next drop.”
+        </p>
+        <strong>— DEV M.</strong>
+      </article>
 
-          <button type="submit">
-            Subscribe ↗
-          </button>
+    </div>
 
-        </form>
+  </section>
 
+
+  <!-- SOCIAL -->
+  <section class="social-section">
+
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">FOLLOW THE MOVEMENT</p>
+        <h2>See it<br><em>IRL.</em></h2>
       </div>
 
-    </section>
+      <a href="#" class="text-link">
+        @FASHIONGARMENTS <span>↗</span>
+      </a>
+    </div>
 
-  </main>
+    <div class="social-grid reveal">
+
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80" alt="">
+
+    </div>
+
+  </section>
+
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="newsletter">
+
+    <div class="newsletter-inner">
+
+      <p class="eyebrow">STAY IN THE LOOP</p>
+
+      <h2>
+        Don't miss<br>
+        <em>the next drop.</em>
+      </h2>
+
+      <form id="newsletterForm">
+
+        <input
+          type="email"
+          placeholder="YOUR EMAIL ADDRESS"
+          required
+          autocomplete="email">
+
+        <button type="submit">SUBSCRIBE ↗</button>
+
+      </form>
+
+      <small>
+        By subscribing, you agree to receive updates from FASHION GARMENTS.
+      </small>
+
+    </div>
+
+  </section>
 
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer>
 
     <div class="footer-top">
 
       <div class="footer-brand">
-        <a href="#" class="logo">
-          FASHION<br><em>GARMENTS.</em>
-        </a>
+
+        <div class="footer-logo">
+          FASHION <span>GARMENTS.</span>
+        </div>
 
         <p>
-          Everyday expression,<br>
-          thoughtfully designed.
+          Premium everyday fashion for people who choose their
+          own direction.
         </p>
+
       </div>
 
       <div class="footer-column">
-        <span>SHOP</span>
-        <a href="#new">New Arrivals</a>
+        <h4>SHOP</h4>
         <a href="#shop">All Products</a>
         <a href="#shop">T-Shirts</a>
         <a href="#shop">Hoodies</a>
+        <a href="#shop">Oversized</a>
       </div>
 
       <div class="footer-column">
-        <span>INFO</span>
-        <a href="#story">Our Story</a>
+        <h4>HELP</h4>
         <a href="#">Shipping</a>
         <a href="#">Returns</a>
+        <a href="#">Size Guide</a>
         <a href="#">Contact</a>
       </div>
 
       <div class="footer-column">
-        <span>SOCIAL</span>
-        <a href="#">Instagram ↗</a>
-        <a href="#">Pinterest ↗</a>
-        <a href="#">Email ↗</a>
+        <h4>FOLLOW</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="#">YouTube</a>
+        <a href="#">WhatsApp</a>
       </div>
 
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 FASHION GARMENTS</span>
-      <span>ALL RIGHTS RESERVED.</span>
+
+      <span>© 2026 FASHION GARMENTS. ALL RIGHTS RESERVED.</span>
+
+      <div>
+        <span>PRIVACY</span>
+        <span>TERMS</span>
+      </div>
+
     </div>
 
   </footer>
@@ -537,18 +541,26 @@
   <!-- SEARCH OVERLAY -->
   <div class="overlay" id="searchOverlay">
 
-    <div class="search-modal">
+    <div class="search-panel">
 
       <button class="close-btn" id="closeSearch">×</button>
 
       <p class="eyebrow">SEARCH</p>
 
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search products..."
-        autocomplete="off"
-      >
+      <h2>
+        Find your<br>
+        <em>piece.</em>
+      </h2>
+
+      <div class="search-input">
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search products..."
+          autocomplete="off">
+
+      </div>
 
       <div id="searchResults"></div>
 
@@ -557,7 +569,7 @@
   </div>
 
 
-  <!-- PRODUCT OVERLAY -->
+  <!-- PRODUCT MODAL -->
   <div class="overlay" id="productOverlay">
 
     <div class="product-modal">
@@ -571,13 +583,12 @@
   </div>
 
 
-  <!-- ACCOUNT OVERLAY -->
+  <!-- ACCOUNT MODAL -->
   <div class="overlay" id="accountOverlay">
 
     <div class="account-modal">
 
       <button class="close-btn" id="closeAccount">×</button>
-
 
       <!-- LOGIN -->
       <div id="loginView" class="account-view">
@@ -595,21 +606,16 @@
             type="email"
             placeholder="Email address"
             autocomplete="email"
-            required
-          >
+            required>
 
           <input
             id="loginPassword"
             type="password"
             placeholder="Password"
             autocomplete="current-password"
-            required
-          >
+            required>
 
-          <button
-            class="btn btn-dark full"
-            type="submit"
-          >
+          <button class="btn btn-dark full" type="submit">
             Login ↗
           </button>
 
@@ -647,16 +653,14 @@
             type="text"
             placeholder="Full name"
             autocomplete="name"
-            required
-          >
+            required>
 
           <input
             id="signupEmail"
             type="email"
             placeholder="Email address"
             autocomplete="email"
-            required
-          >
+            required>
 
           <input
             id="signupPassword"
@@ -664,13 +668,9 @@
             placeholder="Password (min. 6 characters)"
             autocomplete="new-password"
             minlength="6"
-            required
-          >
+            required>
 
-          <button
-            class="btn btn-dark full"
-            type="submit"
-          >
+          <button class="btn btn-dark full" type="submit">
             Create Account ↗
           </button>
 
@@ -688,7 +688,7 @@
       </div>
 
 
-      <!-- FORGOT PASSWORD -->
+      <!-- FORGOT -->
       <div id="forgotView" class="account-view" hidden>
 
         <p class="eyebrow">RESET PASSWORD</p>
@@ -704,13 +704,9 @@
             type="email"
             placeholder="Email address"
             autocomplete="email"
-            required
-          >
+            required>
 
-          <button
-            class="btn btn-dark full"
-            type="submit"
-          >
+          <button class="btn btn-dark full" type="submit">
             Send Reset Link ↗
           </button>
 
@@ -744,8 +740,7 @@
             placeholder="New password"
             autocomplete="new-password"
             minlength="6"
-            required
-          >
+            required>
 
           <input
             id="resetPasswordConfirm"
@@ -753,13 +748,9 @@
             placeholder="Confirm new password"
             autocomplete="new-password"
             minlength="6"
-            required
-          >
+            required>
 
-          <button
-            class="btn btn-dark full"
-            type="submit"
-          >
+          <button class="btn btn-dark full" type="submit">
             Update Password ↗
           </button>
 
@@ -781,10 +772,7 @@
 
         <div class="account-user">
 
-          <strong id="accountName">
-            Customer
-          </strong>
-
+          <strong id="accountName">Customer</strong>
           <span id="accountEmail"></span>
 
         </div>
@@ -792,8 +780,7 @@
         <button
           class="btn btn-dark full"
           id="logoutBtn"
-          type="button"
-        >
+          type="button">
           Logout ↗
         </button>
 
@@ -811,28 +798,11 @@
   <!-- CART DRAWER -->
   <aside class="cart-drawer" id="cartDrawer">
 
-    <div class="cart-head">
+    <div class="cart-header">
 
-      <div>
-        <p class="eyebrow">YOUR BAG</p>
-        <h2>Shopping <em>bag.</em></h2>
-      </div>
+      <h2>Your bag.</h2>
 
-      <button class="close-btn" id="closeCart">
-        ×
-      </button>
-
-    </div>
-
-    <div class="shipping-box">
-
-      <div class="shipping-track">
-        <span id="shippingProgress"></span>
-      </div>
-
-      <p id="shippingMessage">
-        Add ₹1,999 more for FREE shipping.
-      </p>
+      <button class="close-btn" id="closeCart">×</button>
 
     </div>
 
@@ -840,17 +810,29 @@
 
     <div class="cart-footer">
 
-      <div class="cart-total-row">
+      <div class="shipping-progress">
+
+        <span id="shippingMessage">
+          Add ₹1,999 to unlock free shipping.
+        </span>
+
+        <div class="progress">
+          <i id="shippingProgress"></i>
+        </div>
+
+      </div>
+
+      <div class="cart-total">
         <span>Total</span>
         <strong id="cartTotal">₹0</strong>
       </div>
 
-      <button
-        class="btn btn-dark full"
-        id="checkoutBtn"
-      >
-        Checkout ↗
+      <button class="btn btn-dark full" id="checkoutBtn">
+        CHECKOUT
+        <span>↗</span>
       </button>
+
+      <small>Taxes calculated at checkout.</small>
 
     </div>
 
@@ -862,85 +844,99 @@
 
     <div class="checkout-modal">
 
-      <button class="close-btn" id="closeCheckout">
-        ×
-      </button>
+      <button class="close-btn" id="closeCheckout">×</button>
+
+      <p class="eyebrow">CHECKOUT</p>
+
+      <h2>
+        Complete your<br>
+        <em>order.</em>
+      </h2>
 
       <div id="checkoutContent">
 
-        <p class="eyebrow">CHECKOUT</p>
-
-        <h2>
-          Complete <em>your order.</em>
-        </h2>
-
-        <div id="checkoutItems"></div>
-
-        <div class="checkout-summary">
-
-          <div>
-            <span>Subtotal</span>
-            <strong id="checkoutSubtotal">₹0</strong>
-          </div>
-
-          <div>
-            <span>Shipping</span>
-            <strong>FREE</strong>
-          </div>
-
-          <div class="checkout-grand">
-            <span>Total</span>
-            <strong id="checkoutTotal">₹0</strong>
-          </div>
-
-        </div>
-
         <form id="checkoutForm">
 
-          <input
-            type="text"
-            placeholder="Full name"
-            autocomplete="name"
-            required
-          >
+          <div class="checkout-grid">
 
-          <input
-            type="email"
-            placeholder="Email address"
-            autocomplete="email"
-            required
-          >
+            <div>
 
-          <input
-            type="tel"
-            placeholder="Phone number"
-            autocomplete="tel"
-            required
-          >
+              <h4>CONTACT</h4>
 
-          <input
-            type="text"
-            placeholder="Full delivery address"
-            autocomplete="street-address"
-            required
-          >
+              <input
+                id="checkoutEmail"
+                type="email"
+                placeholder="Email address"
+                required>
 
-          <input
-            type="text"
-            placeholder="City"
-            required
-          >
+              <h4>DELIVERY ADDRESS</h4>
 
-          <input
-            type="text"
-            placeholder="PIN code"
-            inputmode="numeric"
-            required
-          >
+              <input
+                id="checkoutName"
+                type="text"
+                placeholder="Full name"
+                required>
 
-          <button class="btn btn-dark full" type="submit">
-            Place Order ↗
-          </button>
+              <input
+                id="checkoutAddress"
+                type="text"
+                placeholder="Address"
+                required>
+
+              <div class="two-inputs">
+
+                <input
+                  id="checkoutCity"
+                  type="text"
+                  placeholder="City"
+                  required>
+
+                <input
+                  id="checkoutPincode"
+                  type="text"
+                  placeholder="PIN code"
+                  inputmode="numeric"
+                  required>
+
+              </div>
+
+              <input
+                id="checkoutPhone"
+                type="tel"
+                placeholder="Phone number"
+                required>
+
+              <button class="btn btn-dark full" type="submit">
+                PLACE ORDER
+                <span>↗</span>
+              </button>
+
+            </div>
+
+            <div class="checkout-summary">
+
+              <h4>YOUR ORDER</h4>
+
+              <div id="checkoutItems"></div>
+
+              <div class="checkout-line">
+                <span>Subtotal</span>
+                <span id="checkoutSubtotal">₹0</span>
+              </div>
+
+              <div class="checkout-line">
+                <span>Shipping</span>
+                <span id="checkoutShipping">₹0</span>
+              </div>
+
+              <div class="checkout-total">
+                <strong>Total</strong>
+                <strong id="checkoutTotal">₹0</strong>
+              </div>
+
+            </div>
+
+          </div>
 
         </form>
 
@@ -954,14 +950,10 @@
   <!-- TOAST -->
   <div class="toast" id="toast">
     <span>✓</span>
-    <p></p>
+    <p id="toastText">Added to bag</p>
   </div>
 
 
-  <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- MAIN JS -->
   <script src="script.js"></script>
 
 </body>
