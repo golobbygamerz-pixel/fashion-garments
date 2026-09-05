@@ -1,1662 +1,968 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>FASHION GARMENTS — Future of Everyday Fashion</title>
+  <meta name="description" content="FASHION GARMENTS — premium everyday fashion designed for modern expression.">
+  <meta name="theme-color" content="#f7f5f0">
 
-  <meta
-    name="description"
-    content="FASHION GARMENTS — premium everyday fashion designed for modern expression."
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 
-  <meta
-    name="theme-color"
-    content="#f7f5f0"
-  >
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
-    rel="stylesheet"
-  >
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-<!-- =========================================
-     PAGE LOADER
-========================================= -->
-
-<div class="page-loader" id="loader">
-
-  <div class="loader-logo">
-    FASHION <span>GARMENTS.</span>
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <span>FASHION</span>
+      <span>GARMENTS</span>
+    </div>
   </div>
 
-</div>
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement">
+    FREE SHIPPING ON ORDERS ABOVE ₹1,999
+  </div>
 
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
 
-<!-- =========================================
-     ANNOUNCEMENT
-========================================= -->
-
-<div class="announcement">
-
-  <span>FREE SHIPPING ON ORDERS ABOVE ₹1,999</span>
-
-  <span class="announcement-dot">✦</span>
-
-  <span>NEW DROP LIVE NOW</span>
-
-</div>
-
-
-<!-- =========================================
-     HEADER
-========================================= -->
-
-<header class="header" id="header">
-
-  <nav class="nav">
-
-    <a href="#top" class="logo">
-      FASHION <span>GARMENTS.</span>
-    </a>
-
-
-    <div class="desktop-nav">
-
-      <a href="#new">New</a>
-
-      <a href="#categories">Categories</a>
-
-      <a href="#shop">Shop</a>
-
-      <a href="#story">Our Story</a>
-
-    </div>
-
-
-    <div class="nav-actions">
-
-      <!-- SEARCH -->
-
-      <button
-        class="icon-btn"
-        id="searchBtn"
-        aria-label="Search"
-      >
-
-        <svg viewBox="0 0 24 24">
-
-          <circle
-            cx="11"
-            cy="11"
-            r="6.5"
-          ></circle>
-
-          <path
-            d="M16 16L21 21"
-          ></path>
-
-        </svg>
-
-      </button>
-
-
-      <!-- ACCOUNT -->
-
-      <button
-        class="icon-btn desktop-only"
-        id="accountBtn"
-        aria-label="Account"
-      >
-
-        <svg viewBox="0 0 24 24">
-
-          <circle
-            cx="12"
-            cy="8"
-            r="3.5"
-          ></circle>
-
-          <path
-            d="M5 21c.7-4 3-6 7-6s6.3 2 7 6"
-          ></path>
-
-        </svg>
-
-      </button>
-
-
-      <!-- WISHLIST -->
-
-      <button
-        class="icon-btn desktop-only"
-        aria-label="Wishlist"
-      >
-
-        <svg viewBox="0 0 24 24">
-
-          <path
-            d="M20.8 8.8c0 5.5-8.8 10.2-8.8 10.2S3.2 14.3 3.2 8.8A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.8 2.6Z"
-          ></path>
-
-        </svg>
-
-        <b
-          class="counter"
-          id="wishlistCount"
-        >0</b>
-
-      </button>
-
-
-      <!-- CART -->
-
-      <button
-        class="cart-btn"
-        id="cartBtn"
-      >
-
-        <svg viewBox="0 0 24 24">
-
-          <path
-            d="M4 5h2l2 12h9l3-9H7"
-          ></path>
-
-          <circle
-            cx="10"
-            cy="20"
-            r="1"
-          ></circle>
-
-          <circle
-            cx="17"
-            cy="20"
-            r="1"
-          ></circle>
-
-        </svg>
-
-        <span>BAG</span>
-
-        <b id="cartCount">0</b>
-
-      </button>
-
-
-      <!-- MOBILE MENU -->
-
-      <button
-        class="mobile-menu-btn"
-        id="mobileMenuBtn"
-        aria-label="Menu"
-      >
-
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
         <span></span>
         <span></span>
-
       </button>
 
-    </div>
+      <a href="#" class="logo">FASHION<br><em>GARMENTS.</em></a>
 
-  </nav>
+      <nav class="desktop-nav">
+        <a href="#new">New Arrivals</a>
+        <a href="#shop">Shop</a>
+        <a href="#story">Our Story</a>
+      </nav>
 
+      <div class="header-actions">
 
-  <!-- MOBILE MENU -->
-
-  <div
-    class="mobile-menu"
-    id="mobileMenu"
-  >
-
-    <a href="#new">New</a>
-
-    <a href="#categories">Categories</a>
-
-    <a href="#shop">Shop</a>
-
-    <a href="#story">Our Story</a>
-
-    <button id="mobileAccount">
-      Account
-    </button>
-
-  </div>
-
-</header>
-
-
-<main id="top">
-
-
-<!-- =========================================
-     HERO
-========================================= -->
-
-<section class="hero">
-
-  <div class="hero-image"></div>
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-
-    <p class="eyebrow">
-      FUTURE OF EVERYDAY FASHION
-    </p>
-
-    <h1>
-      WEAR<br>
-      <em>YOUR</em><br>
-      WORLD.
-    </h1>
-
-    <p class="hero-copy">
-      Premium everyday pieces designed for people
-      who don't follow the crowd.
-    </p>
-
-    <div class="hero-buttons">
-
-      <button
-        class="btn btn-light magnetic"
-        onclick="scrollToShop()"
-      >
-        SHOP COLLECTION
-        <span>→</span>
-      </button>
-
-      <a
-        href="#story"
-        class="btn btn-dark magnetic"
-      >
-        OUR STORY
-        <span>↗</span>
-      </a>
-
-    </div>
-
-  </div>
-
-  <div class="hero-scroll">
-    SCROLL TO EXPLORE ↓
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     MARQUEE
-========================================= -->
-
-<section class="marquee">
-
-  <div class="marquee-track">
-
-    <span>FASHION GARMENTS</span>
-    <i>✦</i>
-
-    <span>DESIGNED TO BE REMEMBERED</span>
-    <i>✦</i>
-
-    <span>EVERYDAY / ELEVATED</span>
-    <i>✦</i>
-
-    <span>FASHION GARMENTS</span>
-    <i>✦</i>
-
-    <span>DESIGNED TO BE REMEMBERED</span>
-    <i>✦</i>
-
-    <span>EVERYDAY / ELEVATED</span>
-    <i>✦</i>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     NEW ARRIVALS
-========================================= -->
-
-<section
-  class="section"
-  id="new"
->
-
-  <div class="section-heading">
-
-    <div>
-
-      <p class="eyebrow">
-        JUST DROPPED
-      </p>
-
-      <h2>
-        New<br>
-        <em>Arrivals.</em>
-      </h2>
-
-    </div>
-
-    <a
-      href="#shop"
-      class="text-link"
-    >
-      VIEW ALL
-      <span>→</span>
-    </a>
-
-  </div>
-
-  <div
-    class="product-grid"
-    id="newProducts"
-  ></div>
-
-</section>
-
-
-<!-- =========================================
-     CATEGORIES
-========================================= -->
-
-<section
-  class="category-section"
-  id="categories"
->
-
-  <div class="category-grid">
-
-    <button
-      class="category-card"
-      data-category="T-Shirts"
-    >
-
-      <img
-        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85"
-        alt="T-Shirts"
-      >
-
-      <div>
-
-        <small>01 / COLLECTION</small>
-
-        <h3>T-Shirts</h3>
-
-        <span>EXPLORE →</span>
-
-      </div>
-
-    </button>
-
-
-    <button
-      class="category-card tall"
-      data-category="Oversized"
-    >
-
-      <img
-        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=85"
-        alt="Oversized"
-      >
-
-      <div>
-
-        <small>02 / COLLECTION</small>
-
-        <h3>Oversized</h3>
-
-        <span>EXPLORE →</span>
-
-      </div>
-
-    </button>
-
-
-    <button
-      class="category-card"
-      data-category="Hoodies"
-    >
-
-      <img
-        src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=85"
-        alt="Hoodies"
-      >
-
-      <div>
-
-        <small>03 / COLLECTION</small>
-
-        <h3>Hoodies</h3>
-
-        <span>EXPLORE →</span>
-
-      </div>
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     EDITORIAL
-========================================= -->
-
-<section class="section">
-
-  <div class="editorial">
-
-    <div class="editorial-image">
-
-      <img
-        src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1600&q=85"
-        alt="Fashion editorial"
-        loading="lazy"
-      >
-
-    </div>
-
-    <div class="editorial-content">
-
-      <p class="eyebrow">
-        THE NEW STANDARD
-      </p>
-
-      <h2>
-        Less<br>
-        <em>ordinary.</em>
-      </h2>
-
-      <p>
-        We believe everyday clothing should never feel
-        ordinary. Every FASHION GARMENTS piece is
-        designed around comfort, confidence and
-        effortless individuality.
-      </p>
-
-      <button
-        class="btn btn-dark"
-        onclick="scrollToShop()"
-      >
-        DISCOVER THE COLLECTION
-        <span>→</span>
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     SHOP
-========================================= -->
-
-<section
-  class="section"
-  id="shop"
->
-
-  <div class="shop-header">
-
-    <div>
-
-      <p class="eyebrow">
-        SHOP ALL
-      </p>
-
-      <h2>
-        Find your<br>
-        <em>fit.</em>
-      </h2>
-
-    </div>
-
-
-    <div class="shop-controls">
-
-      <div class="filter-tabs">
-
-        <button
-          class="filter active"
-          data-filter="All"
-        >
-          ALL
+        <button id="searchBtn" class="icon-btn" aria-label="Search">
+          SEARCH
         </button>
 
-        <button
-          class="filter"
-          data-filter="T-Shirts"
-        >
-          T-SHIRTS
+        <button id="accountBtn" class="icon-btn" aria-label="Account">
+          ACCOUNT
         </button>
 
-        <button
-          class="filter"
-          data-filter="Oversized"
-        >
-          OVERSIZED
+        <button class="icon-btn icon-count" id="wishlistBtn" aria-label="Wishlist">
+          ♡
+          <span id="wishlistCount">0</span>
         </button>
 
-        <button
-          class="filter"
-          data-filter="Hoodies"
-        >
-          HOODIES
+        <button class="icon-btn icon-count" id="cartBtn" aria-label="Cart">
+          BAG
+          <span id="cartCount">0</span>
         </button>
 
       </div>
-
-
-      <select id="sortSelect">
-
-        <option value="default">
-          SORT
-        </option>
-
-        <option value="low">
-          PRICE: LOW TO HIGH
-        </option>
-
-        <option value="high">
-          PRICE: HIGH TO LOW
-        </option>
-
-      </select>
-
     </div>
 
-  </div>
-
-
-  <div
-    class="product-grid"
-    id="shopProducts"
-  ></div>
-
-</section>
-
-
-<!-- =========================================
-     LIMITED DROP
-========================================= -->
-
-<section class="drop-section">
-
-  <div class="drop-content">
-
-    <p class="eyebrow">
-      LIMITED DROP 01
-    </p>
-
-    <h2>
-      MADE<br>
-      TO <em>MOVE.</em>
-    </h2>
-
-    <p>
-      A limited collection created for the ones
-      who move differently.
-    </p>
-
-
-    <div class="countdown">
-
-      <div>
-
-        <strong id="days">00</strong>
-
-        <span>DAYS</span>
-
-      </div>
-
-      <div>
-
-        <strong id="hours">00</strong>
-
-        <span>HOURS</span>
-
-      </div>
-
-      <div>
-
-        <strong id="minutes">00</strong>
-
-        <span>MINUTES</span>
-
-      </div>
-
-      <div>
-
-        <strong id="seconds">00</strong>
-
-        <span>SECONDS</span>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="btn btn-light"
-      onclick="scrollToShop()"
-    >
-      SHOP THE DROP
-      <span>→</span>
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     STORY
-========================================= -->
-
-<section
-  class="story-section"
-  id="story"
->
-
-  <div class="story-text">
-
-    <p class="eyebrow">
-      OUR STORY
-    </p>
-
-    <h2>
-      Clothing<br>
-      with a<br>
-      <em>point of view.</em>
-    </h2>
-
-    <p>
-      FASHION GARMENTS started with one simple idea:
-      fashion should feel personal. We create modern
-      essentials that let you build your own identity
-      instead of fitting into someone else's.
-    </p>
-
-    <button
-      class="btn btn-dark"
-      onclick="scrollToShop()"
-    >
-      SHOP FASHION GARMENTS
-      <span>→</span>
-    </button>
-
-  </div>
-
-
-  <div class="story-images">
-
-    <img
-      src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1400&q=85"
-      alt="Fashion"
-      loading="lazy"
-    >
-
-    <img
-      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85"
-      alt="Fashion detail"
-      loading="lazy"
-    >
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     REVIEWS
-========================================= -->
-
-<section class="reviews">
-
-  <div class="section-heading">
-
-    <div>
-
-      <p class="eyebrow">
-        CUSTOMER NOTES
-      </p>
-
-      <h2>
-        Loved<br>
-        <em>already.</em>
-      </h2>
-
-    </div>
-
-  </div>
-
-
-  <div class="review-grid">
-
-    <article class="review">
-
-      <div class="stars">
-        ★★★★★
-      </div>
-
-      <p>
-        “The fit is exactly what I wanted.
-        Minimal, comfortable and genuinely premium.”
-      </p>
-
-      <strong>
-        — ARJUN / DELHI
-      </strong>
-
-    </article>
-
-
-    <article class="review">
-
-      <div class="stars">
-        ★★★★★
-      </div>
-
-      <p>
-        “The hoodie feels amazing and the oversized
-        fit is perfect. Definitely ordering again.”
-      </p>
-
-      <strong>
-        — RIYA / MUMBAI
-      </strong>
-
-    </article>
-
-
-    <article class="review">
-
-      <div class="stars">
-        ★★★★★
-      </div>
-
-      <p>
-        “Finally a clothing brand that looks premium
-        without trying too hard.”
-      </p>
-
-      <strong>
-        — KABIR / BANGALORE
-      </strong>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     SOCIAL
-========================================= -->
-
-<section class="social-section">
-
-  <div class="section-heading">
-
-    <div>
-
-      <p class="eyebrow">
-        @FASHIONGARMENTS
-      </p>
-
-      <h2>
-        Seen<br>
-        <em>outside.</em>
-      </h2>
-
-    </div>
-
-  </div>
-
-
-  <div class="social-grid">
-
-    <img
-      src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85"
-      alt="Fashion"
-      loading="lazy"
-    >
-
-    <img
-      src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=85"
-      alt="Fashion"
-      loading="lazy"
-    >
-
-    <img
-      src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85"
-      alt="Fashion"
-      loading="lazy"
-    >
-
-    <img
-      src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=85"
-      alt="Fashion"
-      loading="lazy"
-    >
-
-    <img
-      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85"
-      alt="Fashion"
-      loading="lazy"
-    >
-
-    <img
-      src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=85"
-      alt="Fashion"
-      loading="lazy"
-    >
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     NEWSLETTER
-========================================= -->
-
-<section class="newsletter">
-
-  <div class="newsletter-inner">
-
-    <p class="eyebrow">
-      STAY IN THE LOOP
-    </p>
-
-    <h2>
-      Don't miss<br>
-      <em>the next drop.</em>
-    </h2>
-
-    <form id="newsletterForm">
-
-      <input
-        type="email"
-        placeholder="Your email address"
-        required
-      >
-
-      <button type="submit">
-        JOIN →
-      </button>
-
-    </form>
-
-    <small>
-      No spam. Just new drops, stories and exclusive access.
-    </small>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================================
-     FOOTER
-========================================= -->
-
-<footer>
-
-  <div class="footer-top">
-
-    <div class="footer-brand">
-
-      <div class="footer-logo">
-        FASHION <span>GARMENTS.</span>
-      </div>
-
-      <p>
-        Modern clothing for people who
-        create their own definition of style.
-      </p>
-
-    </div>
-
-
-    <div class="footer-column">
-
-      <h4>SHOP</h4>
-
-      <a href="#shop">All Products</a>
-
-      <a href="#shop">T-Shirts</a>
-
-      <a href="#shop">Oversized</a>
-
-      <a href="#shop">Hoodies</a>
-
-    </div>
-
-
-    <div class="footer-column">
-
-      <h4>COMPANY</h4>
-
-      <a href="#story">Our Story</a>
-
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
       <a href="#new">New Arrivals</a>
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
 
-      <a href="#categories">Collections</a>
+      <button id="mobileAccount" type="button">
+        Account
+      </button>
+    </div>
+  </header>
 
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+
+        <p class="eyebrow">FASHION / 01</p>
+
+        <h1>
+          Everyday<br>
+          <em>Expression.</em>
+        </h1>
+
+        <p class="hero-copy">
+          Premium essentials designed for the way
+          modern life moves.
+        </p>
+
+        <button class="btn btn-dark magnetic" onclick="scrollToShop()">
+          Explore Collection <span>↗</span>
+        </button>
+
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=90"
+          alt="Fashion collection"
+        >
+      </div>
+    </section>
+
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>FASHION GARMENTS</span>
+        <span>✦</span>
+        <span>EVERYDAY EXPRESSION</span>
+        <span>✦</span>
+        <span>FASHION GARMENTS</span>
+        <span>✦</span>
+        <span>EVERYDAY EXPRESSION</span>
+        <span>✦</span>
+      </div>
     </div>
 
 
-    <div class="footer-column">
+    <!-- NEW ARRIVALS -->
+    <section class="section" id="new">
 
-      <h4>CONNECT</h4>
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">01 / NEW ARRIVALS</p>
+          <h2>Fresh <em>energy.</em></h2>
+        </div>
 
-      <a href="#">Instagram</a>
+        <a href="#shop" class="text-link">
+          View all ↗
+        </a>
+      </div>
 
-      <a href="#">Contact</a>
+      <div class="product-grid" id="newProducts"></div>
 
-      <a href="#">Support</a>
+    </section>
+
+
+    <!-- CATEGORIES -->
+    <section class="section categories-section">
+
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">02 / CATEGORIES</p>
+          <h2>Find your <em>form.</em></h2>
+        </div>
+      </div>
+
+      <div class="category-grid">
+
+        <article class="category-card reveal" data-category="T-Shirts">
+          <img
+            src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85"
+            alt="T-Shirts"
+          >
+          <div class="category-overlay">
+            <span>01</span>
+            <h3>T-Shirts</h3>
+            <span>Explore ↗</span>
+          </div>
+        </article>
+
+        <article class="category-card reveal" data-category="Hoodies">
+          <img
+            src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=85"
+            alt="Hoodies"
+          >
+          <div class="category-overlay">
+            <span>02</span>
+            <h3>Hoodies</h3>
+            <span>Explore ↗</span>
+          </div>
+        </article>
+
+        <article class="category-card reveal" data-category="Oversized">
+          <img
+            src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1200&q=85"
+            alt="Oversized"
+          >
+          <div class="category-overlay">
+            <span>03</span>
+            <h3>Oversized</h3>
+            <span>Explore ↗</span>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- EDITORIAL -->
+    <section class="editorial-section">
+
+      <div class="editorial-image reveal">
+        <img
+          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=90"
+          alt="Fashion editorial"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="editorial-content reveal">
+        <p class="eyebrow">THE FASHION GARMENTS EDIT</p>
+
+        <h2>
+          Less noise.<br>
+          <em>More identity.</em>
+        </h2>
+
+        <p>
+          Clothing shouldn't tell you who to be.
+          It should give you the freedom to show
+          who you already are.
+        </p>
+
+        <a href="#shop" class="btn btn-light">
+          Shop the edit ↗
+        </a>
+      </div>
+
+    </section>
+
+
+    <!-- SHOP -->
+    <section class="section shop-section" id="shop">
+
+      <div class="section-head reveal">
+
+        <div>
+          <p class="eyebrow">03 / SHOP</p>
+          <h2>The <em>collection.</em></h2>
+        </div>
+
+        <div class="shop-controls">
+
+          <div class="filters">
+            <button class="filter active" data-filter="All">All</button>
+            <button class="filter" data-filter="T-Shirts">T-Shirts</button>
+            <button class="filter" data-filter="Hoodies">Hoodies</button>
+            <button class="filter" data-filter="Oversized">Oversized</button>
+          </div>
+
+          <select id="sortSelect">
+            <option value="default">Sort</option>
+            <option value="low">Price: Low → High</option>
+            <option value="high">Price: High → Low</option>
+          </select>
+
+        </div>
+
+      </div>
+
+      <div class="product-grid" id="shopProducts"></div>
+
+    </section>
+
+
+    <!-- LIMITED DROP -->
+    <section class="drop-section">
+
+      <div class="drop-image">
+        <img
+          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=90"
+          alt="Limited drop"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="drop-content">
+
+        <p class="eyebrow">LIMITED DROP / 04</p>
+
+        <h2>
+          DROP<br>
+          <em>01.</em>
+        </h2>
+
+        <p>
+          A limited collection.
+          Once it's gone, it's gone.
+        </p>
+
+        <div class="countdown">
+
+          <div>
+            <strong id="days">00</strong>
+            <span>DAYS</span>
+          </div>
+
+          <div>
+            <strong id="hours">00</strong>
+            <span>HOURS</span>
+          </div>
+
+          <div>
+            <strong id="minutes">00</strong>
+            <span>MINUTES</span>
+          </div>
+
+          <div>
+            <strong id="seconds">00</strong>
+            <span>SECONDS</span>
+          </div>
+
+        </div>
+
+        <button class="btn btn-light" onclick="scrollToShop()">
+          Shop Drop ↗
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- STORY -->
+    <section class="section story-section" id="story">
+
+      <div class="story-content reveal">
+
+        <p class="eyebrow">05 / OUR STORY</p>
+
+        <h2>
+          Built for<br>
+          <em>real life.</em>
+        </h2>
+
+        <p>
+          FASHION GARMENTS was created around one simple
+          idea — everyday clothing can still feel special.
+        </p>
+
+        <p>
+          Clean silhouettes. Considered details.
+          Pieces made to become part of your identity.
+        </p>
+
+      </div>
+
+      <div class="story-number reveal">
+        01
+      </div>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+    <section class="section reviews-section">
+
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">06 / COMMUNITY</p>
+          <h2>Worn by <em>you.</em></h2>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+
+        <article class="review reveal">
+          <div class="stars">★★★★★</div>
+          <p>
+            "The quality is honestly insane.
+            Fits perfectly and feels premium."
+          </p>
+          <span>— ARYAN / DELHI</span>
+        </article>
+
+        <article class="review reveal">
+          <div class="stars">★★★★★</div>
+          <p>
+            "Exactly the kind of minimal clothing
+            I've been looking for."
+          </p>
+          <span>— RIYA / MUMBAI</span>
+        </article>
+
+        <article class="review reveal">
+          <div class="stars">★★★★★</div>
+          <p>
+            "The oversized fit is perfect.
+            Definitely ordering again."
+          </p>
+          <span>— KABIR / BANGALORE</span>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- SOCIAL -->
+    <section class="social-section">
+
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">07 / FOLLOW ALONG</p>
+          <h2>@fashion<em>garments</em></h2>
+        </div>
+      </div>
+
+      <div class="social-grid">
+
+        <img
+          class="reveal"
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+          alt="Fashion"
+          loading="lazy"
+        >
+
+        <img
+          class="reveal"
+          src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85"
+          alt="Fashion"
+          loading="lazy"
+        >
+
+        <img
+          class="reveal"
+          src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=85"
+          alt="Fashion"
+          loading="lazy"
+        >
+
+        <img
+          class="reveal"
+          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
+          alt="Fashion"
+          loading="lazy"
+        >
+
+      </div>
+
+    </section>
+
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+
+      <div class="newsletter-inner reveal">
+
+        <p class="eyebrow">08 / STAY CLOSE</p>
+
+        <h2>
+          Get the <em>good stuff.</em>
+        </h2>
+
+        <p>
+          New drops, private releases and stories.
+          No unnecessary noise.
+        </p>
+
+        <form id="newsletterForm">
+
+          <input
+            type="email"
+            placeholder="Your email address"
+            required
+          >
+
+          <button type="submit">
+            Subscribe ↗
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          FASHION<br><em>GARMENTS.</em>
+        </a>
+
+        <p>
+          Everyday expression,<br>
+          thoughtfully designed.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <span>SHOP</span>
+        <a href="#new">New Arrivals</a>
+        <a href="#shop">All Products</a>
+        <a href="#shop">T-Shirts</a>
+        <a href="#shop">Hoodies</a>
+      </div>
+
+      <div class="footer-column">
+        <span>INFO</span>
+        <a href="#story">Our Story</a>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div class="footer-column">
+        <span>SOCIAL</span>
+        <a href="#">Instagram ↗</a>
+        <a href="#">Pinterest ↗</a>
+        <a href="#">Email ↗</a>
+      </div>
 
     </div>
 
-  </div>
-
-
-  <div class="footer-bottom">
-
-    <span>
-      © 2026 FASHION GARMENTS
-    </span>
-
-    <div>
-
-      <span>Privacy</span>
-
-      <span>Terms</span>
-
+    <div class="footer-bottom">
+      <span>© 2026 FASHION GARMENTS</span>
+      <span>ALL RIGHTS RESERVED.</span>
     </div>
 
-  </div>
-
-</footer>
+  </footer>
 
 
-<!-- =========================================
-     SEARCH OVERLAY
-========================================= -->
+  <!-- SEARCH OVERLAY -->
+  <div class="overlay" id="searchOverlay">
 
-<div
-  class="overlay"
-  id="searchOverlay"
->
+    <div class="search-modal">
 
-  <div class="search-panel">
+      <button class="close-btn" id="closeSearch">×</button>
 
-    <button
-      class="close-btn"
-      id="closeSearch"
-    >
-      ×
-    </button>
-
-    <p class="eyebrow">
-      SEARCH
-    </p>
-
-    <h2>
-      Find <em>your piece.</em>
-    </h2>
-
-    <div class="search-input">
+      <p class="eyebrow">SEARCH</p>
 
       <input
+        type="text"
         id="searchInput"
-        type="search"
         placeholder="Search products..."
+        autocomplete="off"
       >
 
-      <span>↗</span>
+      <div id="searchResults"></div>
 
     </div>
-
-    <div id="searchResults"></div>
 
   </div>
 
-</div>
 
+  <!-- PRODUCT OVERLAY -->
+  <div class="overlay" id="productOverlay">
 
-<!-- =========================================
-     PRODUCT OVERLAY
-========================================= -->
+    <div class="product-modal">
 
-<div
-  class="overlay"
-  id="productOverlay"
->
+      <button class="close-btn" id="closeProduct">×</button>
 
-  <div class="product-modal">
+      <div id="productModalContent"></div>
 
-    <button
-      class="close-btn"
-      id="closeProduct"
-    >
-      ×
-    </button>
-
-    <div id="productModalContent"></div>
+    </div>
 
   </div>
 
-</div>
+
+  <!-- ACCOUNT OVERLAY -->
+  <div class="overlay" id="accountOverlay">
+
+    <div class="account-modal">
+
+      <button class="close-btn" id="closeAccount">×</button>
 
 
-<!-- =========================================
-     REAL ACCOUNT OVERLAY
-========================================= -->
+      <!-- LOGIN -->
+      <div id="loginView" class="account-view">
 
-<div
-  class="overlay"
-  id="accountOverlay"
->
+        <p class="eyebrow">YOUR ACCOUNT</p>
 
-  <div class="account-modal">
+        <h2>
+          Welcome <em>back.</em>
+        </h2>
 
-    <button
-      class="close-btn"
-      id="closeAccount"
-    >
-      ×
-    </button>
+        <form id="loginForm">
+
+          <input
+            id="loginEmail"
+            type="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+          >
+
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            required
+          >
+
+          <button
+            class="btn btn-dark full"
+            type="submit"
+          >
+            Login ↗
+          </button>
+
+        </form>
+
+        <p id="loginMessage" class="account-message"></p>
+
+        <p class="account-small">
+          New here?
+          <button type="button" id="showSignupBtn">
+            Create an account
+          </button>
+          <br>
+          <button type="button" id="forgotPasswordBtn">
+            Forgot password?
+          </button>
+        </p>
+
+      </div>
 
 
-    <!-- LOGIN -->
+      <!-- SIGNUP -->
+      <div id="signupView" class="account-view" hidden>
 
-    <div
-      class="account-view"
-      id="loginView"
-    >
+        <p class="eyebrow">CREATE ACCOUNT</p>
 
-      <p class="eyebrow">
-        YOUR ACCOUNT
-      </p>
+        <h2>
+          Join <em>us.</em>
+        </h2>
 
-      <h2>
-        Welcome <em>back.</em>
-      </h2>
+        <form id="signupForm">
 
-      <form id="loginForm">
+          <input
+            id="signupName"
+            type="text"
+            placeholder="Full name"
+            autocomplete="name"
+            required
+          >
 
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="Email address"
-          autocomplete="email"
-          required
-        >
+          <input
+            id="signupEmail"
+            type="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+          >
 
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Password"
-          autocomplete="current-password"
-          required
-        >
+          <input
+            id="signupPassword"
+            type="password"
+            placeholder="Password (min. 6 characters)"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          >
+
+          <button
+            class="btn btn-dark full"
+            type="submit"
+          >
+            Create Account ↗
+          </button>
+
+        </form>
+
+        <p id="signupMessage" class="account-message"></p>
+
+        <p class="account-small">
+          Already have an account?
+          <button type="button" id="showLoginBtn">
+            Login
+          </button>
+        </p>
+
+      </div>
+
+
+      <!-- FORGOT PASSWORD -->
+      <div id="forgotView" class="account-view" hidden>
+
+        <p class="eyebrow">RESET PASSWORD</p>
+
+        <h2>
+          Forgot <em>password?</em>
+        </h2>
+
+        <form id="forgotForm">
+
+          <input
+            id="forgotEmail"
+            type="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+          >
+
+          <button
+            class="btn btn-dark full"
+            type="submit"
+          >
+            Send Reset Link ↗
+          </button>
+
+        </form>
+
+        <p id="forgotMessage" class="account-message"></p>
+
+        <p class="account-small">
+          <button type="button" id="backToLoginBtn">
+            ← Back to login
+          </button>
+        </p>
+
+      </div>
+
+
+      <!-- RESET PASSWORD -->
+      <div id="resetView" class="account-view" hidden>
+
+        <p class="eyebrow">NEW PASSWORD</p>
+
+        <h2>
+          Set a <em>new one.</em>
+        </h2>
+
+        <form id="resetForm">
+
+          <input
+            id="resetPassword"
+            type="password"
+            placeholder="New password"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          >
+
+          <input
+            id="resetPasswordConfirm"
+            type="password"
+            placeholder="Confirm new password"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          >
+
+          <button
+            class="btn btn-dark full"
+            type="submit"
+          >
+            Update Password ↗
+          </button>
+
+        </form>
+
+        <p id="resetMessage" class="account-message"></p>
+
+      </div>
+
+
+      <!-- LOGGED IN -->
+      <div id="accountLoggedIn" class="account-view" hidden>
+
+        <p class="eyebrow">YOUR ACCOUNT</p>
+
+        <h2>
+          You're <em>in.</em>
+        </h2>
+
+        <div class="account-user">
+
+          <strong id="accountName">
+            Customer
+          </strong>
+
+          <span id="accountEmail"></span>
+
+        </div>
 
         <button
           class="btn btn-dark full"
-          type="submit"
-          id="loginSubmit"
-        >
-          Login ↗
-        </button>
-
-      </form>
-
-      <p
-        id="loginMessage"
-        class="account-message"
-      ></p>
-
-      <p class="account-small">
-
-        New here?
-
-        <button
+          id="logoutBtn"
           type="button"
-          id="showSignupBtn"
         >
-          Create an account
+          Logout ↗
         </button>
 
-        <br>
+      </div>
 
-        <button
-          type="button"
-          id="forgotPasswordBtn"
-        >
-          Forgot password?
-        </button>
+    </div>
 
+  </div>
+
+
+  <!-- CART BACKDROP -->
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+
+
+  <!-- CART DRAWER -->
+  <aside class="cart-drawer" id="cartDrawer">
+
+    <div class="cart-head">
+
+      <div>
+        <p class="eyebrow">YOUR BAG</p>
+        <h2>Shopping <em>bag.</em></h2>
+      </div>
+
+      <button class="close-btn" id="closeCart">
+        ×
+      </button>
+
+    </div>
+
+    <div class="shipping-box">
+
+      <div class="shipping-track">
+        <span id="shippingProgress"></span>
+      </div>
+
+      <p id="shippingMessage">
+        Add ₹1,999 more for FREE shipping.
       </p>
 
     </div>
 
+    <div class="cart-items" id="cartItems"></div>
 
-    <!-- SIGNUP -->
+    <div class="cart-footer">
 
-    <div
-      class="account-view"
-      id="signupView"
-      hidden
-    >
-
-      <p class="eyebrow">
-        CREATE ACCOUNT
-      </p>
-
-      <h2>
-        Join <em>us.</em>
-      </h2>
-
-      <form id="signupForm">
-
-        <input
-          id="signupName"
-          type="text"
-          placeholder="Full name"
-          autocomplete="name"
-          required
-        >
-
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="Email address"
-          autocomplete="email"
-          required
-        >
-
-        <input
-          id="signupPassword"
-          type="password"
-          placeholder="Password (min. 6 characters)"
-          autocomplete="new-password"
-          minlength="6"
-          required
-        >
-
-        <button
-          class="btn btn-dark full"
-          type="submit"
-          id="signupSubmit"
-        >
-          Create Account ↗
-        </button>
-
-      </form>
-
-      <p
-        id="signupMessage"
-        class="account-message"
-      ></p>
-
-      <p class="account-small">
-
-        Already have an account?
-
-        <button
-          type="button"
-          id="showLoginBtn"
-        >
-          Login
-        </button>
-
-      </p>
-
-    </div>
-
-
-    <!-- FORGOT PASSWORD -->
-
-    <div
-      class="account-view"
-      id="forgotView"
-      hidden
-    >
-
-      <p class="eyebrow">
-        RESET PASSWORD
-      </p>
-
-      <h2>
-        Forgot <em>password?</em>
-      </h2>
-
-      <form id="forgotForm">
-
-        <input
-          id="forgotEmail"
-          type="email"
-          placeholder="Email address"
-          autocomplete="email"
-          required
-        >
-
-        <button
-          class="btn btn-dark full"
-          type="submit"
-          id="forgotSubmit"
-        >
-          Send Reset Link ↗
-        </button>
-
-      </form>
-
-      <p
-        id="forgotMessage"
-        class="account-message"
-      ></p>
-
-      <p class="account-small">
-
-        <button
-          type="button"
-          id="backToLoginBtn"
-        >
-          ← Back to login
-        </button>
-
-      </p>
-
-    </div>
-
-
-    <!-- RESET PASSWORD -->
-
-    <div
-      class="account-view"
-      id="resetView"
-      hidden
-    >
-
-      <p class="eyebrow">
-        NEW PASSWORD
-      </p>
-
-      <h2>
-        Set a <em>new one.</em>
-      </h2>
-
-      <form id="resetForm">
-
-        <input
-          id="resetPassword"
-          type="password"
-          placeholder="New password"
-          autocomplete="new-password"
-          minlength="6"
-          required
-        >
-
-        <input
-          id="resetPasswordConfirm"
-          type="password"
-          placeholder="Confirm new password"
-          autocomplete="new-password"
-          minlength="6"
-          required
-        >
-
-        <button
-          class="btn btn-dark full"
-          type="submit"
-        >
-          Update Password ↗
-        </button>
-
-      </form>
-
-      <p
-        id="resetMessage"
-        class="account-message"
-      ></p>
-
-    </div>
-
-
-    <!-- LOGGED IN -->
-
-    <div
-      class="account-view"
-      id="accountLoggedIn"
-      hidden
-    >
-
-      <p class="eyebrow">
-        YOUR ACCOUNT
-      </p>
-
-      <h2>
-        You're <em>in.</em>
-      </h2>
-
-      <div class="account-user">
-
-        <strong id="accountName">
-          Customer
-        </strong>
-
-        <span id="accountEmail"></span>
-
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong id="cartTotal">₹0</strong>
       </div>
 
       <button
         class="btn btn-dark full"
-        id="logoutBtn"
-        type="button"
+        id="checkoutBtn"
       >
-        Logout ↗
+        Checkout ↗
       </button>
 
     </div>
 
-  </div>
-
-</div>
+  </aside>
 
 
-<!-- =========================================
-     CHECKOUT
-========================================= -->
+  <!-- CHECKOUT -->
+  <div class="overlay" id="checkoutOverlay">
 
-<div
-  class="overlay"
-  id="checkoutOverlay"
->
+    <div class="checkout-modal">
 
-  <div class="checkout-modal">
+      <button class="close-btn" id="closeCheckout">
+        ×
+      </button>
 
-    <button
-      class="close-btn"
-      id="closeCheckout"
-    >
-      ×
-    </button>
+      <div id="checkoutContent">
 
-    <div id="checkoutContent">
+        <p class="eyebrow">CHECKOUT</p>
 
-      <p class="eyebrow">
-        CHECKOUT
-      </p>
+        <h2>
+          Complete <em>your order.</em>
+        </h2>
 
-      <h2>
-        Complete<br>
-        <em>your order.</em>
-      </h2>
-
-      <div class="checkout-grid">
-
-        <div>
-
-          <h4>
-            CONTACT & DELIVERY
-          </h4>
-
-          <form id="checkoutForm">
-
-            <input
-              type="text"
-              placeholder="Full name"
-              required
-            >
-
-            <input
-              type="email"
-              placeholder="Email address"
-              required
-            >
-
-            <input
-              type="tel"
-              placeholder="Phone number"
-              required
-            >
-
-            <input
-              type="text"
-              placeholder="Address"
-              required
-            >
-
-            <div class="two-inputs">
-
-              <input
-                type="text"
-                placeholder="City"
-                required
-              >
-
-              <input
-                type="text"
-                placeholder="PIN code"
-                required
-              >
-
-            </div>
-
-            <button
-              class="btn btn-dark full"
-              type="submit"
-            >
-              PLACE ORDER →
-            </button>
-
-          </form>
-
-        </div>
-
+        <div id="checkoutItems"></div>
 
         <div class="checkout-summary">
 
-          <h4>
-            ORDER SUMMARY
-          </h4>
-
-          <div id="checkoutItems"></div>
-
-          <div class="checkout-line">
-
-            <span>
-              Subtotal
-            </span>
-
-            <strong id="checkoutSubtotal">
-              ₹0
-            </strong>
-
+          <div>
+            <span>Subtotal</span>
+            <strong id="checkoutSubtotal">₹0</strong>
           </div>
 
-          <div class="checkout-line">
-
-            <span>
-              Shipping
-            </span>
-
-            <span>
-              Calculated at checkout
-            </span>
-
+          <div>
+            <span>Shipping</span>
+            <strong>FREE</strong>
           </div>
 
-          <div class="checkout-total">
-
-            <span>
-              Total
-            </span>
-
-            <strong id="checkoutTotal">
-              ₹0
-            </strong>
-
+          <div class="checkout-grand">
+            <span>Total</span>
+            <strong id="checkoutTotal">₹0</strong>
           </div>
 
         </div>
 
-      </div>
+        <form id="checkoutForm">
 
-    </div>
+          <input
+            type="text"
+            placeholder="Full name"
+            autocomplete="name"
+            required
+          >
 
-  </div>
+          <input
+            type="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+          >
 
-</div>
+          <input
+            type="tel"
+            placeholder="Phone number"
+            autocomplete="tel"
+            required
+          >
 
+          <input
+            type="text"
+            placeholder="Full delivery address"
+            autocomplete="street-address"
+            required
+          >
 
-<!-- =========================================
-     CART
-========================================= -->
+          <input
+            type="text"
+            placeholder="City"
+            required
+          >
 
-<div
-  class="cart-backdrop"
-  id="cartBackdrop"
-></div>
+          <input
+            type="text"
+            placeholder="PIN code"
+            inputmode="numeric"
+            required
+          >
 
+          <button class="btn btn-dark full" type="submit">
+            Place Order ↗
+          </button>
 
-<aside
-  class="cart-drawer"
-  id="cartDrawer"
->
-
-  <div class="cart-header">
-
-    <h2>
-      Your Bag
-    </h2>
-
-    <button
-      class="close-btn"
-      id="closeCart"
-    >
-      ×
-    </button>
-
-  </div>
-
-
-  <div
-    class="cart-items"
-    id="cartItems"
-  ></div>
-
-
-  <div class="cart-footer">
-
-    <div class="shipping-progress">
-
-      <span id="shippingMessage">
-        Add ₹1,999 more for FREE shipping.
-      </span>
-
-      <div class="progress">
-
-        <i id="shippingProgress"></i>
+        </form>
 
       </div>
 
     </div>
 
-
-    <div class="cart-total">
-
-      <span>
-        Total
-      </span>
-
-      <strong id="cartTotal">
-        ₹0
-      </strong>
-
-    </div>
-
-
-    <button
-      class="btn btn-dark full"
-      id="checkoutBtn"
-    >
-      CHECKOUT
-      <span>→</span>
-    </button>
-
-    <small>
-      Secure checkout · Easy returns · Premium quality
-    </small>
-
   </div>
 
-</aside>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span>✓</span>
+    <p></p>
+  </div>
 
 
-<!-- =========================================
-     TOAST
-========================================= -->
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<div
-  class="toast"
-  id="toast"
->
-
-  <span>✓</span>
-
-  <p></p>
-
-</div>
-
-
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<!-- WEBSITE SCRIPT -->
-
-<script src="script.js"></script>
-
+  <!-- MAIN JS -->
+  <script src="script.js"></script>
 
 </body>
-
 </html>
