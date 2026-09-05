@@ -1,6 +1,7 @@
 /* =========================================================
    FASHION GARMENTS
-   STORE + CART + WISHLIST + SUPABASE AUTH
+   PRODUCTION-READY FRONTEND
+   Supabase Auth + 100+ Products + Cart + Wishlist + Search
 ========================================================= */
 
 
@@ -9,176 +10,661 @@
 ========================================================= */
 
 const SUPABASE_URL = "https://llehrynfkntrvndbqwsn.supabase.co";
-const SUPABASE_KEY = "sb_publishable_RiKV4zUAposqKWbtbMr9IQ_M9cT5Zcy";
+
+const SUPABASE_KEY =
+  "sb_publishable_RiKV4zUAposqKWbtbMr9IQ_M9cT5Zcy";
 
 const supabaseClient =
-  window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
 /* =========================================================
-   PRODUCTS
+   PRODUCT DATABASE
 ========================================================= */
 
-const products = [
-  {
-    id: 1,
-    name: "Essential Oversized Tee",
-    category: "Oversized",
-    price: 1499,
-    oldPrice: 1899,
-    badge: "BESTSELLER",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85",
-    description: "A relaxed everyday silhouette with premium comfort and a clean finish."
-  },
-  {
-    id: 2,
-    name: "Studio Cream Tee",
-    category: "T-Shirts",
-    price: 1299,
-    oldPrice: null,
-    badge: "NEW",
-    image: "https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=1000&q=85",
-    description: "Minimal cream tee designed for effortless everyday styling."
-  },
-  {
-    id: 3,
-    name: "Archive Grey Hoodie",
-    category: "Hoodies",
-    price: 2499,
-    oldPrice: 2999,
-    badge: "DROP 01",
-    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
-    description: "Heavyweight relaxed hoodie with a timeless archive-inspired silhouette."
-  },
-  {
-    id: 4,
-    name: "Form Oversized Shirt",
-    category: "Oversized",
-    price: 2199,
-    oldPrice: null,
-    badge: "NEW",
-    image: "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=1000&q=85",
-    description: "A modern oversized shirt built around clean lines and easy movement."
-  },
-  {
-    id: 5,
-    name: "Essential Black Tee",
-    category: "T-Shirts",
-    price: 1299,
-    oldPrice: null,
-    badge: "",
-    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=85",
-    description: "The everyday black tee. Simple, versatile and made to repeat."
-  },
-  {
-    id: 6,
-    name: "Washed Street Hoodie",
-    category: "Hoodies",
-    price: 2699,
-    oldPrice: null,
-    badge: "LIMITED",
-    image: "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=85",
-    description: "Washed finish hoodie with an elevated streetwear attitude."
-  },
-  {
-    id: 7,
-    name: "Daily Boxy Tee",
-    category: "T-Shirts",
-    price: 1399,
-    oldPrice: null,
-    badge: "NEW",
-    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=85",
-    description: "Boxy everyday fit with a modern proportion and soft hand feel."
-  },
-  {
-    id: 8,
-    name: "Relaxed Signature Hoodie",
-    category: "Hoodies",
-    price: 2899,
-    oldPrice: 3299,
-    badge: "SALE",
-    image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
-    description: "Relaxed premium hoodie designed as an everyday signature piece."
-  }
+const imagePool = {
+
+  tshirts: [
+    "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=900&q=85"
+  ],
+
+  hoodies: [
+    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1512400930990-e0bc0a0f3d2e?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=900&q=85"
+  ],
+
+  oversized: [
+    "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=900&q=85"
+  ],
+
+  pants: [
+    "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1624378441864-6edae7d0a8f6?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85"
+  ],
+
+  waffle: [
+    "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1625910513413-5fc45c5b1f15?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1571945153237-4929e783af4a?auto=format&fit=crop&w=900&q=85"
+  ],
+
+  shoes: [
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=900&q=85"
+  ],
+
+  jackets: [
+    "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85"
+  ],
+
+  joggers: [
+    "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1506629905607-d9a8b7c1b9f8?auto=format&fit=crop&w=900&q=85"
+  ]
+
+};
+
+
+/* =========================================================
+   PRODUCT GENERATOR
+========================================================= */
+
+const products = [];
+
+function addProduct(
+  id,
+  name,
+  category,
+  price,
+  image,
+  badge = "",
+  oldPrice = null,
+  description = ""
+) {
+
+  products.push({
+    id,
+    name,
+    category,
+    price,
+    oldPrice,
+    image,
+    badge,
+    description:
+      description ||
+      `Premium ${category.toLowerCase()} designed with a modern silhouette, comfortable feel and everyday versatility.`
+  });
+
+}
+
+
+/* =========================================================
+   CORE PRODUCTS
+========================================================= */
+
+addProduct(
+  "FG001",
+  "Essential Oversized Tee",
+  "Oversized",
+  1499,
+  imagePool.oversized[0],
+  "BESTSELLER",
+  1899
+);
+
+addProduct(
+  "FG002",
+  "Studio Cream Tee",
+  "T-Shirts",
+  1299,
+  imagePool.tshirts[0],
+  "NEW"
+);
+
+addProduct(
+  "FG003",
+  "Archive Grey Hoodie",
+  "Hoodies",
+  2499,
+  imagePool.hoodies[0],
+  "DROP 01",
+  2999
+);
+
+addProduct(
+  "FG004",
+  "Form Oversized Shirt",
+  "Oversized",
+  2199,
+  imagePool.oversized[1],
+  "NEW"
+);
+
+addProduct(
+  "FG005",
+  "Essential Black Tee",
+  "T-Shirts",
+  1299,
+  imagePool.tshirts[2]
+);
+
+addProduct(
+  "FG006",
+  "Washed Street Hoodie",
+  "Hoodies",
+  2699,
+  imagePool.hoodies[1],
+  "LIMITED"
+);
+
+addProduct(
+  "FG007",
+  "Daily Boxy Tee",
+  "T-Shirts",
+  1399,
+  imagePool.tshirts[3],
+  "NEW"
+);
+
+addProduct(
+  "FG008",
+  "Relaxed Signature Hoodie",
+  "Hoodies",
+  2899,
+  imagePool.hoodies[2],
+  "SALE",
+  3299
+);
+
+
+/* =========================================================
+   20 PANTS
+========================================================= */
+
+const pantsNames = [
+  "Essential Straight Pant",
+  "Studio Wide Leg Pant",
+  "Relaxed Utility Pant",
+  "Washed Cargo Pant",
+  "Minimal Pleated Pant",
+  "Everyday Taper Pant",
+  "Archive Work Pant",
+  "Heavy Cotton Pant",
+  "Urban Straight Pant",
+  "Signature Relaxed Pant",
+  "Clean Cut Trouser",
+  "Raw Edge Cargo Pant",
+  "Core Black Pant",
+  "Stone Relaxed Pant",
+  "Daily Utility Trouser",
+  "Modern Carpenter Pant",
+  "Loose Fit Cargo",
+  "Structured Wide Pant",
+  "Essential Grey Trouser",
+  "Classic Straight Pant"
 ];
+
+pantsNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-P${String(index + 1).padStart(2, "0")}`,
+    name,
+    "Pants",
+    1999 + (index % 5) * 200,
+    imagePool.pants[index % imagePool.pants.length],
+    index < 2 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   20 WAFFLE TEES
+========================================================= */
+
+const waffleNames = [
+  "Waffle Core Tee",
+  "Waffle Stone Tee",
+  "Waffle Cream Tee",
+  "Waffle Black Tee",
+  "Waffle Olive Tee",
+  "Waffle Charcoal Tee",
+  "Waffle Sand Tee",
+  "Waffle Relaxed Tee",
+  "Waffle Heavy Tee",
+  "Waffle Boxy Tee",
+  "Waffle Daily Tee",
+  "Waffle Studio Tee",
+  "Waffle Rib Tee",
+  "Waffle Textured Tee",
+  "Waffle Essential Tee",
+  "Waffle Mineral Tee",
+  "Waffle Natural Tee",
+  "Waffle Vintage Tee",
+  "Waffle Signature Tee",
+  "Waffle Premium Tee"
+];
+
+waffleNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-W${String(index + 1).padStart(2, "0")}`,
+    name,
+    "Waffle Tees",
+    1499 + (index % 4) * 150,
+    imagePool.waffle[index % imagePool.waffle.length],
+    index < 3 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   20 SHOES
+========================================================= */
+
+const shoeNames = [
+  "Mono Runner",
+  "Studio Court Sneaker",
+  "Core White Sneaker",
+  "Archive Low Trainer",
+  "Street Form Runner",
+  "Minimal Leather Sneaker",
+  "Urban Mesh Runner",
+  "Everyday Canvas Sneaker",
+  "Shadow Runner",
+  "Essential Court Shoe",
+  "Retro Daily Sneaker",
+  "Motion Knit Runner",
+  "Clean Line Trainer",
+  "Neutral Street Shoe",
+  "Signature Low Sneaker",
+  "Modern Track Runner",
+  "Mono Court Trainer",
+  "Premium Daily Sneaker",
+  "Archive Street Runner",
+  "Future Form Sneaker"
+];
+
+shoeNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-S${String(index + 1).padStart(2, "0")}`,
+    name,
+    "Shoes",
+    2499 + (index % 5) * 300,
+    imagePool.shoes[index % imagePool.shoes.length],
+    index === 0 ? "BESTSELLER" : index < 3 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   20 JACKETS
+========================================================= */
+
+const jacketNames = [
+  "Essential Bomber Jacket",
+  "Studio Utility Jacket",
+  "Washed Denim Jacket",
+  "Archive Coach Jacket",
+  "Minimal Harrington Jacket",
+  "Heavy Overshirt Jacket",
+  "Urban Shell Jacket",
+  "Core Black Bomber",
+  "Stone Work Jacket",
+  "Daily Zip Jacket",
+  "Relaxed Field Jacket",
+  "Modern Varsity Jacket",
+  "Signature Nylon Jacket",
+  "Structured Overshirt",
+  "Utility Pocket Jacket",
+  "Mono Windbreaker",
+  "Premium Flight Jacket",
+  "Vintage Wash Jacket",
+  "Clean Cut Jacket",
+  "Future Form Jacket"
+];
+
+jacketNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-J${String(index + 1).padStart(2, "0")}`,
+    name,
+    "Jackets",
+    2999 + (index % 5) * 300,
+    imagePool.jackets[index % imagePool.jackets.length],
+    index < 2 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   20 JOGGERS
+========================================================= */
+
+const joggerNames = [
+  "Essential Core Jogger",
+  "Relaxed Grey Jogger",
+  "Studio Black Jogger",
+  "Heavy Cotton Jogger",
+  "Everyday Comfort Jogger",
+  "Archive Track Jogger",
+  "Minimal Utility Jogger",
+  "Washed Relaxed Jogger",
+  "Signature Wide Jogger",
+  "Clean Form Jogger",
+  "Daily Street Jogger",
+  "Essential Olive Jogger",
+  "Soft Loopback Jogger",
+  "Urban Taper Jogger",
+  "Premium Lounge Jogger",
+  "Core Charcoal Jogger",
+  "Motion Jogger",
+  "Relaxed Cargo Jogger",
+  "Modern Fit Jogger",
+  "Future Everyday Jogger"
+];
+
+joggerNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-JG${String(index + 1).padStart(2, "0")}`,
+    name,
+    "Joggers",
+    1799 + (index % 5) * 200,
+    imagePool.joggers[index % imagePool.joggers.length],
+    index < 2 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   EXTRA T-SHIRTS
+========================================================= */
+
+const teeNames = [
+  "Core White Tee",
+  "Core Charcoal Tee",
+  "Vintage Wash Tee",
+  "Daily Sand Tee",
+  "Essential Olive Tee",
+  "Mono Grey Tee",
+  "Studio Black Tee",
+  "Heavy Cotton Tee",
+  "Minimal Logo Tee",
+  "Classic Regular Tee",
+  "Premium Jersey Tee",
+  "Clean Line Tee",
+  "Archive Graphic Tee",
+  "Relaxed Daily Tee",
+  "Signature Cotton Tee",
+  "Urban Essential Tee",
+  "Natural Tone Tee",
+  "Washed Navy Tee",
+  "Modern Fit Tee",
+  "Everyday Premium Tee"
+];
+
+teeNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-T${String(index + 1).padStart(2, "0")}`,
+    name,
+    "T-Shirts",
+    1199 + (index % 4) * 100,
+    imagePool.tshirts[index % imagePool.tshirts.length],
+    index < 2 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   EXTRA HOODIES
+========================================================= */
+
+const hoodieNames = [
+  "Core Black Hoodie",
+  "Studio Cream Hoodie",
+  "Heavy Grey Hoodie",
+  "Essential Olive Hoodie",
+  "Washed Black Hoodie",
+  "Minimal Zip Hoodie",
+  "Relaxed Pullover Hoodie",
+  "Signature Cotton Hoodie",
+  "Urban Essential Hoodie",
+  "Archive Logo Hoodie"
+];
+
+hoodieNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-H${String(index + 1).padStart(2, "0")}`,
+    name,
+    "Hoodies",
+    2399 + (index % 4) * 200,
+    imagePool.hoodies[index % imagePool.hoodies.length],
+    index < 2 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   EXTRA OVERSIZED
+========================================================= */
+
+const oversizedNames = [
+  "Relaxed Black Oversized",
+  "Studio Grey Oversized",
+  "Washed Cream Oversized",
+  "Archive Blue Oversized",
+  "Core Olive Oversized",
+  "Heavy Cotton Oversized",
+  "Minimal Sand Oversized",
+  "Street Charcoal Oversized",
+  "Signature White Oversized",
+  "Daily Black Oversized"
+];
+
+oversizedNames.forEach((name, index) => {
+
+  addProduct(
+    `FG-O${String(index + 1).padStart(2, "0")}`,
+    name,
+    "Oversized",
+    1499 + (index % 4) * 150,
+    imagePool.oversized[index % imagePool.oversized.length],
+    index < 2 ? "NEW" : ""
+  );
+
+});
+
+
+/* =========================================================
+   TOTAL PRODUCT COUNT
+========================================================= */
+
+console.log("FASHION GARMENTS PRODUCTS:", products.length);
 
 
 /* =========================================================
    STORAGE
 ========================================================= */
 
-let cart = [];
-let wishlist = [];
+const CART_KEY = "fashionGarmentsCart";
+const WISHLIST_KEY = "fashionGarmentsWishlist";
 
-try {
-  cart = JSON.parse(localStorage.getItem("thriftyCart")) || [];
-} catch {
-  cart = [];
-}
+let cart = loadJSON(CART_KEY, []);
+let wishlist = loadJSON(WISHLIST_KEY, []);
 
-try {
-  wishlist = JSON.parse(localStorage.getItem("thriftyWishlist")) || [];
-} catch {
-  wishlist = [];
-}
+let activeFilter = "All";
+let currentProduct = null;
+let selectedSize = "M";
+let toastTimer = null;
 
 
 /* =========================================================
    HELPERS
 ========================================================= */
 
-const $ = (id) => document.getElementById(id);
+function loadJSON(key, fallback) {
 
-const money = (value) =>
-  "₹" + Number(value).toLocaleString("en-IN");
+  try {
+
+    const value = localStorage.getItem(key);
+
+    if (!value) {
+      return fallback;
+    }
+
+    const parsed = JSON.parse(value);
+
+    return parsed;
+
+  } catch (error) {
+
+    console.warn("Storage error:", error);
+
+    return fallback;
+
+  }
+
+}
+
+
+function money(value) {
+
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0
+  }).format(value);
+
+}
+
 
 function saveCart() {
-  localStorage.setItem("thriftyCart", JSON.stringify(cart));
+
+  localStorage.setItem(
+    CART_KEY,
+    JSON.stringify(cart)
+  );
+
 }
+
 
 function saveWishlist() {
-  localStorage.setItem("thriftyWishlist", JSON.stringify(wishlist));
+
+  localStorage.setItem(
+    WISHLIST_KEY,
+    JSON.stringify(wishlist)
+  );
+
 }
 
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
 function showToast(message) {
-  const toast = $("toast");
-  const text = $("toastText");
 
-  if (!toast) return;
+  const toast = document.getElementById("toast");
+  const text = document.getElementById("toastText");
 
-  if (text) text.textContent = message;
+  if (!toast || !text) return;
+
+  text.textContent = message;
 
   toast.classList.add("show");
 
-  clearTimeout(window.toastTimer);
+  clearTimeout(toastTimer);
 
-  window.toastTimer = setTimeout(() => {
+  toastTimer = setTimeout(() => {
+
     toast.classList.remove("show");
+
   }, 2200);
+
 }
 
+
+/* =========================================================
+   OVERLAYS
+========================================================= */
+
 function openOverlay(id) {
-  const overlay = $(id);
+
+  const overlay = document.getElementById(id);
 
   if (!overlay) return;
 
   overlay.classList.add("open");
+
   document.body.classList.add("no-scroll");
+
 }
 
+
 function closeOverlay(id) {
-  const overlay = $(id);
+
+  const overlay = document.getElementById(id);
 
   if (!overlay) return;
 
   overlay.classList.remove("open");
 
   if (
-    !document.querySelector(".overlay.open") &&
-    !document.querySelector(".cart-drawer.open")
+    !document.querySelector(
+      ".overlay.open, .cart-drawer.open"
+    )
   ) {
+
     document.body.classList.remove("no-scroll");
+
   }
+
 }
 
 
@@ -188,57 +674,67 @@ function closeOverlay(id) {
 
 function productCard(product) {
 
-  const liked = wishlist.includes(product.id);
+  const isWishlisted =
+    wishlist.includes(product.id);
 
   return `
+
     <article class="product-card reveal">
 
       <div
         class="product-image"
-        data-product="${product.id}">
+        data-product-id="${escapeHTML(product.id)}"
+      >
 
         ${
           product.badge
-            ? `<div class="product-badge">${product.badge}</div>`
+            ? `<span class="product-badge">
+                ${escapeHTML(product.badge)}
+              </span>`
             : ""
         }
 
         <button
-          class="wishlist-heart ${liked ? "active" : ""}"
-          data-wishlist="${product.id}"
-          aria-label="Wishlist">
-
-          <svg viewBox="0 0 24 24" width="17" height="17"
-               fill="none"
-               stroke="currentColor"
-               stroke-width="1.5">
-
-            <path d="M20.8 8.7c0 5.4-8.8 10.4-8.8 10.4S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.3a4.7 4.7 0 0 1 8.8 2.4Z"></path>
-
+          class="wishlist-heart ${isWishlisted ? "active" : ""}"
+          data-wishlist="${escapeHTML(product.id)}"
+          aria-label="Wishlist"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="17"
+            height="17"
+            fill="${isWishlisted ? "currentColor" : "none"}"
+            stroke="currentColor"
+            stroke-width="1.6"
+          >
+            <path d="M20.8 8.7c0 5.1-8.8 10.3-8.8 10.3S3.2 13.8 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"></path>
           </svg>
-
         </button>
 
         <img
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy">
+          src="${escapeHTML(product.image)}"
+          alt="${escapeHTML(product.name)}"
+          loading="lazy"
+        >
 
         <button
           class="quick-add"
-          data-add="${product.id}">
-          QUICK ADD +
+          data-quick-add="${escapeHTML(product.id)}"
+        >
+          ADD TO CART
         </button>
 
       </div>
 
       <div class="product-info">
 
-        <h3>${product.name}</h3>
+        <h3>${escapeHTML(product.name)}</h3>
 
         <div class="product-meta">
 
-          <span>${product.category}</span>
+          <span>
+            ${escapeHTML(product.category)}
+          </span>
 
           <span class="product-price">
             ${money(product.price)}
@@ -254,7 +750,9 @@ function productCard(product) {
       </div>
 
     </article>
+
   `;
+
 }
 
 
@@ -264,86 +762,202 @@ function productCard(product) {
 
 function renderProducts(list, containerId) {
 
-  const container = $(containerId);
+  const container =
+    document.getElementById(containerId);
 
   if (!container) return;
 
   if (!list.length) {
+
     container.innerHTML = `
-      <p style="grid-column:1/-1;color:#77746e;padding:40px 0;">
-        No products found.
-      </p>
+      <div
+        class="empty-cart"
+        style="grid-column:1/-1;min-height:250px"
+      >
+        <div>
+          <strong>No products found</strong>
+          <span>Try another search or category.</span>
+        </div>
+      </div>
     `;
+
     return;
+
   }
 
-  container.innerHTML = list.map(productCard).join("");
+  container.innerHTML =
+    list.map(productCard).join("");
 
   requestAnimationFrame(() => {
-    container.querySelectorAll(".reveal").forEach(el => {
-      setTimeout(() => el.classList.add("visible"), 40);
-    });
+
+    container
+      .querySelectorAll(".reveal")
+      .forEach((element, index) => {
+
+        setTimeout(() => {
+
+          element.classList.add("visible");
+
+        }, Math.min(index * 25, 350));
+
+      });
+
   });
+
 }
 
 
 /* =========================================================
-   INITIAL PRODUCTS
+   INITIAL NEW PRODUCTS
 ========================================================= */
 
 function renderInitialProducts() {
-  renderProducts(products.slice(0, 4), "newProducts");
-  renderProducts(products, "shopProducts");
-}
 
-renderInitialProducts();
+  const newest = products.slice(0, 8);
+
+  renderProducts(
+    newest,
+    "newProducts"
+  );
+
+}
 
 
 /* =========================================================
-   PRODUCT CLICK EVENTS
+   SHOP FILTER
 ========================================================= */
 
-document.addEventListener("click", (event) => {
+function applyShopFilters() {
 
-  const addButton = event.target.closest("[data-add]");
+  let result = [...products];
 
-  if (addButton) {
-    event.stopPropagation();
+  if (activeFilter !== "All") {
 
-    const id = Number(addButton.dataset.add);
+    result =
+      result.filter(
+        product =>
+          product.category === activeFilter
+      );
 
-    addToCart(id);
-
-    return;
   }
 
+  const sort =
+    document.getElementById("sortSelect")?.value;
 
-  const wishButton = event.target.closest("[data-wishlist]");
+  if (sort === "low") {
 
-  if (wishButton) {
-    event.stopPropagation();
+    result.sort(
+      (a, b) =>
+        a.price - b.price
+    );
 
-    const id = Number(wishButton.dataset.wishlist);
+  } else if (sort === "high") {
 
-    toggleWishlist(id);
+    result.sort(
+      (a, b) =>
+        b.price - a.price
+    );
 
-    return;
+  } else if (sort === "name") {
+
+    result.sort(
+      (a, b) =>
+        a.name.localeCompare(b.name)
+    );
+
   }
 
+  renderProducts(
+    result,
+    "shopProducts"
+  );
 
-  const productImage = event.target.closest(".product-image");
+}
 
-  if (
-    productImage &&
-    !event.target.closest("[data-add]") &&
-    !event.target.closest("[data-wishlist]")
-  ) {
-    const id = Number(productImage.dataset.product);
 
-    openProduct(id);
+function setFilter(category) {
+
+  activeFilter = category;
+
+  document
+    .querySelectorAll(".filter")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.filter === category
+      );
+
+    });
+
+  applyShopFilters();
+
+}
+
+
+/* =========================================================
+   PRODUCT EVENTS
+========================================================= */
+
+document.addEventListener(
+  "click",
+  event => {
+
+    const wishlistButton =
+      event.target.closest(
+        "[data-wishlist]"
+      );
+
+    if (wishlistButton) {
+
+      event.stopPropagation();
+
+      toggleWishlist(
+        wishlistButton.dataset.wishlist
+      );
+
+      return;
+
+    }
+
+    const quickAdd =
+      event.target.closest(
+        "[data-quick-add]"
+      );
+
+    if (quickAdd) {
+
+      event.stopPropagation();
+
+      addToCart(
+        quickAdd.dataset.quickAdd,
+        "M"
+      );
+
+      return;
+
+    }
+
+    const productImage =
+      event.target.closest(
+        ".product-image"
+      );
+
+    if (productImage) {
+
+      const id =
+        productImage.dataset.productId;
+
+      if (id) {
+
+        openProduct(id);
+
+      }
+
+    }
+
   }
-
-});
+);
 
 
 /* =========================================================
@@ -352,33 +966,132 @@ document.addEventListener("click", (event) => {
 
 function toggleWishlist(id) {
 
-  const index = wishlist.indexOf(id);
+  const index =
+    wishlist.indexOf(id);
 
   if (index >= 0) {
+
     wishlist.splice(index, 1);
+
     showToast("Removed from wishlist");
+
   } else {
+
     wishlist.push(id);
+
     showToast("Added to wishlist");
+
   }
 
   saveWishlist();
 
   updateWishlistCount();
 
-  renderInitialProducts();
+  refreshProductCards();
+
 }
+
 
 function updateWishlistCount() {
 
-  const count = $("wishlistCount");
+  const count =
+    document.getElementById(
+      "wishlistCount"
+    );
 
   if (count) {
-    count.textContent = wishlist.length;
+
+    count.textContent =
+      wishlist.length;
+
   }
+
 }
 
-updateWishlistCount();
+
+function refreshProductCards() {
+
+  const shop =
+    document.getElementById(
+      "shopProducts"
+    );
+
+  if (shop) {
+
+    applyShopFilters();
+
+  }
+
+  const newest =
+    document.getElementById(
+      "newProducts"
+    );
+
+  if (newest) {
+
+    renderInitialProducts();
+
+  }
+
+}
+
+
+/* =========================================================
+   WISHLIST BUTTON
+========================================================= */
+
+document
+  .getElementById("wishlistBtn")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      if (!wishlist.length) {
+
+        showToast(
+          "Your wishlist is empty"
+        );
+
+        return;
+
+      }
+
+      const wishProducts =
+        products.filter(
+          product =>
+            wishlist.includes(product.id)
+        );
+
+      renderProducts(
+        wishProducts,
+        "shopProducts"
+      );
+
+      activeFilter = "All";
+
+      document
+        .querySelectorAll(".filter")
+        .forEach(button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === "All"
+          );
+
+        });
+
+      document
+        .getElementById("shop")
+        ?.scrollIntoView({
+          behavior: "smooth"
+        });
+
+      showToast(
+        `${wishlist.length} wishlist item${wishlist.length > 1 ? "s" : ""}`
+      );
+
+    }
+  );
 
 
 /* =========================================================
@@ -387,41 +1100,58 @@ updateWishlistCount();
 
 function openProduct(id) {
 
-  const product = products.find(p => p.id === id);
+  const product =
+    products.find(
+      item => item.id === id
+    );
 
   if (!product) return;
 
-  const modal = $("productModalContent");
+  currentProduct = product;
 
-  if (!modal) return;
+  selectedSize = "M";
 
-  modal.innerHTML = `
+  const content =
+    document.getElementById(
+      "productModalContent"
+    );
+
+  if (!content) return;
+
+  content.innerHTML = `
 
     <div class="product-modal-content">
 
       <div class="modal-product-image">
-        <img src="${product.image}" alt="${product.name}">
+        <img
+          src="${escapeHTML(product.image)}"
+          alt="${escapeHTML(product.name)}"
+        >
       </div>
 
       <div class="modal-product-info">
 
-        <p class="eyebrow">${product.category}</p>
+        <p class="eyebrow">
+          ${escapeHTML(product.category)}
+        </p>
 
-        <h2>${product.name}</h2>
+        <h2>
+          ${escapeHTML(product.name)}
+        </h2>
 
         <div class="modal-price">
           ${money(product.price)}
           ${
             product.oldPrice
-              ? `<del style="color:#77746e;font-size:13px;margin-left:8px;">
-                   ${money(product.oldPrice)}
-                 </del>`
+              ? `<del style="color:#777;font-size:13px;margin-left:8px;font-weight:400">
+                  ${money(product.oldPrice)}
+                </del>`
               : ""
           }
         </div>
 
         <p class="modal-description">
-          ${product.description}
+          ${escapeHTML(product.description)}
         </p>
 
         <div class="size-title">
@@ -429,63 +1159,103 @@ function openProduct(id) {
         </div>
 
         <div class="sizes">
-          <button class="size-btn">S</button>
-          <button class="size-btn active">M</button>
-          <button class="size-btn">L</button>
-          <button class="size-btn">XL</button>
+
+          ${["S", "M", "L", "XL", "XXL"]
+            .map(
+              size => `
+                <button
+                  class="size-btn ${
+                    size === "M"
+                      ? "active"
+                      : ""
+                  }"
+                  data-size="${size}"
+                >
+                  ${size}
+                </button>
+              `
+            )
+            .join("")}
+
         </div>
 
         <button
           class="btn btn-dark full"
           id="modalAddToCart"
-          data-id="${product.id}">
-          ADD TO BAG
-          <span>↗</span>
+        >
+          <span>ADD TO CART</span>
+          <span>→</span>
         </button>
 
       </div>
 
     </div>
+
   `;
 
-  openOverlay("productOverlay");
+  openOverlay(
+    "productOverlay"
+  );
+
 }
 
 
-/* =========================================================
-   MODAL SIZE
-========================================================= */
+document.addEventListener(
+  "click",
+  event => {
 
-document.addEventListener("click", (event) => {
+    const sizeButton =
+      event.target.closest(
+        "[data-size]"
+      );
 
-  const size = event.target.closest(".size-btn");
+    if (!sizeButton) return;
 
-  if (!size) return;
+    selectedSize =
+      sizeButton.dataset.size;
 
-  const parent = size.parentElement;
+    document
+      .querySelectorAll(
+        ".size-btn"
+      )
+      .forEach(button => {
 
-  parent.querySelectorAll(".size-btn")
-    .forEach(btn => btn.classList.remove("active"));
+        button.classList.toggle(
+          "active",
+          button === sizeButton
+        );
 
-  size.classList.add("active");
-});
+      });
+
+  }
+);
 
 
-document.addEventListener("click", (event) => {
+document.addEventListener(
+  "click",
+  event => {
 
-  const button = event.target.closest("#modalAddToCart");
+    if (
+      event.target.closest(
+        "#modalAddToCart"
+      )
+    ) {
 
-  if (!button) return;
+      if (!currentProduct) return;
 
-  const id = Number(button.dataset.id);
+      addToCart(
+        currentProduct.id,
+        selectedSize
+      );
 
-  const size =
-    document.querySelector(".size-btn.active")?.textContent || "M";
+      closeOverlay(
+        "productOverlay"
+      );
 
-  addToCart(id, size);
+    }
 
-  closeOverlay("productOverlay");
-});
+  }
+);
 
 
 /* =========================================================
@@ -494,637 +1264,1025 @@ document.addEventListener("click", (event) => {
 
 function addToCart(id, size = "M") {
 
-  const product = products.find(p => p.id === id);
+  const product =
+    products.find(
+      item => item.id === id
+    );
 
   if (!product) return;
 
-  const existing = cart.find(
-    item => item.id === id && item.size === size
-  );
+  const existing =
+    cart.find(
+      item =>
+        item.id === id &&
+        item.size === size
+    );
 
   if (existing) {
+
     existing.quantity += 1;
+
   } else {
+
     cart.push({
       id,
       size,
       quantity: 1
     });
+
   }
 
   saveCart();
 
   updateCart();
 
-  showToast(`${product.name} added to bag`);
+  showToast(
+    `${product.name} added to cart`
+  );
+
 }
 
 
-function removeFromCart(index) {
+function removeFromCart(id, size) {
 
-  if (index < 0 || index >= cart.length) return;
-
-  cart.splice(index, 1);
+  cart =
+    cart.filter(
+      item =>
+        !(
+          item.id === id &&
+          item.size === size
+        )
+    );
 
   saveCart();
 
   updateCart();
+
 }
 
 
-function changeQuantity(index, amount) {
+function changeQuantity(
+  id,
+  size,
+  change
+) {
 
-  if (!cart[index]) return;
+  const item =
+    cart.find(
+      cartItem =>
+        cartItem.id === id &&
+        cartItem.size === size
+    );
 
-  cart[index].quantity += amount;
+  if (!item) return;
 
-  if (cart[index].quantity <= 0) {
-    cart.splice(index, 1);
+  item.quantity += change;
+
+  if (item.quantity <= 0) {
+
+    removeFromCart(
+      id,
+      size
+    );
+
+    return;
+
   }
 
   saveCart();
 
   updateCart();
+
 }
 
 
 function cartSubtotal() {
 
-  return cart.reduce((total, item) => {
+  return cart.reduce(
+    (total, item) => {
 
-    const product = products.find(p => p.id === item.id);
+      const product =
+        products.find(
+          p => p.id === item.id
+        );
 
-    if (!product) return total;
+      if (!product) return total;
 
-    return total + product.price * item.quantity;
+      return (
+        total +
+        product.price *
+        item.quantity
+      );
 
-  }, 0);
-}
-
-
-function updateCart() {
-
-  const container = $("cartItems");
-  const count = $("cartCount");
-  const total = $("cartTotal");
-  const shippingMessage = $("shippingMessage");
-  const shippingProgress = $("shippingProgress");
-
-  const itemCount = cart.reduce(
-    (sum, item) => sum + item.quantity,
+    },
     0
   );
 
-  const subtotal = cartSubtotal();
+}
 
-  if (count) count.textContent = itemCount;
 
-  if (total) total.textContent = money(subtotal);
+/* =========================================================
+   CART UPDATE
+========================================================= */
 
-  if (container) {
+function updateCart() {
 
-    if (!cart.length) {
+  const items =
+    document.getElementById(
+      "cartItems"
+    );
 
-      container.innerHTML = `
-        <div class="empty-cart">
-          <div>
-            <strong>Your bag is empty.</strong>
-            <span>Add something you love.</span>
-          </div>
+  const count =
+    document.getElementById(
+      "cartCount"
+    );
+
+  const total =
+    document.getElementById(
+      "cartTotal"
+    );
+
+  const shippingMessage =
+    document.getElementById(
+      "shippingMessage"
+    );
+
+  const shippingProgress =
+    document.getElementById(
+      "shippingProgress"
+    );
+
+  if (!items) return;
+
+  const itemCount =
+    cart.reduce(
+      (sum, item) =>
+        sum + item.quantity,
+      0
+    );
+
+  const subtotal =
+    cartSubtotal();
+
+  if (count) {
+
+    count.textContent =
+      itemCount;
+
+  }
+
+  if (total) {
+
+    total.textContent =
+      money(subtotal);
+
+  }
+
+  if (!cart.length) {
+
+    items.innerHTML = `
+
+      <div class="empty-cart">
+
+        <div>
+
+          <strong>
+            YOUR CART IS EMPTY
+          </strong>
+
+          <span>
+            Discover something you love.
+          </span>
+
         </div>
-      `;
 
-    } else {
+      </div>
 
-      container.innerHTML = cart.map((item, index) => {
+    `;
 
-        const product = products.find(p => p.id === item.id);
+  } else {
 
-        if (!product) return "";
+    items.innerHTML =
+      cart.map(
+        item => {
 
-        return `
-          <div class="cart-item">
+          const product =
+            products.find(
+              p =>
+                p.id === item.id
+            );
 
-            <img src="${product.image}" alt="${product.name}">
+          if (!product) return "";
 
-            <div>
+          return `
 
-              <h4>${product.name}</h4>
+            <div class="cart-item">
 
-              <small>
-                ${item.size} · ${money(product.price)}
-              </small>
+              <img
+                src="${escapeHTML(product.image)}"
+                alt="${escapeHTML(product.name)}"
+              >
 
-              <div class="quantity">
+              <div>
+
+                <h4>
+                  ${escapeHTML(product.name)}
+                </h4>
+
+                <small>
+                  SIZE: ${escapeHTML(item.size)}
+                </small>
+
+                <div class="quantity">
+
+                  <button
+                    data-cart-minus="${escapeHTML(product.id)}"
+                    data-cart-size="${escapeHTML(item.size)}"
+                    aria-label="Decrease"
+                  >
+                    −
+                  </button>
+
+                  <span>
+                    ${item.quantity}
+                  </span>
+
+                  <button
+                    data-cart-plus="${escapeHTML(product.id)}"
+                    data-cart-size="${escapeHTML(item.size)}"
+                    aria-label="Increase"
+                  >
+                    +
+                  </button>
+
+                </div>
 
                 <button
-                  data-minus="${index}">
-                  −
-                </button>
-
-                <span>${item.quantity}</span>
-
-                <button
-                  data-plus="${index}">
-                  +
+                  class="remove"
+                  data-cart-remove="${escapeHTML(product.id)}"
+                  data-cart-size="${escapeHTML(item.size)}"
+                >
+                  REMOVE
                 </button>
 
               </div>
 
-              <button
-                class="remove"
-                data-remove="${index}">
-                Remove
-              </button>
+              <strong>
+                ${money(
+                  product.price *
+                  item.quantity
+                )}
+              </strong>
 
             </div>
 
-            <strong>
-              ${money(product.price * item.quantity)}
-            </strong>
+          `;
 
-          </div>
-        `;
-
-      }).join("");
-
-    }
+        }
+      ).join("");
 
   }
 
+  const freeShippingTarget =
+    1999;
 
-  if (shippingMessage && shippingProgress) {
+  if (shippingProgress) {
 
-    const freeShipping = 1999;
+    const progress =
+      Math.min(
+        subtotal /
+          freeShippingTarget *
+          100,
+        100
+      );
+
+    shippingProgress.style.width =
+      `${progress}%`;
+
+  }
+
+  if (shippingMessage) {
 
     if (!cart.length) {
 
       shippingMessage.textContent =
-        "Add ₹1,999 to unlock free shipping.";
+        "Add products to your cart.";
 
-      shippingProgress.style.width = "0%";
-
-    } else if (subtotal >= freeShipping) {
+    } else if (
+      subtotal >=
+      freeShippingTarget
+    ) {
 
       shippingMessage.textContent =
-        "You unlocked free shipping ✓";
-
-      shippingProgress.style.width = "100%";
+        "You unlocked FREE SHIPPING.";
 
     } else {
 
-      const remaining = freeShipping - subtotal;
-
       shippingMessage.textContent =
-        `Add ${money(remaining)} to unlock free shipping.`;
-
-      shippingProgress.style.width =
-        `${Math.min((subtotal / freeShipping) * 100, 100)}%`;
+        `Add ${money(
+          freeShippingTarget - subtotal
+        )} more for FREE SHIPPING.`;
 
     }
 
   }
+
 }
 
 
-document.addEventListener("click", (event) => {
+/* =========================================================
+   CART CONTROLS
+========================================================= */
 
-  const plus = event.target.closest("[data-plus]");
+document.addEventListener(
+  "click",
+  event => {
 
-  if (plus) {
-    changeQuantity(Number(plus.dataset.plus), 1);
-    return;
+    const plus =
+      event.target.closest(
+        "[data-cart-plus]"
+      );
+
+    if (plus) {
+
+      changeQuantity(
+        plus.dataset.cartPlus,
+        plus.dataset.cartSize,
+        1
+      );
+
+      return;
+
+    }
+
+    const minus =
+      event.target.closest(
+        "[data-cart-minus]"
+      );
+
+    if (minus) {
+
+      changeQuantity(
+        minus.dataset.cartMinus,
+        minus.dataset.cartSize,
+        -1
+      );
+
+      return;
+
+    }
+
+    const remove =
+      event.target.closest(
+        "[data-cart-remove]"
+      );
+
+    if (remove) {
+
+      removeFromCart(
+        remove.dataset.cartRemove,
+        remove.dataset.cartSize
+      );
+
+      showToast(
+        "Item removed"
+      );
+
+    }
+
   }
-
-  const minus = event.target.closest("[data-minus]");
-
-  if (minus) {
-    changeQuantity(Number(minus.dataset.minus), -1);
-    return;
-  }
-
-  const remove = event.target.closest("[data-remove]");
-
-  if (remove) {
-    removeFromCart(Number(remove.dataset.remove));
-  }
-
-});
-
-
-updateCart();
+);
 
 
 /* =========================================================
-   CART OPEN / CLOSE
+   OPEN CART
 ========================================================= */
 
-$("cartBtn")?.addEventListener("click", () => {
+document
+  .getElementById("cartBtn")
+  ?.addEventListener(
+    "click",
+    () => {
 
-  $("cartDrawer")?.classList.add("open");
-  $("cartBackdrop")?.classList.add("open");
+      updateCart();
 
-  document.body.classList.add("no-scroll");
+      document
+        .getElementById("cartDrawer")
+        ?.classList.add("open");
 
-});
+      document
+        .getElementById("cartBackdrop")
+        ?.classList.add("open");
+
+      document.body.classList.add(
+        "no-scroll"
+      );
+
+    }
+  );
 
 
 function closeCart() {
 
-  $("cartDrawer")?.classList.remove("open");
-  $("cartBackdrop")?.classList.remove("open");
+  document
+    .getElementById("cartDrawer")
+    ?.classList.remove("open");
 
-  if (!document.querySelector(".overlay.open")) {
-    document.body.classList.remove("no-scroll");
+  document
+    .getElementById("cartBackdrop")
+    ?.classList.remove("open");
+
+  if (
+    !document.querySelector(
+      ".overlay.open"
+    )
+  ) {
+
+    document.body.classList.remove(
+      "no-scroll"
+    );
+
   }
 
 }
 
-$("closeCart")?.addEventListener("click", closeCart);
-$("cartBackdrop")?.addEventListener("click", closeCart);
+
+document
+  .getElementById("closeCart")
+  ?.addEventListener(
+    "click",
+    closeCart
+  );
+
+document
+  .getElementById("cartBackdrop")
+  ?.addEventListener(
+    "click",
+    closeCart
+  );
 
 
 /* =========================================================
    SEARCH
 ========================================================= */
 
-$("searchBtn")?.addEventListener("click", () => {
+function searchProducts(query) {
 
-  openOverlay("searchOverlay");
+  const value =
+    query
+      .trim()
+      .toLowerCase();
 
-  setTimeout(() => {
-    $("searchInput")?.focus();
-  }, 250);
+  if (!value) {
 
-});
+    return products.slice(0, 8);
+
+  }
+
+  return products.filter(
+    product =>
+      product.name
+        .toLowerCase()
+        .includes(value) ||
+      product.category
+        .toLowerCase()
+        .includes(value)
+  ).slice(0, 20);
+
+}
 
 
-$("closeSearch")?.addEventListener(
-  "click",
-  () => closeOverlay("searchOverlay")
-);
+function renderSearchResults(
+  query = ""
+) {
 
-
-$("searchInput")?.addEventListener("input", (event) => {
-
-  const query =
-    event.target.value.trim().toLowerCase();
-
-  const results = $("searchResults");
+  const results =
+    document.getElementById(
+      "searchResults"
+    );
 
   if (!results) return;
 
-  if (!query) {
-    results.innerHTML = "";
+  const found =
+    searchProducts(query);
+
+  if (!found.length) {
+
+    results.innerHTML = `
+      <div
+        class="empty-cart"
+        style="min-height:180px"
+      >
+        <div>
+          <strong>
+            NOTHING FOUND
+          </strong>
+          <span>
+            Try another search.
+          </span>
+        </div>
+      </div>
+    `;
+
     return;
+
   }
 
-  const matches = products.filter(product =>
-    `${product.name} ${product.category}`
-      .toLowerCase()
-      .includes(query)
-  );
+  results.innerHTML =
+    found.map(
+      product => `
 
-  results.innerHTML = matches.length
-    ? matches.map(product => `
         <div
           class="search-result"
-          data-search-product="${product.id}">
+          data-search-product="${escapeHTML(product.id)}"
+        >
 
           <img
-            src="${product.image}"
-            alt="${product.name}">
+            src="${escapeHTML(product.image)}"
+            alt="${escapeHTML(product.name)}"
+          >
 
           <div>
-            <strong>${product.name}</strong>
-            <div style="font-size:10px;color:#77746e;margin-top:4px;">
-              ${product.category} · ${money(product.price)}
+            <strong>
+              ${escapeHTML(product.name)}
+            </strong>
+
+            <div
+              style="
+                color:var(--muted);
+                font-size:10px;
+                margin-top:4px;
+              "
+            >
+              ${escapeHTML(product.category)}
             </div>
           </div>
 
+          <strong style="margin-left:auto">
+            ${money(product.price)}
+          </strong>
+
         </div>
-      `).join("")
-    : `
-      <p style="color:#77746e;font-size:12px;padding:15px 0;">
-        No products found.
-      </p>
-    `;
 
-});
+      `
+    ).join("");
+
+}
 
 
-document.addEventListener("click", (event) => {
+document
+  .getElementById("searchBtn")
+  ?.addEventListener(
+    "click",
+    () => {
 
-  const result =
-    event.target.closest("[data-search-product]");
+      openOverlay(
+        "searchOverlay"
+      );
 
-  if (!result) return;
+      renderSearchResults();
 
-  const id = Number(result.dataset.searchProduct);
+      setTimeout(
+        () =>
+          document
+            .getElementById(
+              "searchInput"
+            )
+            ?.focus(),
+        200
+      );
 
-  closeOverlay("searchOverlay");
+    }
+  );
 
-  openProduct(id);
 
-});
+document
+  .getElementById("searchInput")
+  ?.addEventListener(
+    "input",
+    event => {
+
+      renderSearchResults(
+        event.target.value
+      );
+
+    }
+  );
+
+
+document.addEventListener(
+  "click",
+  event => {
+
+    const result =
+      event.target.closest(
+        "[data-search-product]"
+      );
+
+    if (!result) return;
+
+    closeOverlay(
+      "searchOverlay"
+    );
+
+    openProduct(
+      result.dataset.searchProduct
+    );
+
+  }
+);
 
 
 /* =========================================================
-   FILTERS
+   FILTER BUTTONS
 ========================================================= */
 
-let activeFilter = "all";
+document
+  .getElementById("filterTabs")
+  ?.addEventListener(
+    "click",
+    event => {
 
-document.querySelectorAll(".filter").forEach(button => {
+      const button =
+        event.target.closest(
+          ".filter"
+        );
 
-  button.addEventListener("click", () => {
+      if (!button) return;
 
-    document
-      .querySelectorAll(".filter")
-      .forEach(btn => btn.classList.remove("active"));
+      setFilter(
+        button.dataset.filter
+      );
 
-    button.classList.add("active");
-
-    activeFilter = button.dataset.filter || "all";
-
-    applyShopFilters();
-
-  });
-
-});
-
-
-$("sortSelect")?.addEventListener("change", applyShopFilters);
+    }
+  );
 
 
-function applyShopFilters() {
-
-  let list = [...products];
-
-  if (activeFilter !== "all") {
-
-    list = list.filter(
-      product => product.category === activeFilter
-    );
-
-  }
-
-  const sort = $("sortSelect")?.value;
-
-  if (sort === "low") {
-    list.sort((a, b) => a.price - b.price);
-  }
-
-  if (sort === "high") {
-    list.sort((a, b) => b.price - a.price);
-  }
-
-  if (sort === "name") {
-    list.sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-  }
-
-  renderProducts(list, "shopProducts");
-
-}
+document
+  .getElementById("sortSelect")
+  ?.addEventListener(
+    "change",
+    applyShopFilters
+  );
 
 
 /* =========================================================
    CATEGORY CARDS
 ========================================================= */
 
-document.querySelectorAll(".category-card").forEach(card => {
+document
+  .querySelectorAll(
+    ".category-card"
+  )
+  .forEach(card => {
 
-  card.addEventListener("click", () => {
+    card.addEventListener(
+      "click",
+      () => {
 
-    const category = card.dataset.category;
+        const category =
+          card.dataset.category;
 
-    if (!category) return;
+        if (!category) return;
 
-    activeFilter = category;
-
-    document
-      .querySelectorAll(".filter")
-      .forEach(button => {
-
-        button.classList.toggle(
-          "active",
-          button.dataset.filter === category
+        setFilter(
+          category
         );
 
-      });
+        setTimeout(() => {
 
-    applyShopFilters();
+          document
+            .getElementById("shop")
+            ?.scrollIntoView({
+              behavior: "smooth"
+            });
+
+        }, 50);
+
+      }
+    );
 
   });
 
-});
+
+/* =========================================================
+   FOOTER FILTERS
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-footer-filter]"
+  )
+  .forEach(link => {
+
+    link.addEventListener(
+      "click",
+      () => {
+
+        setFilter(
+          link.dataset.footerFilter
+        );
+
+      }
+    );
+
+  });
 
 
 /* =========================================================
    MOBILE MENU
 ========================================================= */
 
-$("mobileMenuBtn")?.addEventListener("click", () => {
+document
+  .getElementById(
+    "mobileMenuBtn"
+  )
+  ?.addEventListener(
+    "click",
+    () => {
 
-  $("mobileMenu")?.classList.toggle("open");
+      document
+        .getElementById(
+          "mobileMenu"
+        )
+        ?.classList.toggle(
+          "open"
+        );
 
-});
+    }
+  );
 
 
-document.querySelectorAll("#mobileMenu a").forEach(link => {
+document
+  .querySelectorAll(
+    "#mobileMenu a"
+  )
+  .forEach(link => {
 
-  link.addEventListener("click", () => {
+    link.addEventListener(
+      "click",
+      () => {
 
-    $("mobileMenu")?.classList.remove("open");
+        document
+          .getElementById(
+            "mobileMenu"
+          )
+          ?.classList.remove(
+            "open"
+          );
+
+      }
+    );
 
   });
-
-});
 
 
 /* =========================================================
-   ACCOUNT
+   ACCOUNT VIEWS
 ========================================================= */
 
-function showAccountView(viewId) {
+function showAccountView(view) {
 
-  const views = [
-    "loginView",
-    "signupView",
-    "forgotView",
-    "resetView",
-    "accountLoggedIn"
-  ];
+  document
+    .querySelectorAll(
+      ".account-view"
+    )
+    .forEach(element => {
 
-  views.forEach(id => {
+      element.hidden =
+        element.id !== view;
 
-    const element = $(id);
-
-    if (!element) return;
-
-    element.hidden = id !== viewId;
-
-  });
+    });
 
 }
 
 
-function accountMessage(id, message, type = "") {
+function setMessage(
+  id,
+  message,
+  type = ""
+) {
 
-  const element = $(id);
+  const element =
+    document.getElementById(id);
 
   if (!element) return;
 
-  element.textContent = message;
+  element.textContent =
+    message;
 
   element.className =
-    `account-message ${type}`.trim();
+    `account-message ${type}`;
 
 }
 
 
-function showLogin() {
+async function refreshAuthUI() {
 
-  showAccountView("loginView");
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
 
-  accountMessage("loginMessage", "");
+  const session =
+    data?.session;
+
+  if (session?.user) {
+
+    showAccountView(
+      "accountLoggedIn"
+    );
+
+    const user =
+      session.user;
+
+    const name =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      "Customer";
+
+    document
+      .getElementById(
+        "accountName"
+      ).textContent =
+      name;
+
+    document
+      .getElementById(
+        "accountEmail"
+      ).textContent =
+      user.email || "";
+
+  } else {
+
+    showAccountView(
+      "loginView"
+    );
+
+  }
 
 }
 
 
-function showSignup() {
+/* =========================================================
+   ACCOUNT OPEN
+========================================================= */
 
-  showAccountView("signupView");
+async function openAccount() {
 
-  accountMessage("signupMessage", "");
+  await refreshAuthUI();
 
-}
-
-
-function showForgot() {
-
-  showAccountView("forgotView");
-
-  accountMessage("forgotMessage", "");
+  openOverlay(
+    "accountOverlay"
+  );
 
 }
 
 
-$("accountBtn")?.addEventListener("click", async () => {
-
-  openOverlay("accountOverlay");
-
-  await refreshAccountUI();
-
-});
-
-
-$("mobileAccount")?.addEventListener("click", async () => {
-
-  $("mobileMenu")?.classList.remove("open");
-
-  openOverlay("accountOverlay");
-
-  await refreshAccountUI();
-
-});
+document
+  .getElementById("accountBtn")
+  ?.addEventListener(
+    "click",
+    openAccount
+  );
 
 
-$("closeAccount")?.addEventListener(
-  "click",
-  () => closeOverlay("accountOverlay")
-);
+document
+  .getElementById("mobileAccount")
+  ?.addEventListener(
+    "click",
+    () => {
 
+      document
+        .getElementById(
+          "mobileMenu"
+        )
+        ?.classList.remove(
+          "open"
+        );
 
-$("showSignupBtn")?.addEventListener(
-  "click",
-  showSignup
-);
+      openAccount();
 
-
-$("showLoginBtn")?.addEventListener(
-  "click",
-  showLogin
-);
-
-
-$("forgotPasswordBtn")?.addEventListener(
-  "click",
-  showForgot
-);
-
-
-$("backToLoginBtn")?.addEventListener(
-  "click",
-  showLogin
-);
+    }
+  );
 
 
 /* =========================================================
    SIGN UP
 ========================================================= */
 
-$("signupForm")?.addEventListener(
-  "submit",
-  async (event) => {
+document
+  .getElementById(
+    "showSignupBtn"
+  )
+  ?.addEventListener(
+    "click",
+    () => {
 
-    event.preventDefault();
-
-    const name =
-      $("signupName")?.value.trim();
-
-    const email =
-      $("signupEmail")?.value.trim();
-
-    const password =
-      $("signupPassword")?.value;
-
-    if (!name || !email || !password) return;
-
-    if (password.length < 6) {
-
-      accountMessage(
-        "signupMessage",
-        "Password must be at least 6 characters.",
-        "error"
+      setMessage(
+        "loginMessage",
+        ""
       );
 
-      return;
+      setMessage(
+        "signupMessage",
+        ""
+      );
+
+      showAccountView(
+        "signupView"
+      );
+
     }
+  );
 
-    const button =
-      event.target.querySelector("button[type='submit']");
 
-    if (button) button.disabled = true;
+document
+  .getElementById(
+    "showLoginBtn"
+  )
+  ?.addEventListener(
+    "click",
+    () => {
 
-    accountMessage(
-      "signupMessage",
-      "Creating your account..."
-    );
+      setMessage(
+        "signupMessage",
+        ""
+      );
 
-    try {
+      showAccountView(
+        "loginView"
+      );
 
-      const { data, error } =
+    }
+  );
+
+
+document
+  .getElementById("signupForm")
+  ?.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+      const name =
+        document
+          .getElementById(
+            "signupName"
+          )
+          .value
+          .trim();
+
+      const email =
+        document
+          .getElementById(
+            "signupEmail"
+          )
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById(
+            "signupPassword"
+          )
+          .value;
+
+      setMessage(
+        "signupMessage",
+        "Creating your account..."
+      );
+
+      const {
+        data,
+        error
+      } =
         await supabaseClient.auth.signUp({
-
           email,
           password,
-
           options: {
             data: {
               full_name: name
             }
           }
-
         });
 
-      if (error) throw error;
+      if (error) {
+
+        setMessage(
+          "signupMessage",
+          error.message,
+          "error"
+        );
+
+        return;
+
+      }
 
       if (!data.session) {
 
-        accountMessage(
+        setMessage(
           "signupMessage",
           "Account created. Check your email to confirm your account, then login.",
           "success"
@@ -1132,132 +2290,160 @@ $("signupForm")?.addEventListener(
 
       } else {
 
-        accountMessage(
+        setMessage(
           "signupMessage",
           "Account created successfully.",
           "success"
         );
 
-        setTimeout(() => {
-          refreshAccountUI();
-        }, 500);
+        await refreshAuthUI();
 
       }
 
-    } catch (error) {
-
-      accountMessage(
-        "signupMessage",
-        error.message || "Could not create account.",
-        "error"
-      );
-
-    } finally {
-
-      if (button) button.disabled = false;
-
     }
-
-  }
-);
+  );
 
 
 /* =========================================================
    LOGIN
 ========================================================= */
 
-$("loginForm")?.addEventListener(
-  "submit",
-  async (event) => {
+document
+  .getElementById("loginForm")
+  ?.addEventListener(
+    "submit",
+    async event => {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    const email =
-      $("loginEmail")?.value.trim();
+      const email =
+        document
+          .getElementById(
+            "loginEmail"
+          )
+          .value
+          .trim();
 
-    const password =
-      $("loginPassword")?.value;
+      const password =
+        document
+          .getElementById(
+            "loginPassword"
+          )
+          .value;
 
-    if (!email || !password) return;
+      setMessage(
+        "loginMessage",
+        "Logging you in..."
+      );
 
-    const button =
-      event.target.querySelector("button[type='submit']");
-
-    if (button) button.disabled = true;
-
-    accountMessage(
-      "loginMessage",
-      "Signing you in..."
-    );
-
-    try {
-
-      const { error } =
+      const {
+        error
+      } =
         await supabaseClient.auth.signInWithPassword({
           email,
           password
         });
 
-      if (error) throw error;
+      if (error) {
 
-      accountMessage(
+        setMessage(
+          "loginMessage",
+          error.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+      setMessage(
         "loginMessage",
         "Login successful.",
         "success"
       );
 
-      await refreshAccountUI();
-
-    } catch (error) {
-
-      accountMessage(
-        "loginMessage",
-        error.message || "Login failed.",
-        "error"
-      );
-
-    } finally {
-
-      if (button) button.disabled = false;
+      await refreshAuthUI();
 
     }
-
-  }
-);
+  );
 
 
 /* =========================================================
    FORGOT PASSWORD
 ========================================================= */
 
-$("forgotForm")?.addEventListener(
-  "submit",
-  async (event) => {
+document
+  .getElementById(
+    "forgotPasswordBtn"
+  )
+  ?.addEventListener(
+    "click",
+    () => {
 
-    event.preventDefault();
+      setMessage(
+        "loginMessage",
+        ""
+      );
 
-    const email =
-      $("forgotEmail")?.value.trim();
+      showAccountView(
+        "forgotView"
+      );
 
-    if (!email) return;
+    }
+  );
 
-    const button =
-      event.target.querySelector("button[type='submit']");
 
-    if (button) button.disabled = true;
+document
+  .getElementById(
+    "backToLoginBtn"
+  )
+  ?.addEventListener(
+    "click",
+    () => {
 
-    accountMessage(
-      "forgotMessage",
-      "Sending reset link..."
-    );
+      setMessage(
+        "forgotMessage",
+        ""
+      );
 
-    try {
+      showAccountView(
+        "loginView"
+      );
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "forgotForm"
+  )
+  ?.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+      const email =
+        document
+          .getElementById(
+            "forgotEmail"
+          )
+          .value
+          .trim();
 
       const redirectTo =
         window.location.origin +
         window.location.pathname;
 
-      const { error } =
+      setMessage(
+        "forgotMessage",
+        "Sending reset link..."
+      );
+
+      const {
+        error
+      } =
         await supabaseClient.auth.resetPasswordForEmail(
           email,
           {
@@ -1265,467 +2451,763 @@ $("forgotForm")?.addEventListener(
           }
         );
 
-      if (error) throw error;
+      if (error) {
 
-      accountMessage(
+        setMessage(
+          "forgotMessage",
+          error.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+      setMessage(
         "forgotMessage",
         "Reset link sent. Check your email.",
         "success"
       );
 
-    } catch (error) {
-
-      accountMessage(
-        "forgotMessage",
-        error.message || "Could not send reset link.",
-        "error"
-      );
-
-    } finally {
-
-      if (button) button.disabled = false;
-
     }
-
-  }
-);
+  );
 
 
 /* =========================================================
    PASSWORD RESET
 ========================================================= */
 
-$("resetForm")?.addEventListener(
-  "submit",
-  async (event) => {
+document
+  .getElementById(
+    "resetForm"
+  )
+  ?.addEventListener(
+    "submit",
+    async event => {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    const password =
-      $("resetPassword")?.value;
+      const password =
+        document
+          .getElementById(
+            "resetPassword"
+          )
+          .value;
 
-    const confirm =
-      $("resetPasswordConfirm")?.value;
+      const confirmPassword =
+        document
+          .getElementById(
+            "resetPasswordConfirm"
+          )
+          .value;
 
-    if (password !== confirm) {
+      if (
+        password !==
+        confirmPassword
+      ) {
 
-      accountMessage(
+        setMessage(
+          "resetMessage",
+          "Passwords do not match.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      setMessage(
         "resetMessage",
-        "Passwords do not match.",
-        "error"
+        "Updating password..."
       );
 
-      return;
-    }
-
-    if (password.length < 6) {
-
-      accountMessage(
-        "resetMessage",
-        "Password must be at least 6 characters.",
-        "error"
-      );
-
-      return;
-    }
-
-    const button =
-      event.target.querySelector("button[type='submit']");
-
-    if (button) button.disabled = true;
-
-    accountMessage(
-      "resetMessage",
-      "Updating password..."
-    );
-
-    try {
-
-      const { error } =
+      const {
+        error
+      } =
         await supabaseClient.auth.updateUser({
           password
         });
 
-      if (error) throw error;
+      if (error) {
 
-      accountMessage(
+        setMessage(
+          "resetMessage",
+          error.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+      setMessage(
         "resetMessage",
         "Password updated successfully.",
         "success"
       );
 
-      $("resetForm").reset();
+      setTimeout(
+        () => {
 
-      setTimeout(() => {
-        showLogin();
-      }, 1200);
+          showAccountView(
+            "loginView"
+          );
 
-    } catch (error) {
-
-      accountMessage(
-        "resetMessage",
-        error.message || "Could not update password.",
-        "error"
+        },
+        1000
       );
 
-    } finally {
-
-      if (button) button.disabled = false;
-
     }
-
-  }
-);
+  );
 
 
 /* =========================================================
    LOGOUT
 ========================================================= */
 
-$("logoutBtn")?.addEventListener(
-  "click",
-  async () => {
+document
+  .getElementById(
+    "logoutBtn"
+  )
+  ?.addEventListener(
+    "click",
+    async () => {
 
-    const { error } =
-      await supabaseClient.auth.signOut();
+      const {
+        error
+      } =
+        await supabaseClient.auth.signOut();
 
-    if (error) {
+      if (error) {
 
-      showToast(error.message);
+        showToast(
+          error.message
+        );
 
-      return;
+        return;
+
+      }
+
+      showAccountView(
+        "loginView"
+      );
+
+      showToast(
+        "Logged out successfully"
+      );
+
     }
-
-    showLogin();
-
-    $("loginForm")?.reset();
-
-    showToast("Logged out");
-
-  }
-);
+  );
 
 
 /* =========================================================
-   ACCOUNT UI
-========================================================= */
-
-async function refreshAccountUI() {
-
-  try {
-
-    const {
-      data: { session }
-    } = await supabaseClient.auth.getSession();
-
-    if (!session?.user) {
-
-      showLogin();
-
-      return;
-
-    }
-
-    const user = session.user;
-
-    const name =
-      user.user_metadata?.full_name ||
-      user.user_metadata?.name ||
-      "Customer";
-
-    if ($("accountName")) {
-      $("accountName").textContent = name;
-    }
-
-    if ($("accountEmail")) {
-      $("accountEmail").textContent =
-        user.email || "";
-    }
-
-    showAccountView("accountLoggedIn");
-
-  } catch {
-
-    showLogin();
-
-  }
-
-}
-
-
-/* =========================================================
-   AUTH STATE
+   SUPABASE AUTH STATE
 ========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
-  (event, session) => {
+  async (event, session) => {
 
-    if (event === "PASSWORD_RECOVERY") {
+    if (
+      event ===
+      "PASSWORD_RECOVERY"
+    ) {
 
-      openOverlay("accountOverlay");
+      openOverlay(
+        "accountOverlay"
+      );
 
-      showAccountView("resetView");
+      showAccountView(
+        "resetView"
+      );
 
       return;
-    }
-
-    if (event === "SIGNED_IN" && session?.user) {
-
-      const name =
-        session.user.user_metadata?.full_name ||
-        session.user.user_metadata?.name ||
-        "Customer";
-
-      if ($("accountName")) {
-        $("accountName").textContent = name;
-      }
-
-      if ($("accountEmail")) {
-        $("accountEmail").textContent =
-          session.user.email || "";
-      }
-
-      showAccountView("accountLoggedIn");
 
     }
 
-    if (event === "SIGNED_OUT") {
+    if (
+      event ===
+        "SIGNED_IN" ||
+      event ===
+        "SIGNED_OUT"
+    ) {
 
-      showLogin();
+      if (
+        document
+          .getElementById(
+            "accountOverlay"
+          )
+          ?.classList.contains(
+            "open"
+          )
+      ) {
+
+        if (session?.user) {
+
+          showAccountView(
+            "accountLoggedIn"
+          );
+
+          const name =
+            session.user.user_metadata?.full_name ||
+            "Customer";
+
+          document
+            .getElementById(
+              "accountName"
+            ).textContent =
+            name;
+
+          document
+            .getElementById(
+              "accountEmail"
+            ).textContent =
+            session.user.email || "";
+
+        } else {
+
+          showAccountView(
+            "loginView"
+          );
+
+        }
+
+      }
 
     }
 
   }
 );
-
-
-/* =========================================================
-   INITIAL AUTH CHECK
-========================================================= */
-
-refreshAccountUI();
 
 
 /* =========================================================
    CHECKOUT
 ========================================================= */
 
-$("checkoutBtn")?.addEventListener(
-  "click",
-  async () => {
+async function isLoggedIn() {
 
-    if (!cart.length) {
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
 
-      showToast("Your bag is empty");
-
-      return;
-    }
-
-    const {
-      data: { session }
-    } = await supabaseClient.auth.getSession();
-
-    if (!session?.user) {
-
-      closeCart();
-
-      openOverlay("accountOverlay");
-
-      showLogin();
-
-      accountMessage(
-        "loginMessage",
-        "Please login before checkout.",
-        "error"
-      );
-
-      return;
-    }
-
-    openCheckout();
-
-  }
-);
-
-
-function openCheckout() {
-
-  renderCheckout();
-
-  closeCart();
-
-  openOverlay("checkoutOverlay");
+  return Boolean(
+    data?.session?.user
+  );
 
 }
 
 
 function renderCheckout() {
 
-  const items = $("checkoutItems");
+  const checkoutItems =
+    document.getElementById(
+      "checkoutItems"
+    );
 
-  if (!items) return;
+  if (!checkoutItems) return;
 
-  const subtotal = cartSubtotal();
+  const subtotal =
+    cartSubtotal();
 
   const shipping =
-    subtotal >= 1999 ? 0 : 99;
+    subtotal >= 1999
+      ? 0
+      : cart.length
+        ? 99
+        : 0;
 
   const total =
     subtotal + shipping;
 
-  items.innerHTML = cart.map(item => {
+  checkoutItems.innerHTML =
+    cart.map(
+      item => {
 
-    const product =
-      products.find(p => p.id === item.id);
+        const product =
+          products.find(
+            p => p.id === item.id
+          );
 
-    if (!product) return "";
+        if (!product) return "";
 
-    return `
-      <div class="checkout-product">
-        <span>
-          ${product.name} × ${item.quantity}
-        </span>
+        return `
 
-        <span>
-          ${money(product.price * item.quantity)}
-        </span>
-      </div>
-    `;
+          <div class="checkout-product">
 
-  }).join("");
+            <span>
+              ${escapeHTML(product.name)}
+              × ${item.quantity}
+              <small
+                style="
+                  display:block;
+                  color:var(--muted);
+                  margin-top:3px;
+                "
+              >
+                Size ${escapeHTML(item.size)}
+              </small>
+            </span>
 
-  if ($("checkoutSubtotal")) {
-    $("checkoutSubtotal").textContent =
-      money(subtotal);
-  }
+            <strong>
+              ${money(
+                product.price *
+                item.quantity
+              )}
+            </strong>
 
-  if ($("checkoutShipping")) {
-    $("checkoutShipping").textContent =
-      shipping === 0
-        ? "FREE"
-        : money(shipping);
-  }
+          </div>
 
-  if ($("checkoutTotal")) {
-    $("checkoutTotal").textContent =
-      money(total);
-  }
+        `;
+
+      }
+    ).join("");
+
+  document
+    .getElementById(
+      "checkoutSubtotal"
+    ).textContent =
+    money(subtotal);
+
+  document
+    .getElementById(
+      "checkoutShipping"
+    ).textContent =
+    shipping === 0
+      ? "FREE"
+      : money(shipping);
+
+  document
+    .getElementById(
+      "checkoutTotal"
+    ).textContent =
+    money(total);
 
 }
 
 
-$("closeCheckout")?.addEventListener(
-  "click",
-  () => closeOverlay("checkoutOverlay")
-);
+/* =========================================================
+   CHECKOUT BUTTON
+========================================================= */
+
+document
+  .getElementById(
+    "checkoutBtn"
+  )
+  ?.addEventListener(
+    "click",
+    async () => {
+
+      if (!cart.length) {
+
+        showToast(
+          "Your cart is empty"
+        );
+
+        return;
+
+      }
+
+      const loggedIn =
+        await isLoggedIn();
+
+      if (!loggedIn) {
+
+        closeCart();
+
+        await openAccount();
+
+        setMessage(
+          "loginMessage",
+          "Please login before checkout."
+        );
+
+        return;
+
+      }
+
+      closeCart();
+
+      renderCheckout();
+
+      openOverlay(
+        "checkoutOverlay"
+      );
+
+    }
+  );
 
 
 /* =========================================================
    CHECKOUT FORM
 ========================================================= */
 
-$("checkoutForm")?.addEventListener(
-  "submit",
-  async (event) => {
+document
+  .getElementById(
+    "checkoutForm"
+  )
+  ?.addEventListener(
+    "submit",
+    async event => {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    if (!cart.length) {
+      if (!cart.length) {
 
-      showToast("Your bag is empty");
+        showToast(
+          "Your cart is empty"
+        );
 
-      return;
-    }
+        return;
 
-    const button =
-      event.target.querySelector("button[type='submit']");
-
-    if (button) button.disabled = true;
-
-    if (button) {
-      button.innerHTML = "PROCESSING...";
-    }
-
-    /*
-      RAZORPAY NOT ADDED YET.
-
-      Real Razorpay payments should be created and verified
-      through a backend/server. Do not put Razorpay secret
-      keys inside this frontend file.
-    */
-
-    setTimeout(() => {
-
-      cart = [];
-
-      saveCart();
-
-      updateCart();
-
-      closeOverlay("checkoutOverlay");
-
-      if ($("checkoutForm")) {
-        $("checkoutForm").reset();
       }
 
-      showToast(
-        "Order details received. Payment integration coming next."
-      );
+      const button =
+        event.target.querySelector(
+          "button[type='submit']"
+        );
 
       if (button) {
-        button.disabled = false;
-        button.innerHTML = "PLACE ORDER <span>↗</span>";
+
+        button.disabled = true;
+
       }
 
-    }, 900);
+      const name =
+        document
+          .getElementById(
+            "checkoutName"
+          )
+          .value
+          .trim();
 
-  }
-);
+      const email =
+        document
+          .getElementById(
+            "checkoutEmail"
+          )
+          .value
+          .trim();
+
+      const address =
+        document
+          .getElementById(
+            "checkoutAddress"
+          )
+          .value
+          .trim();
+
+      const city =
+        document
+          .getElementById(
+            "checkoutCity"
+          )
+          .value
+          .trim();
+
+      const pincode =
+        document
+          .getElementById(
+            "checkoutPincode"
+          )
+          .value
+          .trim();
+
+      const phone =
+        document
+          .getElementById(
+            "checkoutPhone"
+          )
+          .value
+          .trim();
+
+      if (
+        pincode.length !== 6 ||
+        !/^\d+$/.test(pincode)
+      ) {
+
+        showToast(
+          "Enter a valid 6-digit pincode"
+        );
+
+        if (button) {
+          button.disabled = false;
+        }
+
+        return;
+
+      }
+
+      if (
+        phone.replace(/\D/g, "").length <
+        10
+      ) {
+
+        showToast(
+          "Enter a valid phone number"
+        );
+
+        if (button) {
+          button.disabled = false;
+        }
+
+        return;
+
+      }
+
+      const subtotal =
+        cartSubtotal();
+
+      const shipping =
+        subtotal >= 1999
+          ? 0
+          : 99;
+
+      const total =
+        subtotal + shipping;
+
+      /*
+        IMPORTANT:
+        This frontend is prepared for Razorpay,
+        but real Razorpay payment creation and
+        signature verification must happen on a
+        secure backend/server.
+
+        Never put Razorpay secret key here.
+      */
+
+      console.log(
+        "Order ready for payment:",
+        {
+          customer: {
+            name,
+            email,
+            address,
+            city,
+            pincode,
+            phone
+          },
+          items: cart,
+          subtotal,
+          shipping,
+          total
+        }
+      );
+
+      setTimeout(
+        () => {
+
+          cart = [];
+
+          saveCart();
+
+          updateCart();
+
+          closeOverlay(
+            "checkoutOverlay"
+          );
+
+          showToast(
+            "Order details received successfully"
+          );
+
+          event.target.reset();
+
+          if (button) {
+
+            button.disabled = false;
+
+          }
+
+        },
+        900
+      );
+
+    }
+  );
 
 
 /* =========================================================
    NEWSLETTER
 ========================================================= */
 
-$("newsletterForm")?.addEventListener(
-  "submit",
-  (event) => {
+document
+  .getElementById(
+    "newsletterForm"
+  )
+  ?.addEventListener(
+    "submit",
+    event => {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    const input =
-      event.target.querySelector("input");
+      const email =
+        document
+          .getElementById(
+            "newsletterEmail"
+          )
+          .value
+          .trim();
 
-    if (!input?.value) return;
+      if (!email) return;
 
-    showToast("You're on the list ✓");
+      showToast(
+        "You're on the list."
+      );
 
-    event.target.reset();
+      event.target.reset();
+
+    }
+  );
+
+
+/* =========================================================
+   CLOSE BUTTONS
+========================================================= */
+
+document
+  .getElementById(
+    "closeSearch"
+  )
+  ?.addEventListener(
+    "click",
+    () =>
+      closeOverlay(
+        "searchOverlay"
+      )
+  );
+
+
+document
+  .getElementById(
+    "closeProduct"
+  )
+  ?.addEventListener(
+    "click",
+    () =>
+      closeOverlay(
+        "productOverlay"
+      )
+  );
+
+
+document
+  .getElementById(
+    "closeAccount"
+  )
+  ?.addEventListener(
+    "click",
+    () =>
+      closeOverlay(
+        "accountOverlay"
+      )
+  );
+
+
+document
+  .getElementById(
+    "closeCheckout"
+  )
+  ?.addEventListener(
+    "click",
+    () =>
+      closeOverlay(
+        "checkoutOverlay"
+      )
+  );
+
+
+/* =========================================================
+   CLICK OUTSIDE OVERLAY
+========================================================= */
+
+document.addEventListener(
+  "click",
+  event => {
+
+    if (
+      !event.target.classList.contains(
+        "overlay"
+      )
+    ) {
+      return;
+    }
+
+    event.target.classList.remove(
+      "open"
+    );
+
+    if (
+      !document.querySelector(
+        ".overlay.open, .cart-drawer.open"
+      )
+    ) {
+
+      document.body.classList.remove(
+        "no-scroll"
+      );
+
+    }
 
   }
 );
 
 
 /* =========================================================
-   SCROLL HEADER
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key !==
+      "Escape"
+    ) {
+      return;
+    }
+
+    document
+      .querySelectorAll(
+        ".overlay.open"
+      )
+      .forEach(
+        overlay =>
+          overlay.classList.remove(
+            "open"
+          )
+      );
+
+    closeCart();
+
+  }
+);
+
+
+/* =========================================================
+   HEADER SCROLL
 ========================================================= */
 
 window.addEventListener(
   "scroll",
   () => {
 
-    const header = $("header");
+    const header =
+      document.getElementById(
+        "header"
+      );
 
     if (!header) return;
 
-    if (window.scrollY > 40) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
+    header.classList.toggle(
+      "scrolled",
+      window.scrollY > 50
+    );
 
   },
-  { passive: true }
+  {
+    passive: true
+  }
 );
 
 
@@ -1736,216 +3218,271 @@ window.addEventListener(
 function initReveal() {
 
   const elements =
-    document.querySelectorAll(".reveal");
+    document.querySelectorAll(
+      ".reveal"
+    );
 
-  if (!("IntersectionObserver" in window)) {
+  if (
+    !("IntersectionObserver" in window)
+  ) {
 
-    elements.forEach(el =>
-      el.classList.add("visible")
+    elements.forEach(
+      element =>
+        element.classList.add(
+          "visible"
+        )
     );
 
     return;
+
   }
 
   const observer =
     new IntersectionObserver(
       entries => {
 
-        entries.forEach(entry => {
+        entries.forEach(
+          entry => {
 
-          if (entry.isIntersecting) {
+            if (
+              entry.isIntersecting
+            ) {
 
-            entry.target.classList.add("visible");
+              entry.target.classList.add(
+                "visible"
+              );
 
-            observer.unobserve(entry.target);
+              observer.unobserve(
+                entry.target
+              );
+
+            }
 
           }
-
-        });
+        );
 
       },
       {
-        threshold: 0.12
+        threshold: 0.08
       }
     );
 
-  elements.forEach(el =>
-    observer.observe(el)
+  elements.forEach(
+    element =>
+      observer.observe(
+        element
+      )
   );
 
 }
 
-initReveal();
-
 
 /* =========================================================
-   MAGNETIC BUTTON
+   MAGNETIC BUTTONS
 ========================================================= */
 
-document.addEventListener("mousemove", (event) => {
-
-  const button =
-    event.target.closest(".btn");
-
-  if (!button) return;
-
-  const rect =
-    button.getBoundingClientRect();
-
-  const x =
-    event.clientX -
-    (rect.left + rect.width / 2);
-
-  const y =
-    event.clientY -
-    (rect.top + rect.height / 2);
-
-  button.style.transform =
-    `translate(${x * 0.06}px, ${y * 0.06}px)`;
-
-});
-
-
-document.addEventListener("mouseleave", () => {
+function initMagneticButtons() {
 
   document
-    .querySelectorAll(".btn")
+    .querySelectorAll(
+      ".btn"
+    )
     .forEach(button => {
-      button.style.transform = "";
+
+      button.addEventListener(
+        "mousemove",
+        event => {
+
+          const rect =
+            button.getBoundingClientRect();
+
+          const x =
+            event.clientX -
+            rect.left -
+            rect.width / 2;
+
+          const y =
+            event.clientY -
+            rect.top -
+            rect.height / 2;
+
+          button.style.transform =
+            `translate(${x * 0.08}px, ${y * 0.08}px)`;
+
+        }
+      );
+
+      button.addEventListener(
+        "mouseleave",
+        () => {
+
+          button.style.transform =
+            "";
+
+        }
+      );
+
     });
 
-});
+}
 
 
 /* =========================================================
    COUNTDOWN
 ========================================================= */
 
-const dropDate =
-  new Date(
-    Date.now() +
-    7 * 24 * 60 * 60 * 1000
-  );
+let countdownEnd =
+  Date.now() +
+  7 * 24 * 60 * 60 * 1000;
 
 
 function updateCountdown() {
 
-  const now = new Date();
+  const remaining =
+    Math.max(
+      countdownEnd -
+      Date.now(),
+      0
+    );
 
-  let difference =
-    dropDate.getTime() -
-    now.getTime();
-
-  if (difference < 0) {
-    difference = 0;
-  }
+  const totalSeconds =
+    Math.floor(
+      remaining / 1000
+    );
 
   const days =
     Math.floor(
-      difference / (1000 * 60 * 60 * 24)
+      totalSeconds /
+      86400
     );
 
   const hours =
     Math.floor(
-      (difference / (1000 * 60 * 60)) % 24
+      (totalSeconds % 86400) /
+      3600
     );
 
   const minutes =
     Math.floor(
-      (difference / (1000 * 60)) % 60
+      (totalSeconds % 3600) /
+      60
     );
 
   const seconds =
-    Math.floor(
-      (difference / 1000) % 60
-    );
+    totalSeconds % 60;
 
-  if ($("days")) {
-    $("days").textContent =
-      String(days).padStart(2, "0");
-  }
+  const set =
+    (id, value) => {
 
-  if ($("hours")) {
-    $("hours").textContent =
-      String(hours).padStart(2, "0");
-  }
+      const element =
+        document.getElementById(id);
 
-  if ($("minutes")) {
-    $("minutes").textContent =
-      String(minutes).padStart(2, "0");
-  }
+      if (!element) return;
 
-  if ($("seconds")) {
-    $("seconds").textContent =
-      String(seconds).padStart(2, "0");
-  }
+      element.textContent =
+        String(value)
+          .padStart(2, "0");
+
+    };
+
+  set("days", days);
+  set("hours", hours);
+  set("minutes", minutes);
+  set("seconds", seconds);
 
 }
 
-updateCountdown();
 
-setInterval(updateCountdown, 1000);
+setInterval(
+  updateCountdown,
+  1000
+);
 
 
 /* =========================================================
-   OVERLAY CLICK + ESCAPE
+   INIT
 ========================================================= */
 
-document.querySelectorAll(".overlay").forEach(
-  overlay => {
+document.addEventListener(
+  "DOMContentLoaded",
+  async () => {
 
-    overlay.addEventListener(
-      "click",
-      event => {
+    renderInitialProducts();
 
-        if (event.target === overlay) {
+    applyShopFilters();
 
-          overlay.classList.remove("open");
+    updateWishlistCount();
 
-          if (
-            !document.querySelector(".cart-drawer.open")
-          ) {
-            document.body.classList.remove(
-              "no-scroll"
-            );
-          }
+    updateCart();
 
-        }
+    updateCountdown();
 
-      }
+    initReveal();
+
+    initMagneticButtons();
+
+    await refreshAuthUI();
+
+    setTimeout(
+      () => {
+
+        document
+          .getElementById(
+            "loader"
+          )
+          ?.classList.add(
+            "hide"
+          );
+
+      },
+      700
     );
 
   }
 );
 
 
-document.addEventListener("keydown", event => {
+/* =========================================================
+   AUTH REDIRECT CHECK
+========================================================= */
 
-  if (event.key !== "Escape") return;
+(async function checkAuthRedirect() {
 
-  document
-    .querySelectorAll(".overlay.open")
-    .forEach(overlay => {
-      overlay.classList.remove("open");
-    });
+  const hash =
+    window.location.hash;
 
-  closeCart();
+  if (
+    hash.includes(
+      "type=recovery"
+    )
+  ) {
 
-  document.body.classList.remove("no-scroll");
+    setTimeout(
+      async () => {
 
-});
+        openOverlay(
+          "accountOverlay"
+        );
+
+        showAccountView(
+          "resetView"
+        );
+
+      },
+      500
+    );
+
+  }
+
+})();
 
 
 /* =========================================================
-   PAGE LOADER
+   FINAL PRODUCT COUNT
 ========================================================= */
 
-window.addEventListener("load", () => {
-
-  setTimeout(() => {
-
-    $("loader")?.classList.add("hide");
-
-  }, 500);
-
-});
+console.log(
+  `%cFASHION GARMENTS%c ${products.length} products loaded.`,
+  "font-weight:bold;",
+  "font-weight:normal;"
+);
