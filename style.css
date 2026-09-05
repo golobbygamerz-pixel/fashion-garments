@@ -519,6 +519,12 @@ em {
   color: var(--text) !important;
 }
 
+.product-price del {
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 5px;
+}
+
 .category-section {
   padding: 40px 5vw 130px;
   max-width: 1600px;
@@ -1105,6 +1111,11 @@ footer {
   outline: none;
 }
 
+.account-modal input:focus,
+.checkout-modal input:focus {
+  border-color: var(--dark);
+}
+
 .full {
   width: 100%;
 }
@@ -1113,7 +1124,78 @@ footer {
   color: var(--muted);
   font-size: 10px;
   margin-top: 20px;
+  line-height: 1.8;
+}
+
+.account-small button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--text);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.account-message {
+  margin-top: 15px;
+  font-size: 10px;
   line-height: 1.6;
+  color: var(--muted);
+  min-height: 15px;
+}
+
+.account-message.error {
+  color: #a33;
+}
+
+.account-message.success {
+  color: #52745a;
+}
+
+.account-user {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+
+.account-user strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.account-user span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.account-view {
+  animation: accountFade .3s ease;
+}
+
+.account-view[hidden] {
+  display: none !important;
+}
+
+.account-modal .btn:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes accountFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cart-drawer {
@@ -1389,7 +1471,10 @@ footer {
   transform: translateY(0);
 }
 
-/* MOBILE */
+
+/* =========================================
+   MOBILE
+========================================= */
 
 @media(max-width:900px) {
 
@@ -1519,7 +1604,9 @@ footer {
   .shop-controls {
     justify-content: flex-start;
   }
+
 }
+
 
 @media(max-width:550px) {
 
@@ -1638,4 +1725,5 @@ footer {
   .countdown strong {
     font-size: 24px;
   }
+
 }
